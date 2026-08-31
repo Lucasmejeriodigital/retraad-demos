@@ -64,7 +64,7 @@ a:hover{text-decoration:underline;}
 .cat-card{background:var(--bg);border:2px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);cursor:pointer;text-align:left;transition:border-color var(--transition),box-shadow var(--transition);font-family:var(--f-body);}
 .cat-card:hover{border-color:var(--c-leaf);box-shadow:var(--shadow-card);}
 .cat-card.sel{border-color:var(--c-forest);background:var(--bg-tint);}
-.cat-icon{font-size:1.5rem;margin-bottom:8px;display:block;}
+.cat-icon{font-size:1.5rem;margin-bottom:6px;display:block;line-height:1;}
 .cat-title{font-size:var(--size-sm);font-weight:600;color:var(--text);margin-bottom:3px;}
 .cat-desc{font-size:var(--size-xs);color:var(--text-muted);line-height:1.4;}
 
@@ -85,9 +85,9 @@ a:hover{text-decoration:underline;}
 @media(prefers-color-scheme:dark){.warn-box{background:#2a220a;border-color:#7a6000;color:#e0c060;}}
 .warn-box svg{flex-shrink:0;margin-top:1px;}
 
-.path-placeholder{background:var(--bg-surface);border:1px dashed var(--border-dark);border-radius:var(--radius);padding:var(--sp-3);text-align:center;margin-bottom:var(--sp-3);}
-.path-placeholder-icon{font-size:2rem;margin-bottom:var(--sp-1);}
-.path-placeholder h4{font-size:var(--size-md);font-weight:600;color:var(--text);margin-bottom:6px;}
+.path-placeholder{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--c-leaf);border-radius:var(--radius);padding:var(--sp-2) var(--sp-3);margin-bottom:var(--sp-3);}
+.path-placeholder-icon{display:none;}
+.path-placeholder h4{font-size:var(--size-xs);font-weight:600;color:var(--c-leaf);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
 .path-placeholder p{font-size:var(--size-sm);color:var(--text-muted);line-height:1.5;}
 
 .match-wrap{margin-bottom:var(--sp-3);}
@@ -140,8 +140,8 @@ a:hover{text-decoration:underline;}
 .fact-icon{font-size:1rem;flex-shrink:0;}
 .sidebar-trust{border-top:1px solid var(--border);padding-top:var(--sp-2);}
 .trust-row{display:flex;justify-content:space-around;gap:var(--sp-1);text-align:center;}
-.trust-num{display:block;font-size:var(--size-xl);font-weight:700;color:var(--c-forest);line-height:1;}
-.trust-lbl{display:block;font-size:10px;color:var(--text-muted);margin-top:2px;}
+.trust-num{display:block;font-size:var(--size-2xl);font-weight:700;color:var(--c-forest);line-height:1;font-variant-numeric:tabular-nums;}
+.trust-lbl{display:block;font-size:10px;color:var(--text-muted);margin-top:3px;letter-spacing:.04em;}
 
 .flow-controls{display:flex;justify-content:space-between;align-items:center;margin-top:var(--sp-3);padding-top:var(--sp-2);border-top:1px solid var(--border);}
 .back-btn{background:none;border:none;color:var(--text-muted);font-size:var(--size-sm);font-family:var(--f-body);cursor:pointer;padding:0;display:flex;align-items:center;gap:5px;}
@@ -350,9 +350,8 @@ a:hover{text-decoration:underline;}
       <button class="radio-btn" onclick="selR(this,'s1','n-s1')"><span class="radio-dot"></span>Underholdsbidrag</button>
     </div>
     <div class="path-placeholder" style="margin-top:var(--sp-1)">
-      <div class="path-placeholder-icon">🗺️</div>
-      <h4>Samme logik — andre spørgsmål</h4>
-      <p>Her ville følge: børn involveret?, varighed af ægteskab, akutte spørgsmål — og match til familieretspecialist.</p>
+      <h4>Fortsættes i det fulde flow</h4>
+      <p>Næste spørgsmål: børn involveret, ægteskabets varighed, akutte spørgsmål — og match til familieretsspecialist på dit nærmeste kontor.</p>
     </div>
     <div class="flow-controls">
       <button class="back-btn" onclick="goP('p1','Trin 1','0%')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
@@ -371,9 +370,8 @@ a:hover{text-decoration:underline;}
       <button class="radio-btn" onclick="selR(this,'b1','n-b1')"><span class="radio-dot"></span>Nabotvist eller byggesag</button>
     </div>
     <div class="path-placeholder" style="margin-top:var(--sp-1)">
-      <div class="path-placeholder-icon">🗺️</div>
-      <h4>Samme logik — andre spørgsmål</h4>
-      <p>Her ville følge: ejendomstype, geografisk område, prisklasse — og match til ejendomsadvokat med lokalkendskab.</p>
+      <h4>Fortsættes i det fulde flow</h4>
+      <p>Næste spørgsmål: ejendomstype, geografisk område, prisklasse — og match til ejendomsadvokat med lokalkendskab.</p>
     </div>
     <div class="flow-controls">
       <button class="back-btn" onclick="goP('p1','Trin 1','0%')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
@@ -392,9 +390,8 @@ a:hover{text-decoration:underline;}
       <button class="radio-btn" onclick="selR(this,'e1','n-e1')"><span class="radio-dot"></span>Konkurs og rekonstruktion</button>
     </div>
     <div class="path-placeholder" style="margin-top:var(--sp-1)">
-      <div class="path-placeholder-icon">🗺️</div>
-      <h4>Samme logik — andre spørgsmål</h4>
-      <p>Herefter: virksomhedstype, antal ansatte, om det er akut — og match til erhvervsadvokat med brancheerfaring.</p>
+      <h4>Fortsættes i det fulde flow</h4>
+      <p>Næste spørgsmål: virksomhedstype, antal ansatte, akuthedsgrad — og match til erhvervsadvokat med brancheerfaring.</p>
     </div>
     <div class="flow-controls">
       <button class="back-btn" onclick="goP('p1','Trin 1','0%')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
@@ -413,9 +410,8 @@ a:hover{text-decoration:underline;}
       <button class="radio-btn" onclick="selR(this,'ar1','n-ar1')"><span class="radio-dot"></span>Gave eller fremtidsfuldmagt</button>
     </div>
     <div class="path-placeholder" style="margin-top:var(--sp-1)">
-      <div class="path-placeholder-icon">🗺️</div>
-      <h4>Samme logik — andre spørgsmål</h4>
-      <p>Herefter: familiesituation, formuestørrelse, særkullsbørn — og match til arveretspecialist.</p>
+      <h4>Fortsættes i det fulde flow</h4>
+      <p>Næste spørgsmål: familiesituation, formuestørrelse, særkullsbørn — og match til arveretspecialist.</p>
     </div>
     <div class="flow-controls">
       <button class="back-btn" onclick="goP('p1','Trin 1','0%')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
@@ -434,9 +430,8 @@ a:hover{text-decoration:underline;}
       <button class="radio-btn" onclick="selR(this,'an1','n-an1')"><span class="radio-dot"></span>Noget andet</button>
     </div>
     <div class="path-placeholder" style="margin-top:var(--sp-1)">
-      <div class="path-placeholder-icon">🗺️</div>
-      <h4>Samme logik — andre spørgsmål</h4>
-      <p>Herefter: yderligere afklaring om sagens art og akuthedsgrad — og match til den mest relevante generalist.</p>
+      <h4>Fortsættes i det fulde flow</h4>
+      <p>Næste spørgsmål: sagens art og akuthedsgrad nærmere bestemt — og match til den mest relevante generalist.</p>
     </div>
     <div class="flow-controls">
       <button class="back-btn" onclick="goP('p1','Trin 1','0%')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
