@@ -106,6 +106,13 @@ a:hover{text-decoration:underline;}
 
 /* Booking */
 .booking-widget{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card);}
+/* tabs */
+.bw-tabs{display:flex;border-bottom:1px solid var(--border);}
+.bw-tab{flex:1;background:var(--bg-surface);border:none;border-right:1px solid var(--border);padding:10px 6px;font-family:var(--f-body);font-size:var(--size-xs);font-weight:600;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:color var(--transition),background var(--transition);}
+.bw-tab:last-child{border-right:none;}
+.bw-tab:hover{color:var(--c-forest);}
+.bw-tab.active{background:var(--bg);color:var(--c-forest);box-shadow:inset 0 -2px 0 var(--c-forest);}
+.bw-pane{}
 .booking-header{background:var(--bg-surface);border-bottom:1px solid var(--border);padding:var(--sp-2);}
 .booking-header h3{font-size:var(--size-sm);font-weight:600;color:var(--text);margin-bottom:2px;}
 .booking-header p{font-size:var(--size-xs);color:var(--text-muted);}
@@ -115,14 +122,42 @@ a:hover{text-decoration:underline;}
 .booking-time:hover{border-color:var(--c-leaf);}
 .booking-time.selected{border-color:var(--c-forest);background:var(--bg-tint);color:var(--c-forest);}
 .booking-time-day{font-size:10px;color:var(--text-muted);font-weight:400;margin-bottom:1px;}
+/* lead form */
+.lead-form{margin-bottom:var(--sp-2);}
+.lead-form-label{font-size:var(--size-xs);font-weight:600;color:var(--text);margin-bottom:6px;}
+.lead-input{width:100%;border:1.5px solid var(--border-dark);border-radius:var(--radius);padding:8px 11px;font-family:var(--f-body);font-size:var(--size-xs);color:var(--text);background:var(--bg);margin-bottom:6px;display:block;}
+.lead-input:focus{outline:none;border-color:var(--c-forest);}
+.lead-consent{font-size:10px;color:var(--text-muted);line-height:1.5;margin-top:2px;}
+.lead-gdpr{font-weight:600;color:var(--c-leaf);}
 .booking-btn{width:100%;background:var(--c-forest);color:var(--c-white);border:2px solid var(--c-forest);border-radius:var(--radius);padding:12px 16px;font-size:var(--size-sm);font-weight:600;font-family:var(--f-body);cursor:pointer;transition:background var(--transition);display:flex;align-items:center;justify-content:center;gap:7px;}
 .booking-btn:hover{background:var(--c-pine);border-color:var(--c-pine);}
 .booking-note{text-align:center;font-size:11px;color:var(--text-muted);margin-top:var(--sp-1);}
 .booking-confirm{display:none;padding:var(--sp-3);text-align:center;}
 .booking-confirm.visible{display:block;}
-.booking-confirm-icon{width:48px;height:48px;background:var(--bg-tint);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-2);color:var(--c-forest);}
-.booking-confirm h4{font-size:var(--size-md);font-weight:600;color:var(--text);margin-bottom:6px;}
-.booking-confirm p{font-size:var(--size-xs);color:var(--text-muted);line-height:1.5;}
+/* embed chat */
+.bw-chat-body{display:flex;flex-direction:column;height:320px;}
+.bwc-msgs{flex:1;overflow-y:auto;padding:var(--sp-1) var(--sp-2);display:flex;flex-direction:column;gap:8px;}
+.bwc-msg{max-width:85%;}
+.bwc-msg.bot{align-self:flex-start;}
+.bwc-msg.usr{align-self:flex-end;}
+.bwc-bubble{padding:8px 11px;border-radius:var(--radius);font-size:var(--size-xs);line-height:1.55;}
+.bwc-msg.bot .bwc-bubble{background:var(--bg-surface);border:1px solid var(--border);color:var(--text);}
+.bwc-msg.usr .bwc-bubble{background:var(--c-forest);color:#fff;}
+.bwc-typing{padding:6px 12px;display:none;gap:4px;}
+.bwc-typing.show{display:flex;}
+.bwc-typing span{width:5px;height:5px;border-radius:50%;background:var(--text-muted);animation:typing 1.2s infinite;}
+.bwc-typing span:nth-child(2){animation-delay:.2s;}
+.bwc-typing span:nth-child(3){animation-delay:.4s;}
+@keyframes typing{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-4px);}}
+.bwc-quick{padding:0 var(--sp-1) 6px;display:flex;flex-wrap:wrap;gap:5px;}
+.bwc-quick button{background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:4px 10px;font-family:var(--f-body);font-size:10px;color:var(--c-forest);cursor:pointer;transition:border-color .15s;}
+.bwc-quick button:hover{border-color:var(--c-leaf);}
+.bwc-quick button:disabled{opacity:.3;pointer-events:none;}
+.bwc-input-wrap{display:flex;gap:6px;padding:var(--sp-1) var(--sp-1);border-top:1px solid var(--border);}
+.bwc-input{flex:1;border:1.5px solid var(--border-dark);border-radius:var(--radius);padding:7px 10px;font-family:var(--f-body);font-size:var(--size-xs);color:var(--text);background:var(--bg);}
+.bwc-input:focus{outline:none;border-color:var(--c-forest);}
+.bwc-send{background:var(--c-forest);border:none;border-radius:var(--radius);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;flex-shrink:0;}
+.bwc-send:hover{background:var(--c-pine);}
 
 /* Content */
 .content-section{padding:var(--sp-6) var(--sp-3);}
@@ -288,28 +323,101 @@ a:hover{text-decoration:underline;}
         </div>
       </div>
       <div class="booking-widget">
-        <div class="booking-header">
-          <h3>Book gratis opkald med Thomas</h3>
-          <p>Vælg tid — han ringer dig op</p>
-        </div>
-        <div class="booking-body" id="bBody">
-          <div class="booking-times">
-            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>13:00</button>
-            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>15:30</button>
-            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>09:00</button>
-            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>11:00</button>
-          </div>
-          <button class="booking-btn" onclick="confirmBook()">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .93h3a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-            Bekræft opkald
+        <!-- Tab bar -->
+        <div class="bw-tabs">
+          <button class="bw-tab active" onclick="bwTab(this,'bwCall')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.13 2 2 0 012 .93h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Opkald
           </button>
-          <p class="booking-note">Ingen forpligtelse · ca. 15 min.</p>
+          <button class="bw-tab" onclick="bwTab(this,'bwVideo')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            Video
+          </button>
+          <button class="bw-tab" onclick="bwTab(this,'bwChat')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Chat
+          </button>
         </div>
-        <div class="booking-confirm" id="bConfirm">
-          <div class="booking-confirm-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <h4>Opkald booket!</h4>
-          <p>Thomas ringer dig op. Du modtager en SMS-bekræftelse.</p>
+
+        <!-- CALL -->
+        <div class="bw-pane" id="bwCall">
+          <div class="booking-header"><h3>Book gratis opkald med Thomas</h3><p>Vælg tid — han ringer dig op · ca. 15 min.</p></div>
+          <div class="booking-body" id="bBody">
+            <div class="booking-times">
+              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>13:00</button>
+              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>15:30</button>
+              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>09:00</button>
+              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>11:00</button>
+            </div>
+            <div class="lead-form" id="leadFormCall">
+              <p class="lead-form-label">Dine kontaktoplysninger</p>
+              <input class="lead-input" id="lcName" type="text" placeholder="Fulde navn *">
+              <input class="lead-input" id="lcPhone" type="tel" placeholder="Telefonnummer *">
+              <p class="lead-consent">Dine oplysninger gemmes sikkert og bruges kun til dette opkald. <span class="lead-gdpr">GDPR-compliant · Ret&amp;Råd</span></p>
+            </div>
+            <button class="booking-btn" onclick="confirmLead('bConfirm','Opkald bekræftet!','Thomas ringer dig op på det valgte tidspunkt. Du modtager en SMS-bekræftelse.')">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.13 2 2 0 012 .93h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              Bekræft opkald
+            </button>
+            <p class="booking-note">Ingen forpligtelse · gratis</p>
+          </div>
+          <div class="booking-confirm" id="bConfirm"></div>
         </div>
+
+        <!-- VIDEO -->
+        <div class="bw-pane" id="bwVideo" style="display:none">
+          <div class="booking-header"><h3>Book videomøde med Thomas</h3><p>Mødes online — du behøver ikke forlade hjemmet</p></div>
+          <div class="booking-body" id="bVBody">
+            <div class="booking-times">
+              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>14:00</button>
+              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>16:00</button>
+              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>10:00</button>
+              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>13:30</button>
+            </div>
+            <div class="lead-form">
+              <p class="lead-form-label">Dine kontaktoplysninger</p>
+              <input class="lead-input" type="text" placeholder="Fulde navn *">
+              <input class="lead-input" type="email" placeholder="E-mail *">
+              <p class="lead-consent">Mødelinket sendes til din e-mail. <span class="lead-gdpr">GDPR-compliant · Ret&amp;Råd</span></p>
+            </div>
+            <button class="booking-btn" onclick="confirmLead('bVConfirm','Videomøde bekræftet!','Mødelinket sendes til din e-mail. Vi ses online — hav gerne dine dokumenter klar.')">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Bekræft videomøde
+            </button>
+            <p class="booking-note">Ingen forpligtelse · ca. 20 min.</p>
+          </div>
+          <div class="booking-confirm" id="bVConfirm"></div>
+        </div>
+
+        <!-- CHAT -->
+        <div class="bw-pane" id="bwChat" style="display:none">
+          <div class="booking-header"><h3>Chat med Thomas</h3><p>Still dine spørgsmål direkte — svar inden for 2 min.</p></div>
+          <div class="bw-chat-body" id="bwChatBody">
+            <div class="bwc-msgs" id="bwcMsgs">
+              <div class="bwc-msg bot"><div class="bwc-bubble">Hej! Jeg er Thomas. Hvad kan jeg hjælpe dig med i dag?</div></div>
+            </div>
+            <div class="bwc-typing" id="bwcTyping"><span></span><span></span><span></span></div>
+            <div class="bwc-quick" id="bwcQuick">
+              <button onclick="bwcSendQ(this,'Hvad koster det?')">Hvad koster det?</button>
+              <button onclick="bwcSendQ(this,'Er jeg berettiget?')">Er jeg berettiget?</button>
+              <button onclick="bwcSendQ(this,'Hvor lang tid tager det?')">Hvor lang tid?</button>
+            </div>
+            <div class="lead-form" id="bwcLeadForm" style="display:none">
+              <p class="lead-form-label">Efterlad dit nummer — Thomas følger op</p>
+              <input class="lead-input" id="bwcName" type="text" placeholder="Navn *">
+              <input class="lead-input" id="bwcPhone" type="tel" placeholder="Telefon *">
+              <button class="booking-btn" style="margin-top:8px" onclick="bwcConfirmLead()">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                Send og afvent opkald
+              </button>
+            </div>
+            <div class="bwc-input-wrap" id="bwcInputWrap">
+              <input class="bwc-input" id="bwcInput" type="text" placeholder="Skriv din besked…" onkeydown="if(event.key==='Enter')bwcSend()">
+              <button class="bwc-send" onclick="bwcSend()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -460,11 +568,74 @@ a:hover{text-decoration:underline;}
 </footer>
 
 <script>
+/* Tabs */
+function bwTab(btn,paneId){
+  document.querySelectorAll('.bw-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.bw-pane').forEach(p=>p.style.display='none');
+  btn.classList.add('active');
+  document.getElementById(paneId).style.display='block';
+}
+
 /* Booking */
 function selTime(el){el.closest('.booking-times').querySelectorAll('.booking-time').forEach(t=>t.classList.remove('selected'));el.classList.add('selected');}
-function confirmBook(){if(!document.querySelector('.booking-time.selected'))document.querySelectorAll('.booking-time')[0].classList.add('selected');document.getElementById('bBody').style.display='none';document.getElementById('bConfirm').classList.add('visible');}
+
+function confirmLead(confirmId,title,msg){
+  var nm=document.getElementById('lcName')||document.getElementById('bwcName');
+  var ph=document.getElementById('lcPhone')||document.getElementById('bwcPhone');
+  /* In production: POST {name, phone, timestamp, page, type} to CRM/webhook here */
+  var pane=document.getElementById(confirmId);
+  var body=pane.previousElementSibling;
+  if(body)body.style.display='none';
+  pane.className='booking-confirm visible';
+  pane.innerHTML='<div style="padding:24px;text-align:center"><div style="width:46px;height:46px;background:var(--bg-tint);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;color:var(--c-forest)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><h4 style="font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--text)">'+title+'</h4><p style="font-size:.75rem;color:var(--text-muted);line-height:1.55">'+msg+'</p></div>';
+}
+
 function scrollToBooking(e){e.preventDefault();document.getElementById('booking').scrollIntoView({behavior:'smooth',block:'start'});}
 
+/* Embedded chat */
+var bwcReplies={
+  'Hvad koster det?':'Den indledende samtale er gratis og uforpligtende. Efterfølgende honorar aftales individuelt — mange klienter er dækket via retshjælpsforsikringen på deres indboforsikring.',
+  'Er jeg berettiget?':'Baseret på din situation ser det lovende ud. Kriterierne er varig og uhåndterlig gæld samt manglende betalingsevne fremadrettet. Lad mig vurdere din konkrete sag.',
+  'Hvor lang tid tager det?':'Typisk 5 år, men allerede fra opstart stopper inkassosager. Vi ansøger skifteretten og holder dig opdateret hele vejen.'
+};
+var bwcDefaults=['Det forstår jeg godt — vil du efterlade dit nummer, så ringer jeg dig op?','Godt spørgsmål. Det afhænger af din specifikke sag — efterlad dit nummer, så tager vi en gratis snak.'];
+var bwcCount=0;
+
+function bwcMsg(txt,side){
+  var c=document.getElementById('bwcMsgs');
+  var d=document.createElement('div');d.className='bwc-msg '+side;
+  d.innerHTML='<div class="bwc-bubble">'+txt+'</div>';
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+
+function bwcBotReply(txt){
+  var tp=document.getElementById('bwcTyping');
+  tp.classList.add('show');
+  document.getElementById('bwcMsgs').scrollTop=9999;
+  setTimeout(function(){
+    tp.classList.remove('show');
+    var r=bwcReplies[txt]||bwcDefaults[bwcCount%bwcDefaults.length];
+    bwcCount++;
+    bwcMsg(r,'bot');
+    if(bwcCount>=2){
+      document.getElementById('bwcInputWrap').style.display='none';
+      document.getElementById('bwcLeadForm').style.display='block';
+    }
+  },900+Math.random()*500);
+}
+
+function bwcSendQ(btn,txt){btn.disabled=true;bwcMsg(txt,'usr');bwcBotReply(txt);}
+
+function bwcSend(){
+  var inp=document.getElementById('bwcInput');
+  var txt=inp.value.trim();if(!txt)return;inp.value='';
+  bwcMsg(txt,'usr');bwcBotReply(txt);
+}
+
+function bwcConfirmLead(){
+  /* In production: capture name + phone → CRM */
+  document.getElementById('bwcLeadForm').innerHTML='<div style="padding:12px;text-align:center"><svg width="22" height="22" fill="none" stroke="var(--c-leaf)" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">Tak! Thomas ringer dig op inden for 1 time.</p></div>';
+}
 
 /* FAQ */
 function toggleFaq(btn){var ex=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!ex);btn.nextElementSibling.classList.toggle('open',!ex);}
