@@ -107,6 +107,51 @@ a:hover{text-decoration:underline;}
 .match-live::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--c-leaf);box-shadow:0 0 0 3px rgba(42,155,71,.2);animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(42,155,71,.2);}50%{box-shadow:0 0 0 5px rgba(42,155,71,.06);}}
 .match-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.btn-chat{background:transparent;color:var(--c-forest);border:2px solid var(--c-sage);gap:6px;}
+.btn-chat:hover{border-color:var(--c-leaf);background:var(--bg-tint);}
+.btn-chat svg{flex-shrink:0;}
+
+/* Chat overlay */
+.chat-overlay{position:fixed;inset:0;z-index:500;display:flex;justify-content:flex-end;pointer-events:none;}
+.chat-overlay.open{pointer-events:all;}
+.chat-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.35);opacity:0;transition:opacity .25s;}
+.chat-overlay.open .chat-backdrop{opacity:1;}
+.chat-panel{position:relative;width:min(420px,100vw);height:100%;background:var(--bg);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(0,0,0,.2);transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);}
+.chat-overlay.open .chat-panel{transform:none;}
+.chat-ph{background:var(--c-forest);padding:14px 16px;display:flex;align-items:center;gap:11px;flex-shrink:0;}
+.chat-av{width:36px;height:36px;border-radius:50%;background:var(--c-pine);border:2px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;color:#fff;flex-shrink:0;}
+.chat-ph-info{flex:1;min-width:0;}
+.chat-ph-name{font-weight:600;font-size:var(--size-sm);color:#fff;}
+.chat-ph-status{font-size:10px;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:4px;}
+.chat-ph-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c-leaf);}
+.chat-close{background:none;border:none;color:rgba(255,255,255,.6);cursor:pointer;padding:4px;line-height:0;transition:color .15s;}
+.chat-close:hover{color:#fff;}
+.chat-msgs{flex:1;overflow-y:auto;padding:var(--sp-2);display:flex;flex-direction:column;gap:10px;}
+.msg{max-width:82%;display:flex;flex-direction:column;gap:3px;}
+.msg.bot{align-self:flex-start;}
+.msg.usr{align-self:flex-end;}
+.msg-bubble{padding:9px 12px;border-radius:1px;font-size:var(--size-sm);line-height:1.55;}
+.msg.bot .msg-bubble{background:var(--bg-surface);border:1px solid var(--border);color:var(--text);border-bottom-left-radius:0;}
+.msg.usr .msg-bubble{background:var(--c-forest);color:#fff;border-bottom-right-radius:0;}
+.msg-time{font-size:10px;color:var(--text-muted);}
+.msg.usr .msg-time{text-align:right;}
+.chat-typing{align-self:flex-start;display:none;gap:4px;padding:10px 14px;background:var(--bg-surface);border:1px solid var(--border);border-radius:1px;}
+.chat-typing.show{display:flex;}
+.chat-typing span{width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:typing 1.2s infinite;}
+.chat-typing span:nth-child(2){animation-delay:.2s;}
+.chat-typing span:nth-child(3){animation-delay:.4s;}
+@keyframes typing{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+.chat-quick{padding:0 var(--sp-2) 8px;display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;}
+.chat-quick button{background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:5px 11px;font-family:var(--f-body);font-size:var(--size-xs);color:var(--c-forest);cursor:pointer;transition:border-color .15s,background .15s;}
+.chat-quick button:hover{border-color:var(--c-leaf);background:var(--bg-tint);}
+.chat-quick button:disabled{opacity:.35;pointer-events:none;}
+.chat-input-wrap{padding:var(--sp-1) var(--sp-2) var(--sp-2);border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0;}
+.chat-input{flex:1;border:1.5px solid var(--border-dark);border-radius:var(--radius);padding:9px 12px;font-family:var(--f-body);font-size:var(--size-sm);color:var(--text);background:var(--bg);}
+.chat-input:focus{outline:none;border-color:var(--c-forest);}
+.chat-send{background:var(--c-forest);border:none;border-radius:var(--radius);width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background .15s;}
+.chat-send:hover{background:var(--c-pine);}
+.chat-send svg{color:#fff;}
+
 .btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;line-height:1;padding:11px 20px;border-radius:var(--radius);border:2px solid transparent;cursor:pointer;text-decoration:none;transition:opacity var(--transition),background var(--transition);}
 .btn-cta{background:var(--c-terracotta);color:#fff;border-color:var(--c-terracotta);}
 .btn-cta:hover{opacity:.88;text-decoration:none;color:#fff;}
@@ -317,6 +362,7 @@ a:hover{text-decoration:underline;}
             <div class="match-actions">
               <button class="btn btn-cta" onclick="goP('pd-done','Klar!','100%');showBookSidebar()">Book gratis opkald</button>
               <button class="btn btn-outline" onclick="goP('pd-done','Klar!','100%');showBookSidebar()">Videomøde</button>
+              <button class="btn btn-chat" onclick="openChat()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Chat nu</button>
             </div>
           </div>
         </div>
@@ -469,6 +515,7 @@ a:hover{text-decoration:underline;}
             <div class="match-actions">
               <button class="btn btn-cta" onclick="goP('pother-done','Klar!','100%');showBookSidebar()">Book gratis opkald</button>
               <button class="btn btn-outline" onclick="goP('pother-done','Klar!','100%');showBookSidebar()">Videomøde</button>
+              <button class="btn btn-chat" onclick="openChat()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Chat nu</button>
             </div>
           </div>
         </div>
@@ -543,6 +590,38 @@ a:hover{text-decoration:underline;}
 </div>
 
 </div><!-- /page -->
+</div>
+
+<!-- Chat overlay -->
+<div class="chat-overlay" id="chatOverlay">
+  <div class="chat-backdrop" onclick="closeChat()"></div>
+  <div class="chat-panel">
+    <div class="chat-ph">
+      <div class="chat-av" id="chatAv">TN</div>
+      <div class="chat-ph-info">
+        <div class="chat-ph-name" id="chatName">Thomas Nørgaard</div>
+        <div class="chat-ph-status">Online nu · Svarer typisk inden for 2 min.</div>
+      </div>
+      <button class="chat-close" onclick="closeChat()"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="chat-msgs" id="chatMsgs">
+      <div class="msg bot" id="initMsg">
+        <div class="msg-bubble">Hej! Jeg er <strong id="chatNameInline">Thomas Nørgaard</strong>. Jeg kan se du har spørgsmål om din gæld. Hvad kan jeg hjælpe dig med?</div>
+        <div class="msg-time" id="initTime"></div>
+      </div>
+    </div>
+    <div class="chat-typing" id="chatTyping"><span></span><span></span><span></span></div>
+    <div class="chat-quick" id="chatQuick">
+      <button onclick="sendQuick(this,'Hvad koster det?')">Hvad koster det?</button>
+      <button onclick="sendQuick(this,'Hvor lang tid tager en sag?')">Hvor lang tid tager det?</button>
+      <button onclick="sendQuick(this,'Er jeg berettiget til gældssanering?')">Er jeg berettiget?</button>
+      <button onclick="sendQuick(this,'Hvad sker der med mit hjem?')">Hvad sker der med mit hjem?</button>
+    </div>
+    <div class="chat-input-wrap">
+      <input class="chat-input" id="chatInput" type="text" placeholder="Skriv din besked…" onkeydown="if(event.key==='Enter')sendMsg()">
+      <button class="chat-send" onclick="sendMsg()"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -630,4 +709,61 @@ function showBookSidebar(){
 
 function selBWT(el){el.closest('.bw-times').querySelectorAll('.bw-time').forEach(t=>t.classList.remove('sel'));el.classList.add('sel');}
 function confirmBW(){if(!document.querySelector('.bw-time.sel'))document.querySelectorAll('.bw-time')[0].classList.add('sel');document.getElementById('sbBody').style.display='none';document.getElementById('sbDone').classList.add('vis');}
+
+/* ── CHAT ── */
+var chatReplies={
+  'Hvad koster det?':'En indledende samtale er altid gratis og uforpligtende — ca. 15 minutter. Efterfølgende aftaler vi honorar baseret på din sag. Vi har fuld gennemsigtighed i prissætningen.',
+  'Hvor lang tid tager en sag?':'En gældssaneringsproces tager typisk 5 år, men fra dag 1 stopper inkassosagerne og du får ro til at trække vejret. Vi starter med at vurdere din situation gratis.',
+  'Er jeg berettiget til gældssanering?':'Baseret på det du har fortalt mig ser det lovende ud. De vigtigste kriterier er, at gælden er varig og uhåndterlig, og at du ikke kan se en vej ud på egen hånd. Lad os tage en samtale og gå detaljerne igennem.',
+  'Hvad sker der med mit hjem?':'Det afhænger af din friværdi. I mange tilfælde kan du beholde dit hjem under en gældssanering — det er noget vi vil se specifikt på for din sag, da det varierer meget.'
+};
+var chatDefaults=['Det forstår jeg godt. Det lyder som en situation, vi bør tale nærmere om. Vil du booke et gratis opkald?','Godt spørgsmål. Det afhænger meget af din specifikke situation — det er præcis den slags vi gennemgår i det gratis indledende opkald.','Jeg hører dig. Lad os finde det rigtige svar til netop din sag — book et gratis opkald, så tager vi en snak.'];
+
+function nowTime(){var d=new Date();return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');}
+
+function openChat(){
+  document.getElementById('initTime').textContent=nowTime();
+  document.getElementById('chatOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeChat(){
+  document.getElementById('chatOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function addMsg(txt,side){
+  var msgs=document.getElementById('chatMsgs');
+  var d=document.createElement('div');
+  d.className='msg '+side;
+  d.innerHTML='<div class="msg-bubble">'+txt+'</div><div class="msg-time">'+nowTime()+'</div>';
+  msgs.appendChild(d);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function botReply(txt){
+  var typing=document.getElementById('chatTyping');
+  typing.classList.add('show');
+  document.getElementById('chatMsgs').scrollTop=document.getElementById('chatMsgs').scrollHeight;
+  setTimeout(function(){
+    typing.classList.remove('show');
+    var reply=chatReplies[txt]||chatDefaults[Math.floor(Math.random()*chatDefaults.length)];
+    addMsg(reply,'bot');
+  },1100+Math.random()*600);
+}
+
+function sendQuick(btn,txt){
+  btn.disabled=true;
+  addMsg(txt,'usr');
+  botReply(txt);
+}
+
+function sendMsg(){
+  var inp=document.getElementById('chatInput');
+  var txt=inp.value.trim();
+  if(!txt)return;
+  inp.value='';
+  addMsg(txt,'usr');
+  botReply(txt);
+}
 </script>
