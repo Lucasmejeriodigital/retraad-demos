@@ -1,0 +1,427 @@
+<meta charset="utf-8">
+<title>Ret&Råd — Forside-concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+:root{
+  --c-forest:#214b0d;--c-pine:#1b642e;--c-leaf:#2a9b47;
+  --c-sage:#d7e6d8;--c-terracotta:#cc8080;
+  --c-ink:#0c0c0c;--c-paper:#f9f9f9;--c-white:#ffffff;--c-gray:#d3d3d3;
+  --bg:var(--c-white);--bg-surface:var(--c-paper);--bg-tint:var(--c-sage);
+  --text:var(--c-ink);--text-muted:#4a4a4a;
+  --border:var(--c-sage);--border-dark:var(--c-gray);
+  --f-body:'Barlow',sans-serif;
+  --size-xs:.75rem;--size-sm:.9375rem;--size-md:1rem;--size-lg:1.25rem;
+  --size-xl:1.5rem;--size-2xl:2rem;--size-3xl:2.75rem;
+  --sp-1:10px;--sp-2:20px;--sp-3:30px;--sp-4:40px;--sp-5:50px;--sp-6:60px;
+  --radius:1px;
+  --shadow-card:4px 3px 35px 5px rgba(0,0,0,.1);
+  --shadow-panel:0 12px 48px 0 rgba(0,0,0,.22),0 2px 8px rgba(0,0,0,.1);
+  --transition:150ms ease-in-out;
+  --max-w:1100px;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1a0f;--bg-surface:#142016;--bg-tint:#1c2e1e;
+  --text:#f0f4f0;--text-muted:#9cb89e;
+  --border:#2a3d2c;--border-dark:#3d5040;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1a0f;--bg-surface:#142016;--bg-tint:#1c2e1e;
+  --text:#f0f4f0;--text-muted:#9cb89e;
+  --border:#2a3d2c;--border-dark:#3d5040;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f-body);font-size:var(--size-md);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--c-forest);text-decoration:none;}
+
+/* Banner */
+.demo-banner{background:#0c0c0c;color:rgba(255,255,255,.65);text-align:center;padding:7px var(--sp-3);font-size:var(--size-xs);letter-spacing:.04em;}
+.demo-banner strong{color:#fff;}
+
+/* Nav */
+.nav{background:var(--bg);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-3);display:flex;align-items:center;justify-content:space-between;height:64px;gap:var(--sp-3);}
+.nav-logo{font-weight:700;font-size:1.4rem;color:var(--c-forest);line-height:1;flex-shrink:0;letter-spacing:-0.02em;}
+.nav-logo small{display:block;font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--text-muted);margin-top:3px;}
+.nav-links{display:flex;gap:var(--sp-2);list-style:none;flex:1;margin-left:var(--sp-2);}
+.nav-links a{font-size:var(--size-sm);font-weight:500;color:var(--c-forest);text-decoration:none;transition:color var(--transition);}
+.nav-links a:hover{color:var(--c-leaf);}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;font-size:var(--size-sm);font-weight:600;color:var(--c-forest);border:2px solid var(--c-forest);padding:8px 16px;border-radius:var(--radius);text-decoration:none;transition:background var(--transition);flex-shrink:0;}
+.nav-cta:hover{background:var(--bg-tint);text-decoration:none;color:var(--c-forest);}
+
+/* Hero */
+.hero{background:linear-gradient(148deg,var(--c-forest) 0%,var(--c-pine) 100%);padding:var(--sp-6) var(--sp-3);}
+.hero-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:var(--sp-6);align-items:start;}
+.hero-eyebrow{font-size:var(--size-xs);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:var(--sp-2);}
+.hero h1{font-size:clamp(2.2rem,1.5rem + 2.5vw,3.875rem);font-weight:600;line-height:1;color:#fff;margin-bottom:var(--sp-2);text-wrap:balance;letter-spacing:-0.025em;}
+.hero-lead{font-size:var(--size-md);color:rgba(255,255,255,.72);line-height:1.65;margin-bottom:var(--sp-4);max-width:48ch;}
+.hero-trust{display:flex;gap:var(--sp-4);margin-bottom:var(--sp-4);}
+.hero-trust-num{font-size:var(--size-2xl);font-weight:700;color:#fff;line-height:1;display:block;font-variant-numeric:tabular-nums;}
+.hero-trust-lbl{font-size:var(--size-xs);color:rgba(255,255,255,.5);margin-top:3px;font-weight:300;letter-spacing:.03em;display:block;}
+.hero-note{font-size:var(--size-sm);color:rgba(255,255,255,.42);margin-top:var(--sp-2);}
+.hero-note a{color:rgba(255,255,255,.6);text-decoration:underline;text-decoration-color:rgba(255,255,255,.2);}
+.hero-note a:hover{color:#fff;}
+
+/* Panel */
+.hero-panel{background:#fff;border-radius:var(--radius);border-top:3px solid var(--c-leaf);box-shadow:var(--shadow-panel);}
+.panel-hdr{padding:16px var(--sp-2) 14px;border-bottom:1px solid var(--c-sage);}
+.panel-eyebrow{font-size:var(--size-xs);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:3px;}
+.panel-title{font-size:var(--size-md);font-weight:600;color:var(--c-ink);}
+.panel-body{padding:var(--sp-2);min-height:290px;}
+
+/* Progress dots */
+.p-prog{display:flex;align-items:center;gap:5px;margin-bottom:var(--sp-2);}
+.p-prog-dot{height:3px;flex:1;background:var(--c-gray);border-radius:2px;transition:background .25s;}
+.p-prog-dot.active{background:var(--c-forest);}
+.p-prog-dot.done{background:var(--c-leaf);}
+
+/* Steps */
+.ps{display:none;}
+.ps.active{display:block;animation:psIn .18s ease;}
+@keyframes psIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+/* Category grid */
+.cat-grid-p{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.cat-p{background:#fff;border:1.5px solid var(--c-sage);border-radius:var(--radius);padding:10px 10px;cursor:pointer;text-align:left;font-family:var(--f-body);transition:border-color .15s,background .15s;display:flex;align-items:center;gap:8px;}
+.cat-p:hover{border-color:var(--c-leaf);}
+.cat-p.sel{border-color:var(--c-forest);background:#f0f7f1;}
+.cat-p-icon{font-size:.95rem;flex-shrink:0;line-height:1;}
+.cat-p-lbl{font-size:var(--size-xs);font-weight:600;color:var(--c-ink);line-height:1.25;}
+
+/* Radio */
+.p-q{font-size:var(--size-sm);font-weight:600;color:var(--c-ink);margin-bottom:var(--sp-1);line-height:1.3;}
+.p-radios{display:flex;flex-direction:column;gap:7px;}
+.p-radio{background:#fff;border:1.5px solid var(--c-gray);border-radius:var(--radius);padding:10px 12px;cursor:pointer;font-family:var(--f-body);font-size:var(--size-sm);font-weight:500;color:var(--c-ink);text-align:left;transition:all .15s;display:flex;align-items:center;gap:9px;}
+.p-radio:hover{border-color:var(--c-leaf);}
+.p-radio.sel{border-color:var(--c-forest);background:#f0f7f1;color:var(--c-forest);}
+.p-rdot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--c-gray);flex-shrink:0;transition:all .15s;}
+.p-radio.sel .p-rdot{border-color:var(--c-forest);background:var(--c-forest);}
+
+/* Panel nav (step 2 only) */
+.panel-nav{display:none;justify-content:space-between;align-items:center;padding:var(--sp-1) var(--sp-2) var(--sp-2);}
+.p-back{background:none;border:none;font-family:var(--f-body);font-size:var(--size-xs);color:#999;cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;}
+.p-back:hover{color:var(--c-ink);}
+.p-next{background:var(--c-forest);color:#fff;border:2px solid var(--c-forest);border-radius:var(--radius);padding:8px 18px;font-size:var(--size-sm);font-weight:600;font-family:var(--f-body);cursor:pointer;transition:background .15s;display:flex;align-items:center;gap:5px;}
+.p-next:hover{background:var(--c-pine);border-color:var(--c-pine);}
+.p-next:disabled{opacity:.3;cursor:not-allowed;}
+.p-next:disabled:hover{background:var(--c-forest);border-color:var(--c-forest);}
+
+/* Match */
+.p-match-banner{background:var(--c-pine);border-radius:var(--radius);padding:10px 12px;display:flex;align-items:center;gap:9px;margin-bottom:var(--sp-1);}
+.p-chk{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;}
+.p-match-banner-txt{font-size:var(--size-xs);font-weight:600;color:#fff;line-height:1.3;}
+.p-match-banner-txt span{color:rgba(255,255,255,.65);font-weight:400;}
+.p-match-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;}
+.p-av{width:44px;height:44px;border-radius:50%;flex-shrink:0;overflow:hidden;background:var(--c-sage);}
+.p-av svg{width:100%;height:100%;}
+.p-nm{font-size:var(--size-sm);font-weight:600;color:var(--c-forest);margin-bottom:1px;}
+.p-rl{font-size:10px;color:#666;line-height:1.4;margin-bottom:6px;}
+.p-live{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;color:var(--c-leaf);}
+.p-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c-leaf);box-shadow:0 0 0 2px rgba(42,155,71,.2);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 2px rgba(42,155,71,.2);}50%{box-shadow:0 0 0 4px rgba(42,155,71,.06);}}
+.p-actions{display:flex;gap:7px;flex-wrap:wrap;}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;line-height:1;padding:11px 20px;border-radius:var(--radius);border:2px solid transparent;cursor:pointer;text-decoration:none;transition:opacity .15s,background .15s;}
+.btn-cta{background:var(--c-terracotta);color:#fff;border-color:var(--c-terracotta);}
+.btn-cta:hover{opacity:.88;text-decoration:none;color:#fff;}
+.btn-outline{background:transparent;color:var(--c-forest);border-color:var(--c-forest);}
+.btn-outline:hover{background:var(--bg-tint);text-decoration:none;color:var(--c-forest);}
+.btn-sm{padding:8px 14px;font-size:var(--size-xs);}
+
+/* Done */
+.p-done{text-align:center;padding:var(--sp-3) var(--sp-2);}
+.p-done-icon{width:44px;height:44px;border-radius:50%;background:var(--c-sage);border:2px solid var(--c-leaf);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-1);color:var(--c-forest);}
+.p-done h3{font-size:var(--size-md);font-weight:600;color:var(--c-ink);margin-bottom:6px;}
+.p-done p{font-size:var(--size-xs);color:#666;line-height:1.6;}
+
+/* Specialties */
+.specialties{padding:var(--sp-6) var(--sp-3);}
+.specialties-inner{max-width:var(--max-w);margin:0 auto;}
+.section-lbl{font-size:var(--size-xs);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:var(--sp-1);}
+.section-h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;margin-bottom:var(--sp-3);color:var(--text);text-wrap:balance;}
+.spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-1);}
+.spec-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s;display:block;}
+.spec-card:hover{border-color:var(--c-leaf);box-shadow:var(--shadow-card);text-decoration:none;}
+.spec-icon{font-size:1.4rem;margin-bottom:8px;display:block;}
+.spec-title{font-size:var(--size-sm);font-weight:600;color:var(--c-forest);margin-bottom:3px;}
+.spec-desc{font-size:var(--size-xs);color:var(--text-muted);line-height:1.5;}
+
+/* Articles */
+.articles{padding:var(--sp-6) var(--sp-3);background:var(--bg-surface);border-top:1px solid var(--border);}
+.articles-inner{max-width:var(--max-w);margin:0 auto;}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);}
+.article-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);}
+.article-tag{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--c-leaf);border:1px solid var(--c-leaf);padding:2px 7px;border-radius:var(--radius);display:inline-flex;margin-bottom:10px;}
+.article-title{font-size:var(--size-sm);font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4;}
+.article-meta{font-size:10px;color:var(--text-muted);}
+
+/* Footer */
+.footer{background:var(--c-pine);padding:var(--sp-4) var(--sp-3) var(--sp-3);}
+.footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--sp-3);color:#fff;}
+.f-col-title{font-size:var(--size-sm);font-weight:600;margin-bottom:12px;}
+.f-link{display:block;font-size:var(--size-sm);color:rgba(255,255,255,.65);text-decoration:none;margin-bottom:6px;transition:color .15s;}
+.f-link:hover{color:#fff;text-decoration:none;}
+.footer-bottom{max-width:var(--max-w);margin:var(--sp-3) auto 0;padding-top:var(--sp-2);border-top:1px solid rgba(255,255,255,.12);font-size:var(--size-xs);color:rgba(255,255,255,.32);}
+
+/* Responsive */
+@media(max-width:920px){
+  .hero-inner{grid-template-columns:1fr;gap:var(--sp-4);}
+  .hero-panel{max-width:440px;}
+  .spec-grid{grid-template-columns:repeat(2,1fr);}
+  .articles-grid{grid-template-columns:1fr 1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:580px){
+  .nav-links{display:none;}
+  .hero-trust{flex-wrap:wrap;gap:var(--sp-3);}
+  .hero-panel{max-width:100%;}
+  .spec-grid{grid-template-columns:1fr 1fr;}
+  .articles-grid{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;}}
+</style>
+
+<div class="demo-banner">⚠ <strong>Konceptdemo — Forside</strong> · Quiz integreret i hero-kolonnen · iO Agency for Ret&amp;Råd</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">Ret&amp;Råd<small>Advokater</small></div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="return false">Specialer</a></li>
+      <li><a href="#" onclick="return false">Find advokat</a></li>
+      <li><a href="#" onclick="return false">Kontorer</a></li>
+      <li><a href="#" onclick="return false">Om Ret&amp;Råd</a></li>
+    </ul>
+    <a href="#" class="nav-cta" onclick="return false">Find kontor</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <!-- Left: brand -->
+    <div>
+      <div class="hero-eyebrow">Ret&amp;Råd · Danmark</div>
+      <h1>Advokat<br>tæt på dig</h1>
+      <p class="hero-lead">Vi har 140+ advokater fordelt over hele Danmark. Fortæl os kort hvad det handler om — vi finder den rette specialist til dig inden for minutter.</p>
+      <div class="hero-trust">
+        <div>
+          <span class="hero-trust-num">140+</span>
+          <span class="hero-trust-lbl">advokater</span>
+        </div>
+        <div>
+          <span class="hero-trust-num">31 år</span>
+          <span class="hero-trust-lbl">i markedet</span>
+        </div>
+        <div>
+          <span class="hero-trust-num">4,8★</span>
+          <span class="hero-trust-lbl">gennemsnit</span>
+        </div>
+      </div>
+      <p class="hero-note">Gratis, uforpligtende første samtale · <a href="#" onclick="return false">Læs om processen</a></p>
+    </div>
+
+    <!-- Right: quiz panel -->
+    <div class="hero-panel">
+      <div class="panel-hdr">
+        <div class="panel-eyebrow">Find din advokat</div>
+        <div class="panel-title">Hvad handler din sag om?</div>
+      </div>
+
+      <div class="panel-body">
+
+        <!-- Step 1: Category -->
+        <div class="ps active" id="ps1">
+          <div class="p-prog">
+            <div class="p-prog-dot active"></div>
+            <div class="p-prog-dot"></div>
+            <div class="p-prog-dot"></div>
+          </div>
+          <div class="cat-grid-p">
+            <button class="cat-p" onclick="selCat(this,'gaeld')"><span class="cat-p-icon">💳</span><span class="cat-p-lbl">Gæld &amp; økonomi</span></button>
+            <button class="cat-p" onclick="selCat(this,'skilsmisse')"><span class="cat-p-icon">👨‍👩‍👧</span><span class="cat-p-lbl">Skilsmisse &amp; familie</span></button>
+            <button class="cat-p" onclick="selCat(this,'bolig')"><span class="cat-p-icon">🏠</span><span class="cat-p-lbl">Bolig &amp; ejendom</span></button>
+            <button class="cat-p" onclick="selCat(this,'erhverv')"><span class="cat-p-icon">💼</span><span class="cat-p-lbl">Erhverv</span></button>
+            <button class="cat-p" onclick="selCat(this,'arv')"><span class="cat-p-icon">📜</span><span class="cat-p-lbl">Arv &amp; testamente</span></button>
+            <button class="cat-p" onclick="selCat(this,'andet')"><span class="cat-p-icon">⚖️</span><span class="cat-p-lbl">Andet juridisk</span></button>
+          </div>
+        </div>
+
+        <!-- Step 2: Question (populated by JS) -->
+        <div class="ps" id="ps2">
+          <div class="p-prog">
+            <div class="p-prog-dot done"></div>
+            <div class="p-prog-dot active"></div>
+            <div class="p-prog-dot"></div>
+          </div>
+          <div class="p-q" id="pQ">Hvad er din primære udfordring?</div>
+          <div class="p-radios" id="pOpts"></div>
+        </div>
+
+        <!-- Step 3: Match -->
+        <div class="ps" id="ps3">
+          <div class="p-prog">
+            <div class="p-prog-dot done"></div>
+            <div class="p-prog-dot done"></div>
+            <div class="p-prog-dot active"></div>
+          </div>
+          <div class="p-match-banner">
+            <div class="p-chk"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="p-match-banner-txt">Vi har fundet din specialist<br><span id="pmSpec">Gæld &amp; privatøkonomi · Frederiksberg</span></div>
+          </div>
+          <div class="p-match-row">
+            <div class="p-av">
+              <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                <rect width="44" height="44" fill="#d7e6d8"/>
+                <circle cx="22" cy="16" r="8" fill="#1b642e"/>
+                <ellipse cx="22" cy="36" rx="13" ry="9" fill="#1b642e"/>
+                <text x="22" y="20" text-anchor="middle" font-family="Barlow,sans-serif" font-size="8" font-weight="700" fill="white" id="pmInitials">TN</text>
+              </svg>
+            </div>
+            <div>
+              <div class="p-nm" id="pmName">Thomas Nørgaard</div>
+              <div class="p-rl" id="pmRole">Advokat · Gæld &amp; privatøkonomi<br>Ret&amp;Råd Frederiksberg</div>
+              <div class="p-live">Ledig i dag</div>
+            </div>
+          </div>
+          <div class="p-actions">
+            <button class="btn btn-cta btn-sm" onclick="showDone()">Book gratis opkald</button>
+            <button class="btn btn-outline btn-sm" onclick="showDone()">Videomøde</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Done -->
+        <div class="ps" id="ps4">
+          <div class="p-done">
+            <div class="p-done-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3>Alt klaret.</h3>
+            <p>Du modtager en SMS-bekræftelse inden for få minutter. Opkaldet er gratis og uforpligtende — ca. 15 min.</p>
+          </div>
+        </div>
+
+      </div><!-- /panel-body -->
+
+      <!-- Nav bar: back + next (step 2 only) -->
+      <div class="panel-nav" id="pNav">
+        <button class="p-back" onclick="showStep(1)"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Tilbage</button>
+        <button class="p-next" id="pNext" disabled onclick="showStep(3)">Se dit match <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+
+    </div><!-- /hero-panel -->
+  </div>
+</section>
+
+<!-- ── SPECIALTIES ── -->
+<section class="specialties">
+  <div class="specialties-inner">
+    <div class="section-lbl">Specialer</div>
+    <h2 class="section-h2">Hvad kan vi hjælpe dig med?</h2>
+    <div class="spec-grid">
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🏠</span><div class="spec-title">Boligkøb</div><div class="spec-desc">Juridisk gennemgang og rådgivning ved køb og salg</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">💳</span><div class="spec-title">Gældssanering</div><div class="spec-desc">Kom fri af uhåndterlig gæld via domstolsafgørelse</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">👨‍👩‍👧</span><div class="spec-title">Familieret</div><div class="spec-desc">Separation, bodeling, børn og samværsaftaler</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">📜</span><div class="spec-title">Arv &amp; testamente</div><div class="spec-desc">Testamente, skiftebehandling og arvefordeling</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">💼</span><div class="spec-title">Erhvervsret</div><div class="spec-desc">Kontrakter, ansatte og selskabsretlige spørgsmål</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">📋</span><div class="spec-title">Lejeret</div><div class="spec-desc">Huslejenævn, opsigelse og lejeforhold</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🏛️</span><div class="spec-title">Skatteret</div><div class="spec-desc">Skat, moms og offentlige restancer</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">⚖️</span><div class="spec-title">Erstatningsret</div><div class="spec-desc">Personskade, forsikringssager og erstatningskrav</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── ARTICLES ── -->
+<section class="articles">
+  <div class="articles-inner">
+    <div class="section-lbl">Artikler</div>
+    <h2 class="section-h2">Find svar på dine juridiske spørgsmål</h2>
+    <div class="articles-grid">
+      <div class="article-card">
+        <span class="article-tag">Gæld</span>
+        <div class="article-title">Hvornår kan man søge gældssanering — og hvad kræver det?</div>
+        <div class="article-meta">14. august 2026 · 5 min. læsning</div>
+      </div>
+      <div class="article-card">
+        <span class="article-tag">Familie</span>
+        <div class="article-title">Bodeling ved skilsmisse: hvad har du krav på?</div>
+        <div class="article-meta">2. august 2026 · 4 min. læsning</div>
+      </div>
+      <div class="article-card">
+        <span class="article-tag">Bolig</span>
+        <div class="article-title">5 ting du skal tjekke inden du underskriver boligkøbsaftalen</div>
+        <div class="article-meta">21. juli 2026 · 6 min. læsning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="nav-logo" style="color:#fff;margin-bottom:var(--sp-2)">Ret&amp;Råd<small style="color:rgba(255,255,255,.45)">Advokater</small></div>
+      <div style="font-size:var(--size-xs);color:rgba(255,255,255,.35);">© 2026 Ret&amp;Råd. Konceptdemo.</div>
+    </div>
+    <div>
+      <div class="f-col-title">Privat</div>
+      <a href="#" class="f-link" onclick="return false">Boligkøb</a>
+      <a href="#" class="f-link" onclick="return false">Familieret</a>
+      <a href="#" class="f-link" onclick="return false">Arveret</a>
+      <a href="#" class="f-link" onclick="return false">Gældssanering</a>
+    </div>
+    <div>
+      <div class="f-col-title">Erhverv</div>
+      <a href="#" class="f-link" onclick="return false">Erhvervsret</a>
+      <a href="#" class="f-link" onclick="return false">Selskabsret</a>
+      <a href="#" class="f-link" onclick="return false">Konkurs</a>
+    </div>
+    <div>
+      <div class="f-col-title">Om os</div>
+      <a href="#" class="f-link" onclick="return false">Find kontor</a>
+      <a href="#" class="f-link" onclick="return false">Find advokat</a>
+      <a href="#" class="f-link" onclick="return false">Kontakt</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Ret&amp;Råd Advokater · 31 år i markedet · 140+ advokater · Tilgængelighed</div>
+</footer>
+
+<script>
+var catData = {
+  gaeld:      {q:'Hvad er din primære udfordring?',      opts:['Kan ikke betale mine kreditorer','Overvejer gældssanering','Har modtaget inkassovarsel','Konkurs eller rekonstruktion'], spec:'Gæld &amp; privatøkonomi · Frederiksberg', name:'Thomas Nørgaard', ini:'TN', role:'Advokat · Gæld &amp; privatøkonomi<br>Ret&amp;Råd Frederiksberg'},
+  skilsmisse: {q:'Hvad handler det primært om?',         opts:['Separation eller skilsmisse','Samværsret og børn','Bodeling og formueforhold','Underholdsbidrag'],                         spec:'Familieret · Ret&amp;Råd',              name:'Louise Madsen',    ini:'LM', role:'Advokat · Familieret<br>Ret&amp;Råd'},
+  bolig:      {q:'Hvad drejer det sig om?',              opts:['Køb eller salg af bolig','Lejeforhold','Nabotvist eller byggesag','Andet ejendomsspørgsmål'],                              spec:'Bolig &amp; ejendom · Ret&amp;Råd',      name:'Peter Krogsgaard', ini:'PK', role:'Advokat · Bolig &amp; ejendom<br>Ret&amp;Råd'},
+  erhverv:    {q:'Hvad har du brug for hjælp til?',      opts:['Kontrakter og aftaler','Ansættelses- og personalejura','Selskabsret','Konkurs og rekonstruktion'],                         spec:'Erhvervsret · Ret&amp;Råd',             name:'Morten Bach',      ini:'MB', role:'Advokat · Erhvervsret<br>Ret&amp;Råd'},
+  arv:        {q:'Hvad drejer det sig om?',              opts:['Oprettelse af testamente','Skiftebehandling efter dødsfald','Tvist om arv eller arvefordeling','Fremtidsfuldmagt'],        spec:'Arveret · Ret&amp;Råd',                 name:'Hanne Skovbjerg',  ini:'HS', role:'Advokat · Arveret<br>Ret&amp;Råd'},
+  andet:      {q:'Hvad handler din sag om?',             opts:['Erstatning eller personskade','Forsikringssag','Straffesag','Andet juridisk spørgsmål'],                                   spec:'Generalist · Ret&amp;Råd',              name:'Klaus Friis',      ini:'KF', role:'Generalist · Ret&amp;Råd'},
+};
+
+function showStep(n){
+  document.querySelectorAll('.ps').forEach(p=>p.classList.remove('active'));
+  document.getElementById('ps'+n).classList.add('active');
+  document.getElementById('pNav').style.display = n===2 ? 'flex' : 'none';
+  if(n===2) document.getElementById('pNext').disabled = true;
+}
+
+function selCat(el, cat){
+  document.querySelectorAll('.cat-p').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  var d = catData[cat];
+  document.getElementById('pQ').textContent = d.q;
+  document.getElementById('pOpts').innerHTML = d.opts.map(o=>`<button class="p-radio" onclick="selQ(this)"><span class="p-rdot"></span>${o}</button>`).join('');
+  document.getElementById('pmSpec').innerHTML = d.spec;
+  document.getElementById('pmName').textContent = d.name;
+  document.getElementById('pmInitials').textContent = d.ini;
+  document.getElementById('pmRole').innerHTML = d.role;
+  setTimeout(()=>showStep(2), 140);
+}
+
+function selQ(el){
+  document.querySelectorAll('#pOpts .p-radio').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('pNext').disabled = false;
+}
+
+function showDone(){showStep(4);}
+</script>
