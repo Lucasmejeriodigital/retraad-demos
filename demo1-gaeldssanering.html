@@ -92,18 +92,16 @@ a:hover{text-decoration:underline;}
 .personalized-inner{max-width:var(--max-w);margin:0 auto;}
 .personalized-pill{display:inline-flex;align-items:center;gap:6px;background:var(--bg-surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:var(--size-xs);font-weight:500;color:var(--text-muted);margin-bottom:var(--sp-2);}
 .personalized-pill svg{color:var(--c-leaf);flex-shrink:0;}
-.personalized-grid{display:grid;grid-template-columns:1fr;gap:var(--sp-3);max-width:520px;}
-.lawyer-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-3);display:flex;flex-direction:column;gap:var(--sp-2);box-shadow:var(--shadow-card);}
-.lawyer-card-top{display:flex;gap:var(--sp-2);align-items:center;}
-.lawyer-avatar{width:80px;height:80px;border-radius:50%;flex-shrink:0;overflow:hidden;background:var(--bg-tint);box-shadow:0 0 0 3px var(--c-sage);}
-.lawyer-avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;}
-.lawyer-info{flex:1;}
+.personalized-grid{display:grid;grid-template-columns:1fr;gap:var(--sp-3);max-width:460px;}
+.personalized-grid.expanded{grid-template-columns:minmax(320px,400px) minmax(270px,320px);max-width:780px;align-items:start;}
+.lawyer-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card);display:flex;flex-direction:column;}
+.lawyer-photo{width:100%;height:200px;object-fit:cover;object-position:center 18%;display:block;}
+.lawyer-body{padding:var(--sp-2) var(--sp-3) var(--sp-3);display:flex;flex-direction:column;gap:var(--sp-2);}
 .lawyer-name{font-size:var(--size-lg);font-weight:600;color:var(--c-forest);margin-bottom:2px;}
-.lawyer-title{font-size:var(--size-xs);color:var(--text-muted);margin-bottom:var(--sp-1);}
-.lawyer-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--sp-1);}
-.lawyer-rating{display:flex;align-items:center;gap:6px;font-size:var(--size-xs);color:var(--text-muted);margin-bottom:var(--sp-1);}
+.lawyer-title{font-size:var(--size-xs);color:var(--text-muted);margin-bottom:4px;}
+.lawyer-rating{display:flex;align-items:center;gap:6px;font-size:var(--size-xs);color:var(--text-muted);}
 .stars{color:#c9950f;letter-spacing:1px;}
-.lawyer-quote{font-size:var(--size-sm);color:var(--text-muted);line-height:1.6;font-style:italic;border-left:2px solid var(--border);padding-left:12px;margin:0;}
+.lawyer-quote{font-size:var(--size-sm);color:var(--text-muted);line-height:1.65;font-style:italic;border-left:3px solid var(--c-sage);padding-left:14px;margin:0;}
 
 /* Booking */
 .booking-widget{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card);}
@@ -236,6 +234,7 @@ a:hover{text-decoration:underline;}
 @media(max-width:800px){
   .hero-inner{grid-template-columns:1fr;}
   .hero-visual{display:none;}
+  .personalized-grid.expanded{grid-template-columns:1fr;max-width:460px;}
   .content-inner{grid-template-columns:1fr;gap:var(--sp-3);}
   .req-grid{grid-template-columns:1fr 1fr;}
   .reviews-grid{grid-template-columns:1fr;}
@@ -306,117 +305,45 @@ a:hover{text-decoration:underline;}
     </div>
     <div class="personalized-grid">
       <div class="lawyer-card">
-        <div class="lawyer-card-top">
-          <div class="lawyer-avatar">
-            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=160&q=80&fit=crop" alt="Thomas Nørgaard, advokat">
-          </div>
-          <div class="lawyer-info">
+        <img class="lawyer-photo" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80&fit=crop" alt="Thomas Nørgaard, advokat">
+        <div class="lawyer-body">
+          <div>
             <div class="lawyer-name">Thomas Nørgaard</div>
-            <div class="lawyer-title">Advokat · Ret&amp;Råd Frederiksberg</div>
+            <div class="lawyer-title">Advokat · Gældssanering · Ret&amp;Råd Frederiksberg</div>
             <div class="lawyer-rating"><span class="stars">★★★★★</span><span>4,8 · 52 anmeldelser</span></div>
           </div>
+          <blockquote class="lawyer-quote">"Gældssanering er ikke et nederlag — det er en løsning. Jeg har hjulpet mange i præcis din situation med at finde vej ud af gælden og starte forfra."</blockquote>
+          <button class="lawyer-cta" onclick="showBookingWidget()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.13 2 2 0 012 .93h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Book gratis opkald med Thomas
+          </button>
         </div>
-        <button class="lawyer-cta" onclick="showBookingWidget()">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.13 2 2 0 012 .93h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          Book gratis opkald med Thomas
-        </button>
       </div>
       <div class="booking-widget hidden" id="bwWidget">
-        <!-- Tab bar -->
-        <div class="bw-tabs">
-          <button class="bw-tab active" onclick="bwTab(this,'bwCall')">
+        <div class="booking-header">
+          <h3>Book gratis opkald med Thomas</h3>
+          <p>Han ringer dig op · ca. 15 min. · ingen forpligtelse</p>
+        </div>
+        <div class="booking-body" id="bBody">
+          <div class="booking-times">
+            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>13:00</button>
+            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>15:30</button>
+            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>09:00</button>
+            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>11:00</button>
+          </div>
+          <div class="lead-form" id="leadFormCall">
+            <p class="lead-form-label">Dine kontaktoplysninger</p>
+            <input class="lead-input" id="lcName" type="text" placeholder="Fulde navn *">
+            <input class="lead-input" id="lcPhone" type="tel" placeholder="Telefonnummer *">
+            <p class="lead-consent">Dine oplysninger gemmes sikkert og bruges kun til dette opkald. <span class="lead-gdpr">GDPR-compliant · Ret&amp;Råd</span></p>
+          </div>
+          <button class="booking-btn" onclick="confirmLead('bConfirm','Opkald bekræftet!','Thomas ringer dig op på det valgte tidspunkt. Du modtager en SMS-bekræftelse.')">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.13 2 2 0 012 .93h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            Opkald
+            Bekræft opkald
           </button>
-          <button class="bw-tab" onclick="bwTab(this,'bwVideo')">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-            Video
-          </button>
-          <button class="bw-tab" onclick="bwTab(this,'bwChat')">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            Chat
-          </button>
+          <p class="booking-note">Ingen forpligtelse · gratis</p>
         </div>
-
-        <!-- CALL -->
-        <div class="bw-pane" id="bwCall">
-          <div class="booking-header"><h3>Book gratis opkald med Thomas</h3><p>Vælg tid — han ringer dig op · ca. 15 min.</p></div>
-          <div class="booking-body" id="bBody">
-            <div class="booking-times">
-              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>13:00</button>
-              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>15:30</button>
-              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>09:00</button>
-              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>11:00</button>
-            </div>
-            <div class="lead-form" id="leadFormCall">
-              <p class="lead-form-label">Dine kontaktoplysninger</p>
-              <input class="lead-input" id="lcName" type="text" placeholder="Fulde navn *">
-              <input class="lead-input" id="lcPhone" type="tel" placeholder="Telefonnummer *">
-              <p class="lead-consent">Dine oplysninger gemmes sikkert og bruges kun til dette opkald. <span class="lead-gdpr">GDPR-compliant · Ret&amp;Råd</span></p>
-            </div>
-            <button class="booking-btn" onclick="confirmLead('bConfirm','Opkald bekræftet!','Thomas ringer dig op på det valgte tidspunkt. Du modtager en SMS-bekræftelse.')">
-              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.13 2 2 0 012 .93h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-              Bekræft opkald
-            </button>
-            <p class="booking-note">Ingen forpligtelse · gratis</p>
-          </div>
-          <div class="booking-confirm" id="bConfirm"></div>
-        </div>
-
-        <!-- VIDEO -->
-        <div class="bw-pane" id="bwVideo" style="display:none">
-          <div class="booking-header"><h3>Book videomøde med Thomas</h3><p>Mødes online — du behøver ikke forlade hjemmet</p></div>
-          <div class="booking-body" id="bVBody">
-            <div class="booking-times">
-              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>14:00</button>
-              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>16:00</button>
-              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>10:00</button>
-              <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>13:30</button>
-            </div>
-            <div class="lead-form">
-              <p class="lead-form-label">Dine kontaktoplysninger</p>
-              <input class="lead-input" type="text" placeholder="Fulde navn *">
-              <input class="lead-input" type="email" placeholder="E-mail *">
-              <p class="lead-consent">Mødelinket sendes til din e-mail. <span class="lead-gdpr">GDPR-compliant · Ret&amp;Råd</span></p>
-            </div>
-            <button class="booking-btn" onclick="confirmLead('bVConfirm','Videomøde bekræftet!','Mødelinket sendes til din e-mail. Vi ses online — hav gerne dine dokumenter klar.')">
-              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-              Bekræft videomøde
-            </button>
-            <p class="booking-note">Ingen forpligtelse · ca. 20 min.</p>
-          </div>
-          <div class="booking-confirm" id="bVConfirm"></div>
-        </div>
-
-        <!-- CHAT -->
-        <div class="bw-pane" id="bwChat" style="display:none">
-          <div class="booking-header"><h3>Chat med Thomas</h3><p>Still dine spørgsmål direkte — svar inden for 2 min.</p></div>
-          <div class="bw-chat-body" id="bwChatBody">
-            <div class="bwc-msgs" id="bwcMsgs">
-              <div class="bwc-msg bot"><div class="bwc-bubble">Hej! Jeg er Thomas. Hvad kan jeg hjælpe dig med i dag?</div></div>
-            </div>
-            <div class="bwc-typing" id="bwcTyping"><span></span><span></span><span></span></div>
-            <div class="bwc-quick" id="bwcQuick">
-              <button onclick="bwcSendQ(this,'Hvad koster det?')">Hvad koster det?</button>
-              <button onclick="bwcSendQ(this,'Er jeg berettiget?')">Er jeg berettiget?</button>
-              <button onclick="bwcSendQ(this,'Hvor lang tid tager det?')">Hvor lang tid?</button>
-            </div>
-            <div class="lead-form" id="bwcLeadForm" style="display:none">
-              <p class="lead-form-label">Efterlad dit nummer — Thomas følger op</p>
-              <input class="lead-input" id="bwcName" type="text" placeholder="Navn *">
-              <input class="lead-input" id="bwcPhone" type="tel" placeholder="Telefon *">
-              <button class="booking-btn" style="margin-top:8px" onclick="bwcConfirmLead()">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                Send og afvent opkald
-              </button>
-            </div>
-            <div class="bwc-input-wrap" id="bwcInputWrap">
-              <input class="bwc-input" id="bwcInput" type="text" placeholder="Skriv din besked…" onkeydown="if(event.key==='Enter')bwcSend()">
-              <button class="bwc-send" onclick="bwcSend()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></button>
-            </div>
-          </div>
-        </div>
-
+        <div class="booking-confirm" id="bConfirm"></div>
       </div>
     </div>
   </div>
@@ -591,11 +518,13 @@ function confirmLead(confirmId,title,msg){
 
 function showBookingWidget(){
   var w=document.getElementById('bwWidget');
-  if(!w)return;
+  if(!w||!w.classList.contains('hidden'))return;
+  var g=document.querySelector('.personalized-grid');
   w.classList.remove('hidden');
   w.classList.add('reveal');
+  if(g)g.classList.add('expanded');
   setTimeout(function(){w.classList.remove('reveal');},300);
-  setTimeout(function(){w.scrollIntoView({behavior:'smooth',block:'nearest'});},50);
+  setTimeout(function(){w.scrollIntoView({behavior:'smooth',block:'nearest'});},80);
 }
 function scrollToBooking(e){
   e.preventDefault();
