@@ -1,0 +1,1196 @@
+<title>Ret & Råd Tokens</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+  /* ── Tokens ── */
+  :root {
+    --c-forest:     #214b0d;
+    --c-pine:       #1b642e;
+    --c-leaf:       #2a9b47;
+    --c-sage:       #d7e6d8;
+    --c-terracotta: #cc8080;
+    --c-ink:        #0c0c0c;
+    --c-paper:      #f9f9f9;
+    --c-white:      #ffffff;
+    --c-gray:       #d3d3d3;
+
+    --bg:           var(--c-white);
+    --bg-surface:   var(--c-paper);
+    --bg-tint:      var(--c-sage);
+    --text:         var(--c-ink);
+    --text-muted:   #4a4a4a;
+    --text-on-dark: var(--c-white);
+    --border:       var(--c-sage);
+    --border-dark:  var(--c-gray);
+
+    --f-body: 'Barlow', sans-serif;
+
+    --size-xs:  0.75rem;
+    --size-sm:  0.9375rem;
+    --size-md:  1rem;
+    --size-lg:  1.25rem;
+    --size-xl:  1.5rem;
+    --size-2xl: 2rem;
+    --size-3xl: 2.75rem;
+    --size-4xl: 3.875rem;
+
+    --sp-1: 10px;
+    --sp-2: 20px;
+    --sp-3: 30px;
+    --sp-4: 40px;
+    --sp-5: 50px;
+    --sp-6: 60px;
+
+    --radius: 1px;
+    --shadow-card: 4px 3px 35px 5px rgba(0,0,0,.1);
+    --shadow-hover: 4px 25px 35px 5px rgba(0,0,0,.1);
+    --transition: 150ms ease-in-out;
+
+    --max-w: 960px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:           #0d1a0f;
+      --bg-surface:   #142016;
+      --bg-tint:      #1c2e1e;
+      --text:         #f0f4f0;
+      --text-muted:   #9cb89e;
+      --border:       #2a3d2c;
+      --border-dark:  #3d5040;
+      --shadow-card: 4px 3px 35px 5px rgba(0,0,0,.4);
+      --shadow-hover: 4px 25px 35px 5px rgba(0,0,0,.45);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg:           #0d1a0f;
+    --bg-surface:   #142016;
+    --bg-tint:      #1c2e1e;
+    --text:         #f0f4f0;
+    --text-muted:   #9cb89e;
+    --border:       #2a3d2c;
+    --border-dark:  #3d5040;
+    --shadow-card: 4px 3px 35px 5px rgba(0,0,0,.4);
+    --shadow-hover: 4px 25px 35px 5px rgba(0,0,0,.45);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--f-body);
+    font-size: var(--size-md);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--sp-5) var(--sp-3);
+  }
+
+  /* ── Section structure ── */
+  .ds-section { margin-bottom: var(--sp-6); }
+
+  .ds-label {
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-leaf);
+    margin-bottom: var(--sp-2);
+    padding-bottom: var(--sp-1);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ds-section-title {
+    font-size: var(--size-xl);
+    font-weight: 600;
+    color: var(--c-forest);
+    margin-bottom: var(--sp-3);
+    line-height: 1;
+  }
+
+  /* Page header */
+  .page-header {
+    padding-bottom: var(--sp-5);
+    margin-bottom: var(--sp-5);
+    border-bottom: 2px solid var(--c-forest);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+  }
+
+  .brand-mark {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .brand-name {
+    font-size: var(--size-2xl);
+    font-weight: 700;
+    color: var(--c-forest);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-sub {
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .page-meta {
+    font-size: var(--size-sm);
+    color: var(--text-muted);
+    text-align: right;
+  }
+
+  /* ── Color swatches ── */
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--sp-2);
+  }
+
+  .swatch {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .swatch-color {
+    height: 80px;
+  }
+
+  .swatch-info {
+    padding: 10px 12px;
+    background: var(--bg-surface);
+  }
+
+  .swatch-name {
+    font-size: var(--size-xs);
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .swatch-token {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: monospace;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .swatch-hex {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: monospace;
+  }
+
+  .swatch-usage {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* ── Type scale ── */
+  .type-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: var(--sp-2);
+    align-items: baseline;
+    padding: var(--sp-2) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .type-row:last-child { border-bottom: none; }
+
+  .type-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: monospace;
+    line-height: 1.4;
+  }
+
+  .type-meta span { display: block; }
+
+  .t-display {
+    font-size: var(--size-4xl);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--c-forest);
+    letter-spacing: -0.02em;
+  }
+
+  .t-h1 {
+    font-size: clamp(1.875rem, 1.35rem + 2.1vw, 3.875rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .t-h2 {
+    font-size: clamp(1.25rem, 1rem + 0.99vw, 2.1875rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  .t-h3 {
+    font-size: clamp(1rem, 0.87rem + 0.53vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text);
+  }
+
+  .t-h4 {
+    font-size: clamp(1rem, 0.93rem + 0.26vw, 1.25rem);
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .t-body { font-size: var(--size-md); font-weight: 400; color: var(--text); line-height: 1.6; }
+  .t-small { font-size: var(--size-sm); font-weight: 400; color: var(--text-muted); }
+  .t-caption { font-size: var(--size-xs); font-weight: 400; color: var(--text-muted); line-height: 1.5; }
+
+  .t-label-style {
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-leaf);
+  }
+
+  /* ── Spacing scale ── */
+  .spacing-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+
+  .spacing-bar-wrap {
+    flex: 1;
+    height: 28px;
+    display: flex;
+    align-items: center;
+  }
+
+  .spacing-bar {
+    height: 100%;
+    background: var(--c-sage);
+    border-right: 2px solid var(--c-leaf);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  .spacing-label {
+    width: 40px;
+    font-size: 11px;
+    font-family: monospace;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .spacing-val {
+    width: 36px;
+    font-size: 11px;
+    font-family: monospace;
+    color: var(--text-muted);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ── Buttons ── */
+  .component-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    align-items: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--f-body);
+    font-size: var(--size-sm);
+    font-weight: 600;
+    line-height: 1;
+    padding: 14px 24px;
+    border-radius: var(--radius);
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity var(--transition), box-shadow var(--transition), background var(--transition);
+    letter-spacing: 0.01em;
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--c-leaf);
+    outline-offset: 3px;
+  }
+
+  .btn-primary {
+    background: var(--c-forest);
+    color: var(--c-white);
+    border-color: var(--c-forest);
+  }
+
+  .btn-primary:hover { background: var(--c-pine); border-color: var(--c-pine); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--c-forest);
+    border-color: var(--c-forest);
+  }
+
+  .btn-secondary:hover { background: var(--bg-tint); }
+
+  .btn-cta {
+    background: var(--c-terracotta);
+    color: var(--c-white);
+    border-color: var(--c-terracotta);
+  }
+
+  .btn-cta:hover { opacity: 0.88; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--c-leaf);
+    border-color: transparent;
+    padding-left: 0;
+  }
+
+  .btn-ghost:hover { color: var(--c-forest); }
+
+  /* ── Tags / category labels ── */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-leaf);
+    border: 1px solid var(--c-leaf);
+    padding: 3px 8px;
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+
+  /* ── Nav component ── */
+  .nav-demo {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0 var(--sp-3);
+    display: flex;
+    align-items: center;
+    height: 64px;
+    gap: var(--sp-3);
+    box-shadow: var(--shadow-card);
+  }
+
+  .nav-logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--c-forest);
+    line-height: 1.1;
+    flex-shrink: 0;
+  }
+
+  .nav-logo small {
+    display: block;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--sp-2);
+    list-style: none;
+    flex: 1;
+    margin-left: var(--sp-2);
+  }
+
+  .nav-links a {
+    font-size: var(--size-sm);
+    font-weight: 500;
+    color: var(--c-forest);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .nav-links a:hover { color: var(--c-leaf); }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--size-sm);
+    font-weight: 600;
+    color: var(--c-forest);
+    border: 2px solid var(--c-forest);
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background var(--transition);
+  }
+
+  .nav-cta:hover { background: var(--bg-tint); }
+
+  /* ── Article card ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--sp-3);
+  }
+
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .card-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    background: var(--bg-tint);
+  }
+
+  .card-img-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--c-sage) 0%, var(--c-pine) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 2rem;
+  }
+
+  .card-body { padding: var(--sp-2); }
+
+  .card-cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .card-date {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-left: auto;
+    align-self: center;
+  }
+
+  .card-cats-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-size: var(--size-lg);
+    font-weight: 600;
+    color: var(--c-forest);
+    line-height: 1.25;
+    margin-bottom: 8px;
+    text-wrap: balance;
+  }
+
+  .card-excerpt {
+    font-size: var(--size-sm);
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Hero strip ── */
+  .hero-demo {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--c-forest) 0%, var(--c-pine) 100%);
+    padding: var(--sp-5) var(--sp-4);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-4);
+    align-items: center;
+  }
+
+  @media (max-width: 600px) {
+    .hero-demo { grid-template-columns: 1fr; }
+    .hero-demo-visual { display: none; }
+  }
+
+  .hero-demo-eyebrow {
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-leaf);
+    margin-bottom: var(--sp-2);
+  }
+
+  .hero-demo-title {
+    font-size: clamp(1.875rem, 1.35rem + 2.1vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--c-white);
+    margin-bottom: var(--sp-2);
+    text-wrap: balance;
+  }
+
+  .hero-demo-body {
+    font-size: var(--size-md);
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+    margin-bottom: var(--sp-3);
+  }
+
+  .hero-demo-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-demo-stat {
+    text-align: center;
+    padding: var(--sp-3);
+    border-left: 3px solid var(--c-leaf);
+    padding-left: var(--sp-3);
+  }
+
+  .hero-demo-stat + .hero-demo-stat { margin-top: var(--sp-3); border-top: 1px solid rgba(255,255,255,.12); padding-top: var(--sp-3); }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--c-white);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: var(--size-sm);
+    color: rgba(255,255,255,.65);
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* ── Form elements ── */
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-label {
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .form-input {
+    font-family: var(--f-body);
+    font-size: var(--size-md);
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border-dark);
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    outline: none;
+    transition: border-color var(--transition);
+    width: 100%;
+  }
+
+  .form-input:focus { border-color: var(--c-leaf); box-shadow: 0 0 0 3px rgba(42,155,71,0.12); }
+  .form-input::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-3);
+  }
+
+  @media (max-width: 520px) { .form-grid { grid-template-columns: 1fr; } }
+
+  /* ── Footer strip ── */
+  .footer-demo {
+    background: var(--c-pine);
+    padding: var(--sp-4) var(--sp-3);
+    border-radius: var(--radius);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--sp-3);
+    color: var(--c-white);
+  }
+
+  @media (max-width: 600px) { .footer-demo { grid-template-columns: 1fr; } }
+
+  .footer-col-title {
+    font-size: var(--size-sm);
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--c-white);
+  }
+
+  .footer-link {
+    display: block;
+    font-size: var(--size-sm);
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    margin-bottom: 6px;
+    transition: color var(--transition);
+  }
+
+  .footer-link:hover { color: var(--c-white); }
+
+  /* ── Dividers ── */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: var(--sp-5) 0;
+  }
+
+  /* ── Theme toggle ── */
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-family: var(--f-body);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background var(--transition);
+  }
+
+  .theme-toggle:hover { background: var(--bg-tint); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--c-leaf); outline-offset: 2px; }
+
+  /* ── Token table ── */
+  .token-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--sp-1);
+  }
+
+  .token-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    background: var(--bg-surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  .token-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,.08);
+  }
+
+  .token-name {
+    font-size: 11px;
+    font-family: monospace;
+    color: var(--text);
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .token-value {
+    font-size: 10px;
+    font-family: monospace;
+    color: var(--text-muted);
+  }
+</style>
+
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Skift tema">
+  <span id="theme-icon">◑</span>
+  <span id="theme-label">Tema</span>
+</button>
+
+<div class="page">
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="brand-mark">
+      <div class="brand-name">Ret&Råd</div>
+      <div class="brand-sub">Advokater · Design System</div>
+    </div>
+    <div class="page-meta">
+      Scraped fra ret-raad.dk<br>
+      Barlow · 9 brand tokens
+    </div>
+  </header>
+
+
+  <!-- COLORS -->
+  <section class="ds-section">
+    <div class="ds-label">Farver</div>
+    <div class="swatch-grid">
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#214b0d"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Forest</span>
+          <span class="swatch-token">--c-forest</span>
+          <span class="swatch-hex">#214b0d</span>
+          <div class="swatch-usage">Logo, nav links, overskrifter, primær knap</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1b642e"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Pine</span>
+          <span class="swatch-token">--c-pine</span>
+          <span class="swatch-hex">#1b642e</span>
+          <div class="swatch-usage">Footer baggrund, hover states, mørkere grøn</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#2a9b47"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Leaf</span>
+          <span class="swatch-token">--c-leaf</span>
+          <span class="swatch-hex">#2a9b47</span>
+          <div class="swatch-usage">Kategorimærker, CTA knapper, links, accent</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#d7e6d8"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Sage</span>
+          <span class="swatch-token">--c-sage</span>
+          <span class="swatch-hex">#d7e6d8</span>
+          <div class="swatch-usage">Kanter, lysegrøn baggrundstint, hover fills</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#cc8080"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Terracotta</span>
+          <span class="swatch-token">--c-terracotta</span>
+          <span class="swatch-hex">#cc8080</span>
+          <div class="swatch-usage">Hero CTA-knap · varm accent · "Find din advokat"</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0c0c0c"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Ink</span>
+          <span class="swatch-token">--c-ink</span>
+          <span class="swatch-hex">#0c0c0c</span>
+          <div class="swatch-usage">Brødtekst, primær tekstfarve</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#f9f9f9; border-bottom:1px solid #eee"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Paper</span>
+          <span class="swatch-token">--c-paper</span>
+          <span class="swatch-hex">#f9f9f9</span>
+          <div class="swatch-usage">Sidebaggrund, overflader, kort baggrund</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#d3d3d3"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Gray</span>
+          <span class="swatch-token">--c-gray</span>
+          <span class="swatch-hex">#d3d3d3</span>
+          <div class="swatch-usage">Deaktiverede elementer, mørke kanter</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- TYPOGRAPHY -->
+  <section class="ds-section">
+    <div class="ds-label">Typografi · Barlow</div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span>Display</span>
+        <span>3.875rem</span>
+        <span>700</span>
+        <span>lh 1</span>
+      </div>
+      <div class="t-display">Advokat tæt på dig</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span>H1</span>
+        <span>clamp</span>
+        <span>600</span>
+        <span>lh 1</span>
+      </div>
+      <div class="t-h1">Gældssanering</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span>H2</span>
+        <span>clamp</span>
+        <span>600</span>
+        <span>lh 1.1</span>
+      </div>
+      <div class="t-h2">Find svar på dine juridiske spørgsmål</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span>H3</span>
+        <span>clamp</span>
+        <span>600</span>
+        <span>lh 1.2</span>
+      </div>
+      <div class="t-h3">Hvad kan vi hjælpe dig med?</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span>H4</span>
+        <span>clamp</span>
+        <span>500</span>
+        <span>lh 1.3</span>
+      </div>
+      <div class="t-h4">Kontakt din lokale advokat i dag</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span>Body</span>
+        <span>1rem</span>
+        <span>400</span>
+        <span>lh 1.6</span>
+      </div>
+      <div class="t-body">Hos Ret&Råd får du lokal advokathjælp til alt fra boligkøb, familieret, arveret, erhvervsret og tvister. Vi har advokater over hele landet med specialviden inden for dit område.</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span>Small</span>
+        <span>0.9375rem</span>
+        <span>400</span>
+      </div>
+      <div class="t-small">Erstatning, Privatrådgivning, Retssag · 31. august 2026</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span>Caption</span>
+        <span>0.75rem</span>
+        <span>400</span>
+      </div>
+      <div class="t-caption">Ret&Råd Advokater er en af Danmarks største advokatvirksomheder med kontorer over hele landet.</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span>Label</span>
+        <span>0.75rem</span>
+        <span>500 UC</span>
+      </div>
+      <div class="t-label-style">Specialer · Gældssanering · Erhvervsret</div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- SPACING -->
+  <section class="ds-section">
+    <div class="ds-label">Spacing</div>
+    <div class="spacing-grid">
+      <div class="spacing-row">
+        <div class="spacing-label">--sp-1</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:10px"></div></div>
+        <div class="spacing-val">10px</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">--sp-2</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:20px"></div></div>
+        <div class="spacing-val">20px</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">--sp-3</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:30px"></div></div>
+        <div class="spacing-val">30px</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">--sp-4</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:40px"></div></div>
+        <div class="spacing-val">40px</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">--sp-5</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:50px"></div></div>
+        <div class="spacing-val">50px</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">--sp-6</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:60px"></div></div>
+        <div class="spacing-val">60px</div>
+      </div>
+    </div>
+    <p style="margin-top:12px;font-size:11px;color:var(--text-muted);font-family:monospace;">Max-width: 1130px · Content: 745px · Gutter: 20px · Grid col: 70px · Border-radius: 1px</p>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- BUTTONS -->
+  <section class="ds-section">
+    <div class="ds-label">Knapper</div>
+
+    <div class="component-group" style="margin-bottom:var(--sp-2)">
+      <a href="#" class="btn btn-primary" onclick="return false">Book møde</a>
+      <a href="#" class="btn btn-secondary" onclick="return false">Find din advokat</a>
+      <a href="#" class="btn btn-cta" onclick="return false">Find din advokat →</a>
+      <a href="#" class="btn btn-ghost" onclick="return false">Læs mere →</a>
+    </div>
+
+    <div class="component-group" style="margin-top:var(--sp-2)">
+      <a href="#" class="tag" onclick="return false">Gældssanering</a>
+      <a href="#" class="tag" onclick="return false">Familieret</a>
+      <a href="#" class="tag" onclick="return false">Erhvervsret</a>
+      <a href="#" class="tag" onclick="return false">Privatrådgivning</a>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- NAV -->
+  <section class="ds-section">
+    <div class="ds-label">Navigation</div>
+    <nav class="nav-demo" aria-label="Demo navigation">
+      <div class="nav-logo">
+        Ret&Råd
+        <small>Advokater</small>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" onclick="return false">Find medarbejder</a></li>
+        <li><a href="#" onclick="return false">Specialer</a></li>
+        <li><a href="#" onclick="return false">Artikler</a></li>
+        <li><a href="#" onclick="return false">Brochurer</a></li>
+      </ul>
+      <a href="#" class="nav-cta" onclick="return false">Find kontor ∨</a>
+    </nav>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- HERO -->
+  <section class="ds-section">
+    <div class="ds-label">Hero · Mørkegrøn baggrund</div>
+    <div class="hero-demo">
+      <div class="hero-demo-content">
+        <div class="hero-demo-eyebrow">Gældssanering</div>
+        <h2 class="hero-demo-title">Slip fri af gælden – vi kender vejen</h2>
+        <p class="hero-demo-body">Vores specialister i gældssanering hjælper dig igennem processen fra første henvendelse til godkendt ansøgning.</p>
+        <a href="#" class="btn btn-cta" onclick="return false">Book gratis samtale →</a>
+      </div>
+      <div class="hero-demo-visual">
+        <div>
+          <div class="hero-demo-stat">
+            <span class="stat-number">140+</span>
+            <span class="stat-label">Advokater på landsplan</span>
+          </div>
+          <div class="hero-demo-stat">
+            <span class="stat-number">31 år</span>
+            <span class="stat-label">Erfaring med rådgivning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- CARDS -->
+  <section class="ds-section">
+    <div class="ds-label">Artikelkort</div>
+    <div class="card-grid">
+
+      <article class="card">
+        <div class="card-img-placeholder">⚖️</div>
+        <div class="card-body">
+          <div class="card-cats-row">
+            <div class="card-cats">
+              <a href="#" class="tag" onclick="return false">Gældssanering</a>
+            </div>
+            <span class="card-date">31. aug 2026</span>
+          </div>
+          <h3 class="card-title">Hvornår kan du søge om gældssanering?</h3>
+          <p class="card-excerpt">Gældssanering er en mulighed, hvis din gæld er uhåndterbar. Lær betingelserne at kende, inden du ansøger.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-img-placeholder">🏠</div>
+        <div class="card-body">
+          <div class="card-cats-row">
+            <div class="card-cats">
+              <a href="#" class="tag" onclick="return false">Boligkøb</a>
+            </div>
+            <span class="card-date">28. aug 2026</span>
+          </div>
+          <h3 class="card-title">Sådan sikrer du dig ved bolighandel</h3>
+          <p class="card-excerpt">En erfaren boligadvokat gennemgår alle dokumenter og beskytter dine interesser fra start til slut.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-img-placeholder">👨‍👩‍👧</div>
+        <div class="card-body">
+          <div class="card-cats-row">
+            <div class="card-cats">
+              <a href="#" class="tag" onclick="return false">Familieret</a>
+            </div>
+            <span class="card-date">25. aug 2026</span>
+          </div>
+          <h3 class="card-title">Skilsmisse og deling af fælleseje</h3>
+          <p class="card-excerpt">Vores familieretsadvokater guider jer begge igennem en svær tid – med fokus på en fair løsning.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- FORM -->
+  <section class="ds-section">
+    <div class="ds-label">Formular · Kontakt / Book</div>
+    <div style="max-width:560px">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Fornavn</label>
+          <input class="form-input" type="text" placeholder="Lars">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Efternavn</label>
+          <input class="form-input" type="text" placeholder="Nielsen">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telefon</label>
+          <input class="form-input" type="tel" placeholder="+45 12 34 56 78">
+        </div>
+        <div class="form-group">
+          <label class="form-label">E-mail</label>
+          <input class="form-input" type="email" placeholder="lars@eksempel.dk">
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:var(--sp-2)">
+        <label class="form-label">Hvad drejer det sig om?</label>
+        <input class="form-input" type="text" placeholder="Gældssanering, boligkøb, familiesag...">
+      </div>
+      <button class="btn btn-primary">Send besked</button>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- FOOTER -->
+  <section class="ds-section">
+    <div class="ds-label">Footer · Pine (#1b642e) baggrund</div>
+    <footer class="footer-demo">
+      <div>
+        <div class="footer-col-title">Ret&Råd Advokater</div>
+        <a href="#" class="footer-link" onclick="return false">Find din advokat</a>
+        <a href="#" class="footer-link" onclick="return false">Specialer</a>
+        <a href="#" class="footer-link" onclick="return false">Artikler</a>
+        <a href="#" class="footer-link" onclick="return false">Find kontor</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Privat</div>
+        <a href="#" class="footer-link" onclick="return false">Boligkøb</a>
+        <a href="#" class="footer-link" onclick="return false">Familieret</a>
+        <a href="#" class="footer-link" onclick="return false">Arveret</a>
+        <a href="#" class="footer-link" onclick="return false">Gældssanering</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Erhverv</div>
+        <a href="#" class="footer-link" onclick="return false">Erhvervsret</a>
+        <a href="#" class="footer-link" onclick="return false">Ejendomsadministration</a>
+        <a href="#" class="footer-link" onclick="return false">Selskabsret</a>
+        <a href="#" class="footer-link" onclick="return false">Kontakt</a>
+      </div>
+    </footer>
+  </section>
+
+</div>
+
+<script>
+  function toggleTheme() {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme');
+    const label = document.getElementById('theme-label');
+    if (current === 'dark') {
+      root.setAttribute('data-theme', 'light');
+      label.textContent = 'Lyst';
+    } else if (current === 'light') {
+      root.removeAttribute('data-theme');
+      label.textContent = 'Tema';
+    } else {
+      root.setAttribute('data-theme', 'dark');
+      label.textContent = 'Mørkt';
+    }
+  }
+</script>

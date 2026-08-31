@@ -1,0 +1,63 @@
+<title>Ret & Råd Demos</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap');
+  :root {
+    --forest: #214b0d; --pine: #1b642e; --leaf: #2a9b47;
+    --sage: #d7e6d8; --ink: #0c0c0c; --paper: #f9f9f9;
+    --bg: #fff; --text: var(--ink); --border: var(--sage);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1a0f; --text: #f0f4f0; --border: #2a3d2c; --paper: #142016;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); padding: 60px 30px; }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  .brand { font-size: 1.5rem; font-weight: 700; color: var(--forest); line-height: 1; }
+  .brand small { display: block; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-top: 2px; }
+  h1 { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--leaf); margin: 40px 0 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+  .demo-list { display: flex; flex-direction: column; gap: 12px; }
+  .demo-card { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border: 1px solid var(--border); border-radius: 1px; background: var(--paper); text-decoration: none; color: var(--text); transition: border-color 150ms, box-shadow 150ms; }
+  .demo-card:hover { border-color: var(--leaf); box-shadow: 4px 3px 35px 5px rgba(0,0,0,.08); }
+  .demo-num { font-size: 2rem; font-weight: 700; color: var(--sage); line-height: 1; flex-shrink: 0; width: 40px; text-align: center; }
+  .demo-card:hover .demo-num { color: var(--leaf); }
+  .demo-info { flex: 1; }
+  .demo-title { font-size: 1rem; font-weight: 600; color: var(--forest); margin-bottom: 4px; }
+  .demo-desc { font-size: 0.875rem; color: #666; line-height: 1.5; }
+  .demo-status { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 1px; flex-shrink: 0; }
+  .status-pending { background: var(--sage); color: var(--forest); }
+  .status-done { background: var(--leaf); color: #fff; }
+  .meta { margin-top: 40px; font-size: 0.75rem; color: #999; border-top: 1px solid var(--border); padding-top: 16px; }
+</style>
+<div class="wrap">
+  <div class="brand">Ret&Råd <small>Advokater · Concept Demos</small></div>
+  <h1>Demos</h1>
+  <div class="demo-list">
+    <a href="demo1-gaeldssanering.html" class="demo-card">
+      <div class="demo-num">1</div>
+      <div class="demo-info">
+        <div class="demo-title">Specialside — Gældssanering</div>
+        <div class="demo-desc">Lokaliseret specialside med Frederiksberg-advokat, social proof og booking-CTA</div>
+      </div>
+      <div class="demo-status status-done">Klar</div>
+    </a>
+    <a href="demo2-digital-flow.html" class="demo-card">
+      <div class="demo-num">2</div>
+      <div class="demo-info">
+        <div class="demo-title">Digital konverteringsflow</div>
+        <div class="demo-desc">Chatbot og video som alternativ til fysiske møder</div>
+      </div>
+      <div class="demo-status status-done">Klar</div>
+    </a>
+    <a href="demo3-user-journey.html" class="demo-card">
+      <div class="demo-num">3</div>
+      <div class="demo-info">
+        <div class="demo-title">Brugerrejser i følelsessprog</div>
+        <div class="demo-desc">Emotionelt fortalt brugerflow — afklar brief med Jens først</div>
+      </div>
+      <div class="demo-status status-pending">Pending</div>
+    </a>
+  </div>
+  <div class="meta">iO Agency · Jens Poder · Deadline 2. september 2026</div>
+</div>

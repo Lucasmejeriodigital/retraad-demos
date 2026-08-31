@@ -1,0 +1,795 @@
+<meta charset="utf-8">
+<title>Gældssanering · Ret&Råd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+:root{
+  --c-forest:#214b0d;--c-pine:#1b642e;--c-leaf:#2a9b47;
+  --c-sage:#d7e6d8;--c-terracotta:#cc8080;
+  --c-ink:#0c0c0c;--c-paper:#f9f9f9;--c-white:#ffffff;--c-gray:#d3d3d3;
+  --bg:var(--c-white);--bg-surface:var(--c-paper);--bg-tint:var(--c-sage);
+  --text:var(--c-ink);--text-muted:#4a4a4a;--text-on-dark:var(--c-white);
+  --border:var(--c-sage);--border-dark:var(--c-gray);
+  --f-body:'Barlow',sans-serif;
+  --size-xs:.75rem;--size-sm:.9375rem;--size-md:1rem;--size-lg:1.25rem;
+  --size-xl:1.5rem;--size-2xl:2rem;--size-3xl:2.75rem;--size-4xl:3.875rem;
+  --sp-1:10px;--sp-2:20px;--sp-3:30px;--sp-4:40px;--sp-5:50px;--sp-6:60px;
+  --radius:1px;
+  --shadow-card:4px 3px 35px 5px rgba(0,0,0,.1);
+  --shadow-hover:4px 25px 35px 5px rgba(0,0,0,.45);
+  --transition:150ms ease-in-out;
+  --max-w:960px;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1a0f;--bg-surface:#142016;--bg-tint:#1c2e1e;
+  --text:#f0f4f0;--text-muted:#9cb89e;
+  --border:#2a3d2c;--border-dark:#3d5040;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1a0f;--bg-surface:#142016;--bg-tint:#1c2e1e;
+  --text:#f0f4f0;--text-muted:#9cb89e;
+  --border:#2a3d2c;--border-dark:#3d5040;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f-body);font-size:var(--size-md);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--c-forest);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* Banner */
+.demo-banner{background:#0c0c0c;color:rgba(255,255,255,.65);text-align:center;padding:7px var(--sp-3);font-size:var(--size-xs);letter-spacing:.04em;}
+.demo-banner strong{color:#fff;}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-3);display:flex;align-items:center;justify-content:space-between;height:64px;gap:var(--sp-3);}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--c-forest);line-height:1.1;flex-shrink:0;letter-spacing:-0.01em;}
+.nav-logo small{display:block;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--text-muted);}
+.nav-links{display:flex;gap:var(--sp-2);list-style:none;flex:1;margin-left:var(--sp-2);}
+.nav-links a{font-size:var(--size-sm);font-weight:500;color:var(--c-forest);text-decoration:none;transition:color var(--transition);}
+.nav-links a:hover{color:var(--c-leaf);text-decoration:none;}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;font-size:var(--size-sm);font-weight:600;color:var(--c-forest);border:2px solid var(--c-forest);padding:8px 16px;border-radius:var(--radius);text-decoration:none;transition:background var(--transition);flex-shrink:0;}
+.nav-cta:hover{background:var(--bg-tint);text-decoration:none;color:var(--c-forest);}
+
+/* Breadcrumb */
+.breadcrumb{background:var(--bg-surface);border-bottom:1px solid var(--border);padding:var(--sp-1) var(--sp-3);}
+.breadcrumb-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;gap:6px;font-size:var(--size-xs);color:var(--text-muted);}
+.breadcrumb-inner a{color:var(--text-muted);}
+.breadcrumb-inner a:hover{color:var(--c-leaf);}
+.breadcrumb-sep{color:var(--border-dark);}
+.breadcrumb-current{color:var(--text);font-weight:500;}
+
+/* Hero */
+.hero{background:linear-gradient(160deg,var(--c-forest) 0%,var(--c-pine) 100%);padding:var(--sp-5) var(--sp-3);}
+.hero-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);align-items:center;}
+.hero-eyebrow{font-size:var(--size-xs);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:var(--sp-2);}
+.hero h1{font-size:clamp(1.875rem,1.35rem + 2.1vw,3.875rem);font-weight:600;line-height:1;color:var(--c-white);margin-bottom:var(--sp-2);text-wrap:balance;letter-spacing:-0.02em;}
+.hero-lead{font-size:var(--size-md);color:rgba(255,255,255,.78);line-height:1.6;margin-bottom:var(--sp-3);max-width:48ch;}
+.hero-stats{display:flex;gap:var(--sp-4);margin-bottom:var(--sp-3);flex-wrap:wrap;}
+.hero-stat-num{font-size:var(--size-2xl);font-weight:700;color:var(--c-white);line-height:1;display:block;}
+.hero-stat-label{font-size:var(--size-sm);color:rgba(255,255,255,.65);display:block;margin-top:3px;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;line-height:1;padding:14px 24px;border-radius:var(--radius);border:2px solid transparent;cursor:pointer;text-decoration:none;transition:opacity var(--transition),box-shadow var(--transition),background var(--transition);letter-spacing:.01em;}
+.btn-cta{background:var(--c-terracotta);color:var(--c-white);border-color:var(--c-terracotta);}
+.btn-cta:hover{opacity:.88;text-decoration:none;color:var(--c-white);}
+.btn-primary{background:var(--c-forest);color:var(--c-white);border-color:var(--c-forest);}
+.btn-primary:hover{background:var(--c-pine);border-color:var(--c-pine);text-decoration:none;color:var(--c-white);}
+.btn-secondary{background:transparent;color:var(--c-forest);border-color:var(--c-forest);}
+.btn-secondary:hover{background:var(--bg-tint);text-decoration:none;color:var(--c-forest);}
+.hero-visual{display:flex;justify-content:center;align-items:center;}
+.hero-stat-block{padding:var(--sp-3);border-left:3px solid var(--c-leaf);}
+.hero-stat-block+.hero-stat-block{margin-top:var(--sp-3);border-top:1px solid rgba(255,255,255,.12);padding-top:var(--sp-3);}
+
+/* Tag */
+.tag{display:inline-flex;align-items:center;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--c-leaf);border:1px solid var(--c-leaf);padding:3px 8px;border-radius:var(--radius);text-decoration:none;}
+.tag:hover{text-decoration:none;background:var(--bg-tint);}
+
+/* Personalization */
+.personalized{background:var(--bg);border-bottom:1px solid var(--border);padding:var(--sp-4) var(--sp-3);}
+.personalized-inner{max-width:var(--max-w);margin:0 auto;}
+.personalized-pill{display:inline-flex;align-items:center;gap:6px;background:var(--bg-surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:var(--size-xs);font-weight:500;color:var(--text-muted);margin-bottom:var(--sp-2);}
+.personalized-pill svg{color:var(--c-leaf);flex-shrink:0;}
+.personalized-grid{display:grid;grid-template-columns:1fr 280px;gap:var(--sp-3);align-items:start;}
+.lawyer-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-3);display:flex;gap:var(--sp-2);align-items:flex-start;box-shadow:var(--shadow-card);}
+.lawyer-avatar{width:60px;height:60px;border-radius:50%;flex-shrink:0;overflow:hidden;background:var(--bg-tint);}
+.lawyer-avatar svg{width:100%;height:100%;}
+.lawyer-info{flex:1;}
+.lawyer-name{font-size:var(--size-lg);font-weight:600;color:var(--c-forest);margin-bottom:2px;}
+.lawyer-title{font-size:var(--size-xs);color:var(--text-muted);margin-bottom:var(--sp-1);}
+.lawyer-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--sp-1);}
+.lawyer-rating{display:flex;align-items:center;gap:6px;font-size:var(--size-xs);color:var(--text-muted);margin-bottom:var(--sp-1);}
+.stars{color:#c9950f;letter-spacing:1px;}
+.lawyer-quote{font-size:var(--size-sm);color:var(--text-muted);line-height:1.6;font-style:italic;border-left:2px solid var(--border);padding-left:12px;margin:0;}
+
+/* Booking */
+.booking-widget{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card);}
+.booking-header{background:var(--bg-surface);border-bottom:1px solid var(--border);padding:var(--sp-2);}
+.booking-header h3{font-size:var(--size-sm);font-weight:600;color:var(--text);margin-bottom:2px;}
+.booking-header p{font-size:var(--size-xs);color:var(--text-muted);}
+.booking-body{padding:var(--sp-2);}
+.booking-times{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:var(--sp-2);}
+.booking-time{border:1.5px solid var(--border);border-radius:var(--radius);padding:9px 8px;text-align:center;cursor:pointer;transition:border-color var(--transition),background var(--transition);font-size:var(--size-xs);font-weight:500;color:var(--text);background:var(--bg);font-family:var(--f-body);}
+.booking-time:hover{border-color:var(--c-leaf);}
+.booking-time.selected{border-color:var(--c-forest);background:var(--bg-tint);color:var(--c-forest);}
+.booking-time-day{font-size:10px;color:var(--text-muted);font-weight:400;margin-bottom:1px;}
+.booking-btn{width:100%;background:var(--c-forest);color:var(--c-white);border:2px solid var(--c-forest);border-radius:var(--radius);padding:12px 16px;font-size:var(--size-sm);font-weight:600;font-family:var(--f-body);cursor:pointer;transition:background var(--transition);display:flex;align-items:center;justify-content:center;gap:7px;}
+.booking-btn:hover{background:var(--c-pine);border-color:var(--c-pine);}
+.booking-note{text-align:center;font-size:11px;color:var(--text-muted);margin-top:var(--sp-1);}
+.booking-confirm{display:none;padding:var(--sp-3);text-align:center;}
+.booking-confirm.visible{display:block;}
+.booking-confirm-icon{width:48px;height:48px;background:var(--bg-tint);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-2);color:var(--c-forest);}
+.booking-confirm h4{font-size:var(--size-md);font-weight:600;color:var(--text);margin-bottom:6px;}
+.booking-confirm p{font-size:var(--size-xs);color:var(--text-muted);line-height:1.5;}
+
+/* ── Flow ── */
+.flow-section{background:var(--bg-surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:var(--sp-5) var(--sp-3);}
+.flow-inner{max-width:720px;margin:0 auto;}
+.flow-label{font-size:var(--size-xs);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:var(--sp-1);}
+.flow-inner>h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;color:var(--text);margin-bottom:var(--sp-1);text-wrap:balance;}
+.flow-intro{font-size:var(--size-sm);color:var(--text-muted);margin-bottom:var(--sp-3);}
+
+/* Step indicator */
+.flow-indicator{display:flex;align-items:center;margin-bottom:var(--sp-3);}
+.step-dot-wrap{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.step-circle{width:28px;height:28px;border-radius:50%;border:2px solid var(--border-dark);display:flex;align-items:center;justify-content:center;font-size:var(--size-xs);font-weight:600;color:var(--text-muted);background:var(--bg);transition:all var(--transition);flex-shrink:0;}
+.step-circle.active{border-color:var(--c-forest);background:var(--c-forest);color:#fff;}
+.step-circle.done{border-color:var(--c-leaf);background:var(--bg-tint);color:var(--c-forest);}
+.step-label{font-size:9.5px;color:var(--text-muted);font-weight:500;white-space:nowrap;}
+.step-label.active{color:var(--c-forest);font-weight:600;}
+.step-line{flex:1;height:2px;background:var(--border-dark);margin-bottom:18px;transition:background var(--transition);min-width:20px;}
+.step-line.done{background:var(--c-leaf);}
+
+/* Panels */
+.flow-panel{display:none;}
+.flow-panel.visible{display:block;}
+
+/* Question */
+.flow-q{font-size:var(--size-lg);font-weight:600;color:var(--text);margin-bottom:var(--sp-2);line-height:1.3;}
+.flow-q-sub{font-size:var(--size-sm);color:var(--text-muted);margin-top:4px;font-weight:400;}
+
+/* Option tiles (step 1) */
+.flow-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-1);}
+.flow-tile{background:var(--bg);border:2px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);cursor:pointer;text-align:left;transition:border-color var(--transition),box-shadow var(--transition);font-family:var(--f-body);}
+.flow-tile:hover{border-color:var(--c-leaf);box-shadow:var(--shadow-card);}
+.flow-tile.selected{border-color:var(--c-forest);background:var(--bg-tint);}
+.flow-tile-icon{font-size:1.4rem;margin-bottom:8px;display:block;}
+.flow-tile-title{font-size:var(--size-sm);font-weight:600;color:var(--text);margin-bottom:3px;}
+.flow-tile-desc{font-size:var(--size-xs);color:var(--text-muted);line-height:1.4;}
+
+/* Radio buttons (steps 2-5) */
+.flow-radios{display:flex;flex-direction:column;gap:9px;}
+.flow-radio{background:var(--bg);border:1.5px solid var(--border-dark);border-radius:var(--radius);padding:12px 16px;cursor:pointer;font-family:var(--f-body);font-size:var(--size-sm);font-weight:500;color:var(--text);text-align:left;transition:all var(--transition);display:flex;align-items:center;gap:10px;}
+.flow-radio:hover{border-color:var(--c-leaf);}
+.flow-radio.selected{border-color:var(--c-forest);background:var(--bg-tint);color:var(--c-forest);}
+.radio-check{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border-dark);flex-shrink:0;transition:all var(--transition);}
+.flow-radio.selected .radio-check{border-color:var(--c-forest);background:var(--c-forest);}
+
+/* Warning banner */
+.flow-warning{display:none;background:#fff8e1;border:1.5px solid #f0c030;border-radius:var(--radius);padding:12px 16px;font-size:var(--size-sm);color:#5a4000;margin-top:var(--sp-2);align-items:flex-start;gap:10px;}
+.flow-warning.show{display:flex;}
+@media(prefers-color-scheme:dark){.flow-warning{background:#2a220a;border-color:#7a6000;color:#e0c060;}}
+
+/* Step 4: two columns of questions */
+.flow-two-q{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2);}
+@media(max-width:580px){.flow-two-q{grid-template-columns:1fr;}}
+.flow-sub-q-label{font-size:var(--size-sm);font-weight:600;color:var(--text);margin-bottom:10px;}
+
+/* Match result */
+.match-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card);}
+.match-top{background:var(--c-pine);padding:var(--sp-2) var(--sp-3);display:flex;align-items:center;gap:var(--sp-2);}
+.match-check{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;}
+.match-top-text h3{font-size:var(--size-md);font-weight:600;color:#fff;}
+.match-top-text p{font-size:var(--size-xs);color:rgba(255,255,255,.72);}
+.match-body{padding:var(--sp-3);display:flex;gap:var(--sp-2);align-items:flex-start;}
+.match-avatar{width:58px;height:58px;border-radius:50%;flex-shrink:0;overflow:hidden;background:var(--bg-tint);}
+.match-avatar svg{width:100%;height:100%;}
+.match-info{flex:1;}
+.match-name{font-size:var(--size-lg);font-weight:600;color:var(--c-forest);margin-bottom:2px;}
+.match-role{font-size:var(--size-xs);color:var(--text-muted);margin-bottom:8px;}
+.match-why{font-size:var(--size-xs);background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;margin-bottom:var(--sp-1);color:var(--text);}
+.match-why strong{color:var(--c-forest);}
+.match-status{display:inline-flex;align-items:center;gap:6px;font-size:var(--size-xs);font-weight:500;color:var(--c-leaf);margin-bottom:var(--sp-2);}
+.match-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--c-leaf);box-shadow:0 0 0 3px rgba(42,155,71,.2);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(42,155,71,.2);}50%{box-shadow:0 0 0 5px rgba(42,155,71,.06);}}
+.match-btns{display:flex;gap:var(--sp-1);flex-wrap:wrap;}
+
+/* Confirm */
+.flow-done{text-align:center;padding:var(--sp-5) var(--sp-3);background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);}
+.flow-done-icon{width:60px;height:60px;border-radius:50%;background:var(--bg-tint);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-2);color:var(--c-forest);}
+.flow-done h3{font-size:var(--size-xl);font-weight:600;color:var(--text);margin-bottom:var(--sp-1);}
+.flow-done p{font-size:var(--size-sm);color:var(--text-muted);max-width:44ch;margin:0 auto;line-height:1.6;}
+
+/* Flow nav */
+.flow-nav{display:flex;justify-content:space-between;align-items:center;margin-top:var(--sp-3);padding-top:var(--sp-2);border-top:1px solid var(--border);}
+.flow-back-btn{background:none;border:none;color:var(--text-muted);font-size:var(--size-sm);font-family:var(--f-body);cursor:pointer;padding:0;display:flex;align-items:center;gap:5px;}
+.flow-back-btn:hover{color:var(--text);}
+.flow-next-btn{background:var(--c-forest);color:#fff;border:2px solid var(--c-forest);border-radius:var(--radius);padding:10px 22px;font-size:var(--size-sm);font-weight:600;font-family:var(--f-body);cursor:pointer;transition:background var(--transition);display:flex;align-items:center;gap:6px;}
+.flow-next-btn:hover{background:var(--c-pine);border-color:var(--c-pine);}
+.flow-next-btn:disabled{opacity:.35;cursor:not-allowed;}
+.flow-next-btn:disabled:hover{background:var(--c-forest);border-color:var(--c-forest);}
+
+/* Content */
+.content-section{padding:var(--sp-6) var(--sp-3);}
+.content-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr;gap:var(--sp-6);}
+.content-main h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;color:var(--text);margin-bottom:var(--sp-2);text-wrap:balance;line-height:1.2;}
+.content-main p{font-size:var(--size-md);color:var(--text);line-height:1.7;margin-bottom:var(--sp-2);max-width:65ch;}
+.content-main p:last-child{margin-bottom:0;}
+.sidebar-box{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--c-leaf);border-radius:var(--radius);padding:var(--sp-2);margin-bottom:var(--sp-2);}
+.sidebar-box h4{font-size:var(--size-xs);font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);margin-bottom:var(--sp-1);}
+.sidebar-box ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.sidebar-box li{font-size:var(--size-sm);color:var(--text);display:flex;gap:8px;align-items:flex-start;}
+.sidebar-box li::before{content:'–';color:var(--text-muted);flex-shrink:0;}
+
+/* Req */
+.req-section{padding:var(--sp-6) var(--sp-3);background:var(--bg-surface);border-top:1px solid var(--border);}
+.req-inner{max-width:var(--max-w);margin:0 auto;}
+.req-inner>h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;margin-bottom:var(--sp-1);}
+.req-inner>p{font-size:var(--size-sm);color:var(--text-muted);margin-bottom:var(--sp-3);max-width:58ch;}
+.req-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);}
+.req-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);box-shadow:var(--shadow-card);}
+.req-num{font-size:var(--size-xs);font-weight:600;color:var(--c-leaf);letter-spacing:.06em;text-transform:uppercase;margin-bottom:7px;}
+.req-card h3{font-size:var(--size-md);font-weight:600;margin-bottom:7px;color:var(--text);}
+.req-card p{font-size:var(--size-sm);color:var(--text-muted);line-height:1.6;}
+
+/* Social */
+.social-section{padding:var(--sp-6) var(--sp-3);border-top:1px solid var(--border);}
+.social-inner{max-width:var(--max-w);margin:0 auto;}
+.social-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:var(--sp-3);gap:var(--sp-2);}
+.social-header h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;}
+.social-score{text-align:right;flex-shrink:0;}
+.social-score-num{font-size:var(--size-3xl);font-weight:700;color:var(--text);line-height:1;}
+.social-score-label{font-size:var(--size-xs);color:var(--text-muted);margin-top:3px;}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);}
+.review-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);}
+.review-stars{color:#c9950f;font-size:var(--size-sm);margin-bottom:var(--sp-1);}
+.review-text{font-size:var(--size-sm);color:var(--text);line-height:1.6;margin-bottom:var(--sp-1);font-style:italic;}
+.review-author{font-size:var(--size-xs);font-weight:600;color:var(--text-muted);}
+
+/* FAQ */
+.faq-section{padding:var(--sp-6) var(--sp-3);border-top:1px solid var(--border);background:var(--bg-surface);}
+.faq-inner{max-width:720px;margin:0 auto;}
+.faq-inner>h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;margin-bottom:var(--sp-3);}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);margin-bottom:8px;overflow:hidden;}
+.faq-q{width:100%;background:none;border:none;padding:16px var(--sp-2);text-align:left;font-family:var(--f-body);font-size:var(--size-md);font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--sp-2);transition:background var(--transition);}
+.faq-q:hover{background:var(--bg-surface);}
+.faq-q[aria-expanded="true"]{color:var(--c-forest);}
+.faq-icon{width:18px;height:18px;border-radius:50%;background:var(--bg-surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform var(--transition);color:var(--text-muted);}
+.faq-q[aria-expanded="true"] .faq-icon{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 var(--sp-2);}
+.faq-a.open{max-height:300px;padding:0 var(--sp-2) var(--sp-2);}
+.faq-a p{font-size:var(--size-sm);color:var(--text-muted);line-height:1.7;border-top:1px solid var(--border);padding-top:var(--sp-1);}
+
+/* Footer CTA */
+.footer-cta{background:linear-gradient(160deg,var(--c-forest) 0%,var(--c-pine) 100%);padding:var(--sp-5) var(--sp-3);}
+.footer-cta-inner{max-width:680px;margin:0 auto;text-align:center;}
+.footer-cta h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;color:#fff;margin-bottom:var(--sp-1);text-wrap:balance;}
+.footer-cta p{font-size:var(--size-md);color:rgba(255,255,255,.75);margin-bottom:var(--sp-3);}
+.footer-cta-btns{display:flex;gap:var(--sp-2);justify-content:center;flex-wrap:wrap;}
+.btn-outline-white{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4);}
+.btn-outline-white:hover{background:rgba(255,255,255,.1);text-decoration:none;color:#fff;}
+
+/* Footer */
+.footer{background:var(--c-pine);padding:var(--sp-4) var(--sp-3) var(--sp-3);}
+.footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--sp-3);color:var(--c-white);}
+.footer-col-title{font-size:var(--size-sm);font-weight:600;margin-bottom:12px;color:var(--c-white);}
+.footer-note{font-size:var(--size-xs);color:rgba(255,255,255,.4);margin-top:var(--sp-1);}
+.footer-link{display:block;font-size:var(--size-sm);color:rgba(255,255,255,.7);text-decoration:none;margin-bottom:6px;transition:color var(--transition);}
+.footer-link:hover{color:var(--c-white);text-decoration:none;}
+
+@media(max-width:800px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-visual{display:none;}
+  .personalized-grid{grid-template-columns:1fr;}
+  .content-inner{grid-template-columns:1fr;gap:var(--sp-3);}
+  .req-grid{grid-template-columns:1fr 1fr;}
+  .reviews-grid{grid-template-columns:1fr;}
+  .lawyer-card{flex-direction:column;}
+  .flow-tiles{grid-template-columns:1fr 1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+@media(max-width:520px){
+  .nav-links{display:none;}
+  .req-grid{grid-template-columns:1fr;}
+  .hero-stats{flex-direction:column;gap:var(--sp-2);}
+  .flow-tiles{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;}}
+</style>
+
+<div class="demo-banner">⚠ <strong>Konceptdemo</strong> — specialeside med personalisering og 5-trins kvalificeringsflow</div>
+
+<nav class="nav" aria-label="Primær navigation">
+  <div class="nav-inner">
+    <div class="nav-logo">Ret&amp;Råd<small>Advokater</small></div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="return false">Specialer</a></li>
+      <li><a href="#" onclick="return false">Find advokat</a></li>
+      <li><a href="#" onclick="return false">Kontorer</a></li>
+      <li><a href="#" onclick="return false">Om Ret&amp;Råd</a></li>
+    </ul>
+    <a href="#" class="nav-cta" onclick="return false">Ring til os</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="#" onclick="return false">Forside</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="#" onclick="return false">Specialer</a>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">Gældssanering</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Speciale</div>
+      <h1>Gældssanering</h1>
+      <p class="hero-lead">Kom fri af en uhåndterlig gæld og start på ny. Gældssanering giver dig mulighed for at få nedsat eller slettet din gæld, hvis du ikke kan betale dine kreditorer.</p>
+      <div class="hero-stats">
+        <div><span class="hero-stat-num">5 år</span><span class="hero-stat-label">typisk saneringsperiode</span></div>
+        <div><span class="hero-stat-num">+2.400</span><span class="hero-stat-label">ansøgninger om året</span></div>
+        <div><span class="hero-stat-num">Gratis</span><span class="hero-stat-label">indledende samtale</span></div>
+      </div>
+      <a href="#flow" class="btn btn-cta" onclick="scrollToFlow(event)">Tjek om du er berettiget →</a>
+    </div>
+    <div class="hero-visual">
+      <div>
+        <div class="hero-stat-block"><span class="hero-stat-num">140+</span><span class="hero-stat-label">Advokater på landsplan</span></div>
+        <div class="hero-stat-block"><span class="hero-stat-num">31 år</span><span class="hero-stat-label">Erfaring med rådgivning</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="personalized">
+  <div class="personalized-inner">
+    <div class="personalized-pill">
+      <svg width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a5 5 0 0 0-5 5c0 4.2 5 11 5 11s5-6.8 5-11a5 5 0 0 0-5-5zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+      Vi ser du er i Frederiksberg-området
+    </div>
+    <div class="personalized-grid">
+      <div class="lawyer-card">
+        <div class="lawyer-avatar">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <rect width="60" height="60" fill="#d7e6d8"/>
+            <circle cx="30" cy="22" r="11" fill="#1b642e"/>
+            <ellipse cx="30" cy="50" rx="18" ry="12" fill="#1b642e"/>
+            <text x="30" y="27" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="700" fill="white">TN</text>
+          </svg>
+        </div>
+        <div class="lawyer-info">
+          <div class="lawyer-name">Thomas Nørgaard</div>
+          <div class="lawyer-title">Advokat · Ret&amp;Råd Frederiksberg</div>
+          <div class="lawyer-tags">
+            <span class="tag">Gældssanering</span>
+            <span class="tag">Inkasso</span>
+            <span class="tag">Privatøkonomi</span>
+          </div>
+          <div class="lawyer-rating"><span class="stars">★★★★★</span><span>4,8 · 52 anmeldelser</span></div>
+          <blockquote class="lawyer-quote">"Gældssanering er ikke et nederlag — det er en løsning. Jeg har hjulpet mange i præcis din situation med at finde vej ud."</blockquote>
+        </div>
+      </div>
+      <div class="booking-widget">
+        <div class="booking-header">
+          <h3>Book gratis opkald med Thomas</h3>
+          <p>Vælg tid — han ringer dig op</p>
+        </div>
+        <div class="booking-body" id="bBody">
+          <div class="booking-times">
+            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>13:00</button>
+            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I dag</div>15:30</button>
+            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>09:00</button>
+            <button class="booking-time" onclick="selTime(this)"><div class="booking-time-day">I morgen</div>11:00</button>
+          </div>
+          <button class="booking-btn" onclick="confirmBook()">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .93h3a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            Bekræft opkald
+          </button>
+          <p class="booking-note">Ingen forpligtelse · ca. 15 min.</p>
+        </div>
+        <div class="booking-confirm" id="bConfirm">
+          <div class="booking-confirm-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <h4>Opkald booket!</h4>
+          <p>Thomas ringer dig op. Du modtager en SMS-bekræftelse.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FLOW ═══ -->
+<section class="flow-section" id="flow">
+  <div class="flow-inner">
+    <div class="flow-label">Kvalificering</div>
+    <h2>Tjek om du kan søge gældssanering</h2>
+    <p class="flow-intro">5 korte spørgsmål — vi bruger dine svar til at finde den advokat, der passer præcist til din situation.</p>
+
+    <!-- Indicator: 5 steps + match = 6 states, show 5 dots -->
+    <div class="flow-indicator" id="flowInd">
+      <div class="step-dot-wrap"><div class="step-circle active" id="d1">1</div><span class="step-label active" id="l1">Gældstype</span></div>
+      <div class="step-line" id="ln1"></div>
+      <div class="step-dot-wrap"><div class="step-circle" id="d2">2</div><span class="step-label" id="l2">Omfang</span></div>
+      <div class="step-line" id="ln2"></div>
+      <div class="step-dot-wrap"><div class="step-circle" id="d3">3</div><span class="step-label" id="l3">Varighed</span></div>
+      <div class="step-line" id="ln3"></div>
+      <div class="step-dot-wrap"><div class="step-circle" id="d4">4</div><span class="step-label" id="l4">Situation</span></div>
+      <div class="step-line" id="ln4"></div>
+      <div class="step-dot-wrap"><div class="step-circle" id="d5">5</div><span class="step-label" id="l5">Match</span></div>
+    </div>
+
+    <!-- Step 1: Gældstype -->
+    <div class="flow-panel visible" id="fp1">
+      <div class="flow-q">Hvad er din primære gældstype?<span class="flow-q-sub">Vælg det der fylder mest.</span></div>
+      <div class="flow-tiles">
+        <div class="flow-tile" onclick="selTile(this,1)">
+          <span class="flow-tile-icon">💳</span>
+          <div class="flow-tile-title">Forbrugslån / kreditkort</div>
+          <div class="flow-tile-desc">Kviklån, afbetalinger, banklån</div>
+        </div>
+        <div class="flow-tile" onclick="selTile(this,1)">
+          <span class="flow-tile-icon">🏠</span>
+          <div class="flow-tile-title">Boliglån / friværdi</div>
+          <div class="flow-tile-desc">Restgæld, friværdigæld</div>
+        </div>
+        <div class="flow-tile" onclick="selTile(this,1)">
+          <span class="flow-tile-icon">🏛️</span>
+          <div class="flow-tile-title">Skat / SKAT</div>
+          <div class="flow-tile-desc">Restance, restskat, moms</div>
+        </div>
+        <div class="flow-tile" onclick="selTile(this,1)">
+          <span class="flow-tile-icon">🏢</span>
+          <div class="flow-tile-title">Erhvervsgæld</div>
+          <div class="flow-tile-desc">Fra tidligere virksomhed</div>
+        </div>
+        <div class="flow-tile" onclick="selTile(this,1)">
+          <span class="flow-tile-icon">🔀</span>
+          <div class="flow-tile-title">Blandet</div>
+          <div class="flow-tile-desc">Flere typer fra flere kreditorer</div>
+        </div>
+      </div>
+      <div class="flow-nav">
+        <span></span>
+        <button class="flow-next-btn" id="fn1" disabled onclick="goStep(2)">
+          Næste <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2: Omfang -->
+    <div class="flow-panel" id="fp2">
+      <div class="flow-q">Hvad er din samlede gæld ca.?</div>
+      <div class="flow-radios">
+        <button class="flow-radio" onclick="selRadio(this,'s2')"><span class="radio-check"></span>Under 100.000 kr.</button>
+        <button class="flow-radio" onclick="selRadio(this,'s2')"><span class="radio-check"></span>100.000 – 500.000 kr.</button>
+        <button class="flow-radio" onclick="selRadio(this,'s2')"><span class="radio-check"></span>Over 500.000 kr.</button>
+        <button class="flow-radio" onclick="selRadio(this,'s2')"><span class="radio-check"></span>Ved ikke præcist</button>
+      </div>
+      <div class="flow-nav">
+        <button class="flow-back-btn" onclick="goStep(1)"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
+        <button class="flow-next-btn" id="fn2" disabled onclick="goStep(3)">
+          Næste <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3: Varighed + inkasso -->
+    <div class="flow-panel" id="fp3">
+      <div class="flow-two-q">
+        <div>
+          <div class="flow-sub-q-label">Hvor længe har du haft betalingsproblemer?</div>
+          <div class="flow-radios">
+            <button class="flow-radio" onclick="selRadio(this,'s3a');checkStep3()"><span class="radio-check"></span>Under 1 år</button>
+            <button class="flow-radio" onclick="selRadio(this,'s3a');checkStep3()"><span class="radio-check"></span>1 – 2 år</button>
+            <button class="flow-radio" onclick="selRadio(this,'s3a');checkStep3()"><span class="radio-check"></span>Over 2 år</button>
+            <button class="flow-radio" onclick="selRadio(this,'s3a');checkStep3()"><span class="radio-check"></span>Har netop mistet indkomst</button>
+          </div>
+        </div>
+        <div>
+          <div class="flow-sub-q-label">Har du modtaget inkassovarsel eller stævning?</div>
+          <div class="flow-radios">
+            <button class="flow-radio" onclick="selRadio(this,'s3b');checkStep3()"><span class="radio-check"></span>Ja, inkassovarsel</button>
+            <button class="flow-radio" onclick="selRadio(this,'s3b');checkStep3()"><span class="radio-check"></span>Ja, stævning / dom</button>
+            <button class="flow-radio" onclick="selRadio(this,'s3b');checkStep3()"><span class="radio-check"></span>Nej endnu</button>
+            <button class="flow-radio" onclick="selRadio(this,'s3b');checkStep3()"><span class="radio-check"></span>Usikker</button>
+          </div>
+          <div class="flow-warning" id="warnIncasso">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span><strong>Vigtigt:</strong> Hvis du har modtaget stævning, er frister afgørende. Ring til os i dag på <strong>70 20 76 00</strong> for hurtig hjælp.</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-nav">
+        <button class="flow-back-btn" onclick="goStep(2)"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
+        <button class="flow-next-btn" id="fn3" disabled onclick="goStep(4)">
+          Næste <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 4: Personlig situation -->
+    <div class="flow-panel" id="fp4">
+      <div class="flow-q">Hvad beskriver din situation bedst?</div>
+      <div class="flow-radios">
+        <button class="flow-radio" onclick="selRadio(this,'s4')"><span class="radio-check"></span>Arbejdsløs eller sygemeldt</button>
+        <button class="flow-radio" onclick="selRadio(this,'s4')"><span class="radio-check"></span>Lav fast indkomst</button>
+        <button class="flow-radio" onclick="selRadio(this,'s4')"><span class="radio-check"></span>Selvstændig / tidligere selvstændig</button>
+        <button class="flow-radio" onclick="selRadio(this,'s4')"><span class="radio-check"></span>Har bolig med gæld</button>
+      </div>
+      <div class="flow-nav">
+        <button class="flow-back-btn" onclick="goStep(3)"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
+        <button class="flow-next-btn" id="fn4" disabled onclick="goStep(5)">
+          Se dit match <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 5: Match -->
+    <div class="flow-panel" id="fp5">
+      <div class="match-card">
+        <div class="match-top">
+          <div class="match-check"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="match-top-text">
+            <h3>Du matcher betingelserne for gældssanering</h3>
+            <p>Baseret på dine svar har vi fundet den rette specialist til dig</p>
+          </div>
+        </div>
+        <div class="match-body">
+          <div class="match-avatar">
+            <svg viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg">
+              <rect width="58" height="58" fill="#d7e6d8"/>
+              <circle cx="29" cy="21" r="10" fill="#1b642e"/>
+              <ellipse cx="29" cy="46" rx="16" ry="11" fill="#1b642e"/>
+              <text x="29" y="26" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" font-weight="700" fill="white">TN</text>
+            </svg>
+          </div>
+          <div class="match-info">
+            <div class="match-name">Thomas Nørgaard</div>
+            <div class="match-role">Advokat · Gældssanering &amp; privatret · Ret&amp;Råd Frederiksberg</div>
+            <div class="match-why" id="matchWhy">
+              <strong>Matchet fordi:</strong> Thomas har speciale i <span id="matchSpec">forbrugsgæld og inkassosager</span> og har hjulpet klienter med lignende situationer i <span id="matchYears">over 10 år</span>.
+            </div>
+            <div class="match-status">Ledig i dag</div>
+            <div class="match-btns">
+              <button class="btn btn-cta" onclick="goStep(6)">Book gratis opkald</button>
+              <button class="btn btn-secondary" onclick="goStep(6)">Videomøde</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flow-nav">
+        <button class="flow-back-btn" onclick="goStep(4)"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
+        <span></span>
+      </div>
+    </div>
+
+    <!-- Step 6: Done -->
+    <div class="flow-panel" id="fp6">
+      <div class="flow-done">
+        <div class="flow-done-icon"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>Alt klaret. Thomas ringer dig op.</h3>
+        <p>Du modtager en SMS-bekræftelse. Opkaldet er gratis og uforpligtende — ca. 15 minutter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="content-inner">
+    <div class="content-main">
+      <h2>Hvad er gældssanering?</h2>
+      <p>Gældssanering er en juridisk ordning, der giver privatpersoner med alvorlige gældsproblemer mulighed for at få nedsat eller eftergivet gæld via en domstolsafgørelse. Ordningen reguleres af konkursloven og behandles ved skifteretten.</p>
+      <p>En afgørelse om gældssanering binder alle dine kreditorer — også dem, der stemmer imod. Det betyder, at du ikke kan udelukkes fra ordningen, blot fordi en enkelt kreditor modsætter sig.</p>
+      <p>Saneringsperioden varer typisk fem år, hvor du betaler det beløb, retten har fastsat. Herefter er den resterende gæld slettet, og du kan starte på en frisk.</p>
+    </div>
+    <div class="content-sidebar">
+      <div class="sidebar-box">
+        <h4>Typiske gældstyper</h4>
+        <ul>
+          <li>Forbrugslån og kreditkortgæld</li>
+          <li>Tidligere boliggæld</li>
+          <li>Skattegæld til SKAT</li>
+          <li>Gæld til det offentlige</li>
+          <li>Private lån fra familie</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="req-section">
+  <div class="req-inner">
+    <h2>Betingelser for gældssanering</h2>
+    <p>For at komme i betragtning skal du opfylde en række grundlæggende krav.</p>
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-num">Betingelse 1</div>
+        <h3>Kvalificeret insolvens</h3>
+        <p>Din gæld skal overstige din formue og betalingsevne betydeligt, og situationen skal ikke forventeligt ændre sig.</p>
+      </div>
+      <div class="req-card">
+        <div class="req-num">Betingelse 2</div>
+        <h3>Vedvarende problemer</h3>
+        <p>Du skal have haft alvorlige betalingsproblemer i minimum 2–3 år med mørke fremtidsudsigter.</p>
+      </div>
+      <div class="req-card">
+        <div class="req-num">Betingelse 3</div>
+        <h3>Redelighed</h3>
+        <p>Gælden må ikke være opstået på uredelig vis. Bevidst misbrug eller svindel diskvalificerer som udgangspunkt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="social-section">
+  <div class="social-inner">
+    <div class="social-header">
+      <h2>Hvad siger vores klienter?</h2>
+      <div class="social-score">
+        <div class="social-score-num">4,8 <span style="font-size:1.2rem;color:#c9950f">★</span></div>
+        <div class="social-score-label">Baseret på 340 anmeldelser</div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Thomas hjalp mig igennem en proces, jeg slet ikke forstod. I dag er jeg gældfri."</p>
+        <div class="review-author">Morten L., Frederiksberg</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Professionel og menneskelig på samme tid. Ret&amp;Råd forstod min situation og handlede hurtigt."</p>
+        <div class="review-author">Susanne K., Frederiksberg C</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">"Det tog lidt tid at komme i gang, men resultatet var godt. Gode råd fra start."</p>
+        <div class="review-author">Brian H., Valby</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="faq-inner">
+    <h2>Ofte stillede spørgsmål</h2>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Hvad sker der med min bolig under gældssanering?
+        <span class="faq-icon"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 0v16M0 8h16"/></svg></span>
+      </button>
+      <div class="faq-a"><p>Det afhænger af din situation. Hvis din bolig har positiv friværdi, vil den typisk indgå i saneringsregnskabet. En advokat kan hjælpe dig med at vurdere konsekvenserne, inden du søger.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Kan jeg få gældssanering, hvis jeg er selvstændig?
+        <span class="faq-icon"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 0v16M0 8h16"/></svg></span>
+      </button>
+      <div class="faq-a"><p>Ja, selvstændige kan søge gældssanering, men processen er mere kompleks — særligt hvis gælden er opstået erhvervsmæssigt. Det kræver grundig vurdering af en specialist.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Hvad koster det at søge gældssanering?
+        <span class="faq-icon"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 0v16M0 8h16"/></svg></span>
+      </button>
+      <div class="faq-a"><p>Retsafgiften er pt. 750 kr. Advokatbistand betales enten selv eller via retshjælpsforsikring — mange har den via indboforsikringen. Vi afklarer dette i den første samtale.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Hvad sker der, hvis skifteretten afviser min ansøgning?
+        <span class="faq-icon"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 0v16M0 8h16"/></svg></span>
+      </button>
+      <div class="faq-a"><p>En afvisning er ikke nødvendigvis endeligt. Afgørelsen kan ankes, og der kan søges igen, hvis din situation ændrer sig. En advokat vurderer dine muligheder.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="footer-cta">
+  <div class="footer-cta-inner">
+    <h2>Klar til at tage første skridt?</h2>
+    <p>En gratis samtale med Thomas Nørgaard koster dig ingenting — men kan betyde alt.</p>
+    <div class="footer-cta-btns">
+      <a href="#flow" class="btn btn-cta" onclick="scrollToFlow(event)">Kom i gang</a>
+      <a href="#" class="btn btn-outline-white" onclick="return false">Læs om processen</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="nav-logo" style="color:#fff">Ret&amp;Råd<small style="color:rgba(255,255,255,.5)">Advokater</small></div>
+      <div class="footer-note">© 2026 Ret&amp;Råd. Konceptdemo.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Privat</div>
+      <a href="#" class="footer-link" onclick="return false">Boligkøb</a>
+      <a href="#" class="footer-link" onclick="return false">Familieret</a>
+      <a href="#" class="footer-link" onclick="return false">Arveret</a>
+      <a href="#" class="footer-link" onclick="return false">Gældssanering</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Erhverv</div>
+      <a href="#" class="footer-link" onclick="return false">Erhvervsret</a>
+      <a href="#" class="footer-link" onclick="return false">Selskabsret</a>
+      <a href="#" class="footer-link" onclick="return false">Kontakt</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Booking */
+function selTime(el){el.closest('.booking-times').querySelectorAll('.booking-time').forEach(t=>t.classList.remove('selected'));el.classList.add('selected');}
+function confirmBook(){if(!document.querySelector('.booking-time.selected'))document.querySelectorAll('.booking-time')[0].classList.add('selected');document.getElementById('bBody').style.display='none';document.getElementById('bConfirm').classList.add('visible');}
+function scrollToFlow(e){e.preventDefault();document.getElementById('flow').scrollIntoView({behavior:'smooth',block:'start'});}
+
+/* Flow state */
+var fs={s2:false,s3a:false,s3b:false,s4:false,debtType:'forbrugslån'};
+
+var stepLabels=['Gældstype','Omfang','Varighed','Situation','Match'];
+var checkSvg='<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+
+function goStep(n){
+  for(var i=1;i<=6;i++){var p=document.getElementById('fp'+i);if(p)p.classList.toggle('visible',i===n);}
+  updateInd(n);
+}
+
+function updateInd(n){
+  for(var i=1;i<=5;i++){
+    var d=document.getElementById('d'+i),l=document.getElementById('l'+i);
+    if(i<n){d.className='step-circle done';d.innerHTML=checkSvg;l.className='step-label';}
+    else if(i===n){d.className='step-circle active';d.textContent=i;l.className='step-label active';}
+    else{d.className='step-circle';d.textContent=i;l.className='step-label';}
+  }
+  for(var j=1;j<=4;j++){var ln=document.getElementById('ln'+j);if(ln)ln.className='step-line'+(j<n?' done':'');}
+}
+
+function selTile(el,step){
+  el.closest('.flow-tiles').querySelectorAll('.flow-tile').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  fs.debtType=el.querySelector('.flow-tile-title').textContent;
+  var nb=document.getElementById('fn'+step);if(nb)nb.disabled=false;
+}
+
+function selRadio(el,group){
+  el.closest('.flow-radios').querySelectorAll('.flow-radio').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+  fs[group]=true;
+  var nb4=document.getElementById('fn4');
+  if(nb4&&group==='s4')nb4.disabled=false;
+  var nb2=document.getElementById('fn2');
+  if(nb2&&group==='s2')nb2.disabled=false;
+  // inkasso warning
+  if(group==='s3b'){
+    var w=document.getElementById('warnIncasso');
+    var txt=el.textContent.trim();
+    w.classList.toggle('show',txt.indexOf('stævning')!==-1);
+  }
+}
+
+function checkStep3(){
+  var nb=document.getElementById('fn3');
+  if(nb&&fs.s3a&&fs.s3b)nb.disabled=false;
+}
+
+/* When step 5 shows, update match text */
+var _origGoStep=goStep;
+goStep=function(n){
+  _origGoStep(n);
+  if(n===5){buildMatch();}
+};
+
+function buildMatch(){
+  var specMap={
+    'Forbrugslån / kreditkort':'forbrugsgæld, kviklån og inkassosager',
+    'Boliglån / friværdi':'boliggæld og friværdisager',
+    'Skat / SKAT':'skattegæld og SKAT-restancer',
+    'Erhvervsgæld':'erhvervsgæld fra tidligere virksomhed',
+    'Blandet':'komplekse sager med blandet gældssammensætning'
+  };
+  var spec=specMap[fs.debtType]||'gældssanering og privatret';
+  var el=document.getElementById('matchSpec');if(el)el.textContent=spec;
+}
+
+/* FAQ */
+function toggleFaq(btn){var ex=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!ex);btn.nextElementSibling.classList.toggle('open',!ex);}
+</script>
