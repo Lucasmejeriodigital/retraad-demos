@@ -12,13 +12,13 @@
   --border:var(--c-sage);--border-dark:var(--c-gray);
   --f-body:'Barlow',sans-serif;
   --size-xs:.75rem;--size-sm:.9375rem;--size-md:1rem;--size-lg:1.25rem;
-  --size-xl:1.5rem;--size-2xl:2rem;--size-3xl:2.75rem;
+  --size-xl:1.5rem;--size-2xl:2rem;
   --sp-1:10px;--sp-2:20px;--sp-3:30px;--sp-4:40px;--sp-5:50px;--sp-6:60px;
   --radius:1px;
   --shadow-card:4px 3px 35px 5px rgba(0,0,0,.1);
-  --shadow-panel:0 12px 48px 0 rgba(0,0,0,.22),0 2px 8px rgba(0,0,0,.1);
+  --shadow-panel:0 16px 56px rgba(0,0,0,.24),0 2px 8px rgba(0,0,0,.1);
   --transition:150ms ease-in-out;
-  --max-w:1100px;
+  --max-w:1130px;
 }
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0d1a0f;--bg-surface:#142016;--bg-tint:#1c2e1e;
@@ -33,71 +33,69 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:var(--f-body);font-size:var(--size-md);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
 a{color:var(--c-forest);text-decoration:none;}
+a:hover{text-decoration:underline;}
 
-/* Banner */
 .demo-banner{background:#0c0c0c;color:rgba(255,255,255,.65);text-align:center;padding:7px var(--sp-3);font-size:var(--size-xs);letter-spacing:.04em;}
 .demo-banner strong{color:#fff;}
 
-/* Nav */
-.nav{background:var(--bg);border-bottom:1px solid var(--border);}
-.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-3);display:flex;align-items:center;justify-content:space-between;height:64px;gap:var(--sp-3);}
+/* ── NAV ── */
+.nav{background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 var(--sp-3);}
+.nav-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px;gap:var(--sp-2);}
 .nav-logo{font-weight:700;font-size:1.4rem;color:var(--c-forest);line-height:1;flex-shrink:0;letter-spacing:-0.02em;}
 .nav-logo small{display:block;font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--text-muted);margin-top:3px;}
-.nav-links{display:flex;gap:var(--sp-2);list-style:none;flex:1;margin-left:var(--sp-2);}
-.nav-links a{font-size:var(--size-sm);font-weight:500;color:var(--c-forest);text-decoration:none;transition:color var(--transition);}
-.nav-links a:hover{color:var(--c-leaf);}
-.nav-cta{display:inline-flex;align-items:center;gap:6px;font-size:var(--size-sm);font-weight:600;color:var(--c-forest);border:2px solid var(--c-forest);padding:8px 16px;border-radius:var(--radius);text-decoration:none;transition:background var(--transition);flex-shrink:0;}
+.nav-links{display:flex;gap:var(--sp-2);list-style:none;flex:1;margin-left:var(--sp-3);}
+.nav-links a{font-size:var(--size-sm);font-weight:500;color:var(--c-forest);transition:color var(--transition);}
+.nav-links a:hover{color:var(--c-leaf);text-decoration:none;}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;font-size:var(--size-sm);font-weight:600;color:var(--c-forest);border:2px solid var(--c-forest);padding:8px 18px;border-radius:var(--radius);transition:background var(--transition);flex-shrink:0;}
 .nav-cta:hover{background:var(--bg-tint);text-decoration:none;color:var(--c-forest);}
 
-/* Hero */
-.hero{background:linear-gradient(148deg,var(--c-forest) 0%,var(--c-pine) 100%);padding:var(--sp-6) var(--sp-3);}
+/* ── HERO ── */
+.hero{background:linear-gradient(148deg,var(--c-forest) 0%,var(--c-pine) 100%);padding:var(--sp-6) var(--sp-3) calc(var(--sp-6) + 10px);}
 .hero-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:var(--sp-6);align-items:start;}
 .hero-eyebrow{font-size:var(--size-xs);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:var(--sp-2);}
-.hero h1{font-size:clamp(2.2rem,1.5rem + 2.5vw,3.875rem);font-weight:600;line-height:1;color:#fff;margin-bottom:var(--sp-2);text-wrap:balance;letter-spacing:-0.025em;}
-.hero-lead{font-size:var(--size-md);color:rgba(255,255,255,.72);line-height:1.65;margin-bottom:var(--sp-4);max-width:48ch;}
-.hero-trust{display:flex;gap:var(--sp-4);margin-bottom:var(--sp-4);}
-.hero-trust-num{font-size:var(--size-2xl);font-weight:700;color:#fff;line-height:1;display:block;font-variant-numeric:tabular-nums;}
-.hero-trust-lbl{font-size:var(--size-xs);color:rgba(255,255,255,.5);margin-top:3px;font-weight:300;letter-spacing:.03em;display:block;}
-.hero-note{font-size:var(--size-sm);color:rgba(255,255,255,.42);margin-top:var(--sp-2);}
-.hero-note a{color:rgba(255,255,255,.6);text-decoration:underline;text-decoration-color:rgba(255,255,255,.2);}
-.hero-note a:hover{color:#fff;}
+.hero h1{font-size:clamp(2.4rem,1.8rem+2.5vw,3.875rem);font-weight:600;line-height:1;color:#fff;margin-bottom:var(--sp-2);text-wrap:balance;letter-spacing:-0.025em;}
+.hero-lead{font-size:var(--size-md);color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:var(--sp-4);max-width:52ch;}
+.hero-stats{display:flex;gap:var(--sp-5);margin-bottom:var(--sp-4);}
+.hero-stat-num{font-size:var(--size-2xl);font-weight:700;color:#fff;line-height:1;display:block;font-variant-numeric:tabular-nums;}
+.hero-stat-lbl{font-size:var(--size-xs);color:rgba(255,255,255,.5);margin-top:4px;font-weight:300;letter-spacing:.02em;display:block;}
+.hero-btns{display:flex;gap:var(--sp-1);flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;line-height:1;padding:13px 22px;border-radius:var(--radius);border:2px solid transparent;cursor:pointer;text-decoration:none;transition:opacity var(--transition),background var(--transition);}
+.btn-primary{background:var(--c-forest);color:#fff;border-color:var(--c-forest);}
+.btn-primary:hover{background:var(--c-pine);border-color:var(--c-pine);text-decoration:none;color:#fff;}
+.btn-outline-white{background:transparent;color:#fff;border-color:rgba(255,255,255,.4);}
+.btn-outline-white:hover{background:rgba(255,255,255,.1);text-decoration:none;color:#fff;}
+.btn-cta{background:var(--c-terracotta);color:#fff;border-color:var(--c-terracotta);}
+.btn-cta:hover{opacity:.88;text-decoration:none;color:#fff;}
+.btn-outline{background:transparent;color:var(--c-forest);border-color:var(--c-forest);}
+.btn-outline:hover{background:var(--bg-tint);text-decoration:none;color:var(--c-forest);}
+.btn-sm{padding:8px 14px;font-size:var(--size-xs);}
 
-/* Panel */
+/* ── QUIZ PANEL ── */
 .hero-panel{background:#fff;border-radius:var(--radius);border-top:3px solid var(--c-leaf);box-shadow:var(--shadow-panel);}
-.panel-hdr{padding:16px var(--sp-2) 14px;border-bottom:1px solid var(--c-sage);}
+.panel-hdr{padding:16px var(--sp-2) 13px;border-bottom:1px solid #e8f2ea;}
 .panel-eyebrow{font-size:var(--size-xs);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:3px;}
 .panel-title{font-size:var(--size-md);font-weight:600;color:var(--c-ink);}
-.panel-body{padding:var(--sp-2);min-height:290px;}
-
-/* Progress dots */
-.p-prog{display:flex;align-items:center;gap:5px;margin-bottom:var(--sp-2);}
-.p-prog-dot{height:3px;flex:1;background:var(--c-gray);border-radius:2px;transition:background .25s;}
+.panel-body{padding:var(--sp-2);min-height:300px;}
+.p-prog{display:flex;gap:5px;margin-bottom:var(--sp-2);}
+.p-prog-dot{height:3px;flex:1;background:#ddd;border-radius:2px;transition:background .25s;}
 .p-prog-dot.active{background:var(--c-forest);}
 .p-prog-dot.done{background:var(--c-leaf);}
-
-/* Steps */
 .ps{display:none;}
 .ps.active{display:block;animation:psIn .18s ease;}
 @keyframes psIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
-
-/* Category grid */
 .cat-grid-p{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.cat-p{background:#fff;border:1.5px solid var(--c-sage);border-radius:var(--radius);padding:10px 10px;cursor:pointer;text-align:left;font-family:var(--f-body);transition:border-color .15s,background .15s;display:flex;align-items:center;gap:8px;}
+.cat-p{background:#fff;border:1.5px solid var(--c-sage);border-radius:var(--radius);padding:10px;cursor:pointer;font-family:var(--f-body);transition:border-color .15s,background .15s;display:flex;align-items:center;gap:8px;text-align:left;}
 .cat-p:hover{border-color:var(--c-leaf);}
 .cat-p.sel{border-color:var(--c-forest);background:#f0f7f1;}
 .cat-p-icon{font-size:.95rem;flex-shrink:0;line-height:1;}
 .cat-p-lbl{font-size:var(--size-xs);font-weight:600;color:var(--c-ink);line-height:1.25;}
-
-/* Radio */
 .p-q{font-size:var(--size-sm);font-weight:600;color:var(--c-ink);margin-bottom:var(--sp-1);line-height:1.3;}
 .p-radios{display:flex;flex-direction:column;gap:7px;}
-.p-radio{background:#fff;border:1.5px solid var(--c-gray);border-radius:var(--radius);padding:10px 12px;cursor:pointer;font-family:var(--f-body);font-size:var(--size-sm);font-weight:500;color:var(--c-ink);text-align:left;transition:all .15s;display:flex;align-items:center;gap:9px;}
+.p-radio{background:#fff;border:1.5px solid #d3d3d3;border-radius:var(--radius);padding:10px 12px;cursor:pointer;font-family:var(--f-body);font-size:var(--size-sm);font-weight:500;color:var(--c-ink);text-align:left;transition:all .15s;display:flex;align-items:center;gap:9px;}
 .p-radio:hover{border-color:var(--c-leaf);}
 .p-radio.sel{border-color:var(--c-forest);background:#f0f7f1;color:var(--c-forest);}
-.p-rdot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--c-gray);flex-shrink:0;transition:all .15s;}
+.p-rdot{width:14px;height:14px;border-radius:50%;border:1.5px solid #d3d3d3;flex-shrink:0;transition:all .15s;}
 .p-radio.sel .p-rdot{border-color:var(--c-forest);background:var(--c-forest);}
-
-/* Panel nav (step 2 only) */
 .panel-nav{display:none;justify-content:space-between;align-items:center;padding:var(--sp-1) var(--sp-2) var(--sp-2);}
 .p-back{background:none;border:none;font-family:var(--f-body);font-size:var(--size-xs);color:#999;cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;}
 .p-back:hover{color:var(--c-ink);}
@@ -105,13 +103,11 @@ a{color:var(--c-forest);text-decoration:none;}
 .p-next:hover{background:var(--c-pine);border-color:var(--c-pine);}
 .p-next:disabled{opacity:.3;cursor:not-allowed;}
 .p-next:disabled:hover{background:var(--c-forest);border-color:var(--c-forest);}
-
-/* Match */
-.p-match-banner{background:var(--c-pine);border-radius:var(--radius);padding:10px 12px;display:flex;align-items:center;gap:9px;margin-bottom:var(--sp-1);}
+.p-match-banner{background:var(--c-pine);border-radius:var(--radius);padding:10px 12px;display:flex;align-items:center;gap:9px;margin-bottom:12px;}
 .p-chk{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;}
-.p-match-banner-txt{font-size:var(--size-xs);font-weight:600;color:#fff;line-height:1.3;}
+.p-match-banner-txt{font-size:var(--size-xs);font-weight:600;color:#fff;line-height:1.35;}
 .p-match-banner-txt span{color:rgba(255,255,255,.65);font-weight:400;}
-.p-match-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;}
+.p-match-row{display:flex;gap:11px;align-items:flex-start;margin-bottom:12px;}
 .p-av{width:44px;height:44px;border-radius:50%;flex-shrink:0;overflow:hidden;background:var(--c-sage);}
 .p-av svg{width:100%;height:100%;}
 .p-nm{font-size:var(--size-sm);font-weight:600;color:var(--c-forest);margin-bottom:1px;}
@@ -120,154 +116,172 @@ a{color:var(--c-forest);text-decoration:none;}
 .p-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c-leaf);box-shadow:0 0 0 2px rgba(42,155,71,.2);animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 2px rgba(42,155,71,.2);}50%{box-shadow:0 0 0 4px rgba(42,155,71,.06);}}
 .p-actions{display:flex;gap:7px;flex-wrap:wrap;}
-
-/* Buttons */
-.btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;line-height:1;padding:11px 20px;border-radius:var(--radius);border:2px solid transparent;cursor:pointer;text-decoration:none;transition:opacity .15s,background .15s;}
-.btn-cta{background:var(--c-terracotta);color:#fff;border-color:var(--c-terracotta);}
-.btn-cta:hover{opacity:.88;text-decoration:none;color:#fff;}
-.btn-outline{background:transparent;color:var(--c-forest);border-color:var(--c-forest);}
-.btn-outline:hover{background:var(--bg-tint);text-decoration:none;color:var(--c-forest);}
-.btn-sm{padding:8px 14px;font-size:var(--size-xs);}
-
-/* Done */
 .p-done{text-align:center;padding:var(--sp-3) var(--sp-2);}
 .p-done-icon{width:44px;height:44px;border-radius:50%;background:var(--c-sage);border:2px solid var(--c-leaf);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-1);color:var(--c-forest);}
 .p-done h3{font-size:var(--size-md);font-weight:600;color:var(--c-ink);margin-bottom:6px;}
 .p-done p{font-size:var(--size-xs);color:#666;line-height:1.6;}
 
-/* Specialties */
-.specialties{padding:var(--sp-6) var(--sp-3);}
+/* ── SPECIALTIES ── */
+.specialties{padding:var(--sp-6) var(--sp-3);border-bottom:1px solid var(--border);}
 .specialties-inner{max-width:var(--max-w);margin:0 auto;}
-.section-lbl{font-size:var(--size-xs);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:var(--sp-1);}
-.section-h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;margin-bottom:var(--sp-3);color:var(--text);text-wrap:balance;}
-.spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-1);}
-.spec-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s;display:block;}
+.section-eyebrow{font-size:var(--size-xs);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:var(--sp-1);}
+.section-h2{font-size:clamp(1.375rem,1rem+1.5vw,2.1875rem);font-weight:600;color:var(--text);margin-bottom:var(--sp-3);text-wrap:balance;}
+.spec-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--sp-1);}
+.spec-card{border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);text-decoration:none;color:var(--text);transition:border-color var(--transition),box-shadow var(--transition);background:var(--bg);display:block;}
 .spec-card:hover{border-color:var(--c-leaf);box-shadow:var(--shadow-card);text-decoration:none;}
-.spec-icon{font-size:1.4rem;margin-bottom:8px;display:block;}
-.spec-title{font-size:var(--size-sm);font-weight:600;color:var(--c-forest);margin-bottom:3px;}
-.spec-desc{font-size:var(--size-xs);color:var(--text-muted);line-height:1.5;}
+.spec-icon{font-size:1.5rem;margin-bottom:8px;display:block;}
+.spec-title{font-size:var(--size-sm);font-weight:600;color:var(--c-forest);margin-bottom:3px;line-height:1.3;}
 
-/* Articles */
-.articles{padding:var(--sp-6) var(--sp-3);background:var(--bg-surface);border-top:1px solid var(--border);}
+/* ── ARTICLES ── */
+.articles{padding:var(--sp-6) var(--sp-3);background:var(--bg-surface);border-bottom:1px solid var(--border);}
 .articles-inner{max-width:var(--max-w);margin:0 auto;}
-.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);}
-.article-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);}
-.article-tag{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--c-leaf);border:1px solid var(--c-leaf);padding:2px 7px;border-radius:var(--radius);display:inline-flex;margin-bottom:10px;}
-.article-title{font-size:var(--size-sm);font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4;}
-.article-meta{font-size:10px;color:var(--text-muted);}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);margin-bottom:var(--sp-3);}
+.article-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);display:flex;flex-direction:column;gap:var(--sp-1);}
+.article-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.article-tag{font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--c-leaf);border:1px solid var(--c-leaf);padding:2px 7px;border-radius:var(--radius);display:inline-flex;}
+.article-date{font-size:10px;color:var(--text-muted);}
+.article-title{font-size:var(--size-sm);font-weight:600;color:var(--text);line-height:1.4;}
+.article-excerpt{font-size:var(--size-xs);color:var(--text-muted);line-height:1.6;}
+.articles-more{text-align:center;}
 
-/* Footer */
-.footer{background:var(--c-pine);padding:var(--sp-4) var(--sp-3) var(--sp-3);}
-.footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--sp-3);color:#fff;}
-.f-col-title{font-size:var(--size-sm);font-weight:600;margin-bottom:12px;}
-.f-link{display:block;font-size:var(--size-sm);color:rgba(255,255,255,.65);text-decoration:none;margin-bottom:6px;transition:color .15s;}
+/* ── OFFICES ── */
+.offices{padding:var(--sp-6) var(--sp-3);border-bottom:1px solid var(--border);}
+.offices-inner{max-width:var(--max-w);margin:0 auto;}
+.offices-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);}
+.office-region{font-size:var(--size-sm);font-weight:600;color:var(--c-forest);margin-bottom:var(--sp-1);}
+.office-list{display:flex;flex-direction:column;gap:4px;}
+.office-link{font-size:var(--size-sm);color:var(--text-muted);transition:color var(--transition);}
+.office-link:hover{color:var(--c-leaf);text-decoration:none;}
+
+/* ── BOTTOM CTA ── */
+.bottom-cta{background:var(--bg-surface);border-bottom:1px solid var(--border);padding:var(--sp-5) var(--sp-3);text-align:center;}
+.bottom-cta-inner{max-width:600px;margin:0 auto;}
+.bottom-cta h2{font-size:clamp(1.375rem,1rem+1.5vw,2.1875rem);font-weight:600;margin-bottom:var(--sp-1);color:var(--text);}
+.bottom-cta p{font-size:var(--size-md);color:var(--text-muted);margin-bottom:var(--sp-3);}
+
+/* ── NEWSLETTER ── */
+.newsletter{padding:var(--sp-6) var(--sp-3);border-bottom:1px solid var(--border);}
+.newsletter-inner{max-width:600px;margin:0 auto;}
+.newsletter h2{font-size:clamp(1.375rem,1rem+1.5vw,2.1875rem);font-weight:600;margin-bottom:var(--sp-1);color:var(--text);}
+.newsletter p{font-size:var(--size-sm);color:var(--text-muted);margin-bottom:var(--sp-3);}
+.nl-form{display:flex;flex-direction:column;gap:var(--sp-1);}
+.nl-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-1);}
+.nl-field{background:var(--bg);border:1.5px solid var(--border-dark);border-radius:var(--radius);padding:11px 14px;font-family:var(--f-body);font-size:var(--size-sm);color:var(--text);width:100%;}
+.nl-field:focus{outline:none;border-color:var(--c-forest);}
+.nl-checks{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:4px;}
+.nl-check{display:flex;align-items:center;gap:7px;font-size:var(--size-sm);color:var(--text);cursor:pointer;}
+.nl-check input{accent-color:var(--c-forest);}
+.nl-consent{font-size:var(--size-xs);color:var(--text-muted);line-height:1.6;margin-top:4px;}
+
+/* ── FOOTER ── */
+.footer{background:var(--c-pine);padding:var(--sp-5) var(--sp-3) var(--sp-3);}
+.footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:var(--sp-3);color:#fff;}
+.f-brand{font-weight:700;font-size:1.3rem;color:#fff;line-height:1;letter-spacing:-0.02em;margin-bottom:var(--sp-2);}
+.f-brand small{display:block;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:3px;}
+.f-contact{font-size:var(--size-sm);color:rgba(255,255,255,.65);line-height:1.9;}
+.f-contact a{color:rgba(255,255,255,.65);transition:color var(--transition);}
+.f-contact a:hover{color:#fff;text-decoration:none;}
+.f-col-title{font-size:var(--size-sm);font-weight:600;margin-bottom:var(--sp-1);color:#fff;}
+.f-link{display:block;font-size:var(--size-sm);color:rgba(255,255,255,.65);margin-bottom:5px;transition:color var(--transition);}
 .f-link:hover{color:#fff;text-decoration:none;}
-.footer-bottom{max-width:var(--max-w);margin:var(--sp-3) auto 0;padding-top:var(--sp-2);border-top:1px solid rgba(255,255,255,.12);font-size:var(--size-xs);color:rgba(255,255,255,.32);}
+.footer-bottom{max-width:var(--max-w);margin:var(--sp-3) auto 0;padding-top:var(--sp-2);border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--sp-1);}
+.footer-bottom-note{font-size:var(--size-xs);color:rgba(255,255,255,.32);}
+.social-links{display:flex;gap:var(--sp-1);}
+.social-link{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:color var(--transition),border-color var(--transition);}
+.social-link:hover{color:#fff;border-color:rgba(255,255,255,.5);text-decoration:none;}
+.social-link svg{width:14px;height:14px;fill:currentColor;}
 
-/* Responsive */
-@media(max-width:920px){
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
   .hero-inner{grid-template-columns:1fr;gap:var(--sp-4);}
   .hero-panel{max-width:440px;}
-  .spec-grid{grid-template-columns:repeat(2,1fr);}
+  .spec-grid{grid-template-columns:repeat(3,1fr);}
   .articles-grid{grid-template-columns:1fr 1fr;}
+  .offices-grid{grid-template-columns:1fr 1fr;}
   .footer-inner{grid-template-columns:1fr 1fr;}
 }
-@media(max-width:580px){
+@media(max-width:620px){
   .nav-links{display:none;}
-  .hero-trust{flex-wrap:wrap;gap:var(--sp-3);}
-  .hero-panel{max-width:100%;}
-  .spec-grid{grid-template-columns:1fr 1fr;}
+  .spec-grid{grid-template-columns:repeat(2,1fr);}
   .articles-grid{grid-template-columns:1fr;}
+  .offices-grid{grid-template-columns:1fr;}
+  .nl-row{grid-template-columns:1fr;}
   .footer-inner{grid-template-columns:1fr;}
+  .hero-panel{max-width:100%;}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;}}
 </style>
 
-<div class="demo-banner">⚠ <strong>Konceptdemo — Forside</strong> · Quiz integreret i hero-kolonnen · iO Agency for Ret&amp;Råd</div>
+<div class="demo-banner">⚠ <strong>Konceptdemo — Forside</strong> · Quiz integreret i hero · iO Agency for Ret&amp;Råd</div>
 
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <div class="nav-logo">Ret&amp;Råd<small>Advokater</small></div>
     <ul class="nav-links">
+      <li><a href="#" onclick="return false">Artikler</a></li>
       <li><a href="#" onclick="return false">Specialer</a></li>
-      <li><a href="#" onclick="return false">Find advokat</a></li>
-      <li><a href="#" onclick="return false">Kontorer</a></li>
+      <li><a href="#" onclick="return false">Find medarbejder</a></li>
       <li><a href="#" onclick="return false">Om Ret&amp;Råd</a></li>
     </ul>
     <a href="#" class="nav-cta" onclick="return false">Find kontor</a>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-
-    <!-- Left: brand -->
     <div>
-      <div class="hero-eyebrow">Ret&amp;Råd · Danmark</div>
+      <div class="hero-eyebrow">Lokal advokathjælp</div>
       <h1>Advokat<br>tæt på dig</h1>
-      <p class="hero-lead">Vi har 140+ advokater fordelt over hele Danmark. Fortæl os kort hvad det handler om — vi finder den rette specialist til dig inden for minutter.</p>
-      <div class="hero-trust">
+      <p class="hero-lead">Hos Ret&amp;Råd får du lokal advokathjælp til alt fra boligkøb, familieret, arveret, erhvervsret og tvister.</p>
+      <div class="hero-stats">
         <div>
-          <span class="hero-trust-num">140+</span>
-          <span class="hero-trust-lbl">advokater</span>
+          <span class="hero-stat-num">140</span>
+          <span class="hero-stat-lbl">Advokater, jurister og sekretærer</span>
         </div>
         <div>
-          <span class="hero-trust-num">31 år</span>
-          <span class="hero-trust-lbl">i markedet</span>
-        </div>
-        <div>
-          <span class="hero-trust-num">4,8★</span>
-          <span class="hero-trust-lbl">gennemsnit</span>
+          <span class="hero-stat-num">31 år</span>
+          <span class="hero-stat-lbl">i markedet for advokatrådgivning</span>
         </div>
       </div>
-      <p class="hero-note">Gratis, uforpligtende første samtale · <a href="#" onclick="return false">Læs om processen</a></p>
+      <div class="hero-btns">
+        <a href="#" class="btn btn-primary" onclick="return false">Find din advokat</a>
+        <a href="#newsletter" class="btn btn-outline-white" onclick="scrollTo(event,'newsletter')">Tilmeld nyhedsbrev</a>
+      </div>
     </div>
 
-    <!-- Right: quiz panel -->
+    <!-- QUIZ PANEL -->
     <div class="hero-panel">
       <div class="panel-hdr">
         <div class="panel-eyebrow">Find din advokat</div>
         <div class="panel-title">Hvad handler din sag om?</div>
       </div>
-
       <div class="panel-body">
 
-        <!-- Step 1: Category -->
+        <!-- Step 1 -->
         <div class="ps active" id="ps1">
-          <div class="p-prog">
-            <div class="p-prog-dot active"></div>
-            <div class="p-prog-dot"></div>
-            <div class="p-prog-dot"></div>
-          </div>
+          <div class="p-prog"><div class="p-prog-dot active"></div><div class="p-prog-dot"></div><div class="p-prog-dot"></div></div>
           <div class="cat-grid-p">
             <button class="cat-p" onclick="selCat(this,'gaeld')"><span class="cat-p-icon">💳</span><span class="cat-p-lbl">Gæld &amp; økonomi</span></button>
-            <button class="cat-p" onclick="selCat(this,'skilsmisse')"><span class="cat-p-icon">👨‍👩‍👧</span><span class="cat-p-lbl">Skilsmisse &amp; familie</span></button>
+            <button class="cat-p" onclick="selCat(this,'skilsmisse')"><span class="cat-p-icon">💍</span><span class="cat-p-lbl">Ægteskab &amp; familie</span></button>
             <button class="cat-p" onclick="selCat(this,'bolig')"><span class="cat-p-icon">🏠</span><span class="cat-p-lbl">Bolig &amp; ejendom</span></button>
             <button class="cat-p" onclick="selCat(this,'erhverv')"><span class="cat-p-icon">💼</span><span class="cat-p-lbl">Erhverv</span></button>
-            <button class="cat-p" onclick="selCat(this,'arv')"><span class="cat-p-icon">📜</span><span class="cat-p-lbl">Arv &amp; testamente</span></button>
+            <button class="cat-p" onclick="selCat(this,'arv')"><span class="cat-p-icon">📜</span><span class="cat-p-lbl">Testamente &amp; arv</span></button>
             <button class="cat-p" onclick="selCat(this,'andet')"><span class="cat-p-icon">⚖️</span><span class="cat-p-lbl">Andet juridisk</span></button>
           </div>
         </div>
 
-        <!-- Step 2: Question (populated by JS) -->
+        <!-- Step 2 -->
         <div class="ps" id="ps2">
-          <div class="p-prog">
-            <div class="p-prog-dot done"></div>
-            <div class="p-prog-dot active"></div>
-            <div class="p-prog-dot"></div>
-          </div>
+          <div class="p-prog"><div class="p-prog-dot done"></div><div class="p-prog-dot active"></div><div class="p-prog-dot"></div></div>
           <div class="p-q" id="pQ">Hvad er din primære udfordring?</div>
           <div class="p-radios" id="pOpts"></div>
         </div>
 
         <!-- Step 3: Match -->
         <div class="ps" id="ps3">
-          <div class="p-prog">
-            <div class="p-prog-dot done"></div>
-            <div class="p-prog-dot done"></div>
-            <div class="p-prog-dot active"></div>
-          </div>
+          <div class="p-prog"><div class="p-prog-dot done"></div><div class="p-prog-dot done"></div><div class="p-prog-dot active"></div></div>
           <div class="p-match-banner">
             <div class="p-chk"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div class="p-match-banner-txt">Vi har fundet din specialist<br><span id="pmSpec">Gæld &amp; privatøkonomi · Frederiksberg</span></div>
@@ -302,126 +316,272 @@ a{color:var(--c-forest);text-decoration:none;}
           </div>
         </div>
 
-      </div><!-- /panel-body -->
-
-      <!-- Nav bar: back + next (step 2 only) -->
+      </div>
       <div class="panel-nav" id="pNav">
         <button class="p-back" onclick="showStep(1)"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Tilbage</button>
         <button class="p-next" id="pNext" disabled onclick="showStep(3)">Se dit match <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
+    </div><!-- /panel -->
 
-    </div><!-- /hero-panel -->
   </div>
 </section>
 
-<!-- ── SPECIALTIES ── -->
+<!-- SPECIALTIES -->
 <section class="specialties">
   <div class="specialties-inner">
-    <div class="section-lbl">Specialer</div>
-    <h2 class="section-h2">Hvad kan vi hjælpe dig med?</h2>
+    <div class="section-eyebrow">Hvad kan vi hjælpe dig med?</div>
+    <h2 class="section-h2">Juridiske specialer</h2>
     <div class="spec-grid">
-      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🏠</span><div class="spec-title">Boligkøb</div><div class="spec-desc">Juridisk gennemgang og rådgivning ved køb og salg</div></a>
-      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">💳</span><div class="spec-title">Gældssanering</div><div class="spec-desc">Kom fri af uhåndterlig gæld via domstolsafgørelse</div></a>
-      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">👨‍👩‍👧</span><div class="spec-title">Familieret</div><div class="spec-desc">Separation, bodeling, børn og samværsaftaler</div></a>
-      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">📜</span><div class="spec-title">Arv &amp; testamente</div><div class="spec-desc">Testamente, skiftebehandling og arvefordeling</div></a>
-      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">💼</span><div class="spec-title">Erhvervsret</div><div class="spec-desc">Kontrakter, ansatte og selskabsretlige spørgsmål</div></a>
-      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">📋</span><div class="spec-title">Lejeret</div><div class="spec-desc">Huslejenævn, opsigelse og lejeforhold</div></a>
-      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🏛️</span><div class="spec-title">Skatteret</div><div class="spec-desc">Skat, moms og offentlige restancer</div></a>
-      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">⚖️</span><div class="spec-title">Erstatningsret</div><div class="spec-desc">Personskade, forsikringssager og erstatningskrav</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">💼</span><div class="spec-title">Erhvervsrådgivning</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">💍</span><div class="spec-title">Ægteskab, Samliv &amp; Skilsmisse</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🏠</span><div class="spec-title">Boligkøb, -salg &amp; leje</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">📜</span><div class="spec-title">Testamente &amp; Arv</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🏢</span><div class="spec-title">Erhvervsejendomme</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">⚖️</span><div class="spec-title">Erstatning</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">📋</span><div class="spec-title">Lån &amp; Fuldmagter</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🏛️</span><div class="spec-title">Retssag</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">👔</span><div class="spec-title">Ansættelse &amp; Arbejde</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🤝</span><div class="spec-title">Konfliktmægling &amp; Mediation</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">💳</span><div class="spec-title">Gældsrådgivning</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🤲</span><div class="spec-title">Foreninger &amp; Fonde</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🔒</span><div class="spec-title">Strafferet</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🏥</span><div class="spec-title">Socialret</div></a>
+      <a href="#" class="spec-card" onclick="return false"><span class="spec-icon">🗝️</span><div class="spec-title">Ejendomsadministration</div></a>
     </div>
   </div>
 </section>
 
-<!-- ── ARTICLES ── -->
+<!-- ARTICLES -->
 <section class="articles">
   <div class="articles-inner">
-    <div class="section-lbl">Artikler</div>
+    <div class="section-eyebrow">Juridisk viden</div>
     <h2 class="section-h2">Find svar på dine juridiske spørgsmål</h2>
     <div class="articles-grid">
       <div class="article-card">
-        <span class="article-tag">Gæld</span>
-        <div class="article-title">Hvornår kan man søge gældssanering — og hvad kræver det?</div>
-        <div class="article-meta">14. august 2026 · 5 min. læsning</div>
+        <div class="article-tags"><span class="article-tag">Erstatning</span><span class="article-tag">Strafferet</span></div>
+        <div class="article-date">31. august 2026</div>
+        <div class="article-title">Erstatning efter en forbrydelse – sådan kan din bistandsadvokat hjælpe dig</div>
+        <div class="article-excerpt">Hvis du har været udsat for vold, voldtægt eller anden alvorlig kriminalitet, kan forbrydelsen have konsekvenser, som rækker langt ud over selve straffesagen.</div>
       </div>
       <div class="article-card">
-        <span class="article-tag">Familie</span>
-        <div class="article-title">Bodeling ved skilsmisse: hvad har du krav på?</div>
-        <div class="article-meta">2. august 2026 · 4 min. læsning</div>
+        <div class="article-tags"><span class="article-tag">Erhvervsrådgivning</span><span class="article-tag">Selskabsret</span></div>
+        <div class="article-date">28. august 2026</div>
+        <div class="article-title">Ejerregistrering ved Erhvervsstyrelsen</div>
+        <div class="article-excerpt">Siden 2017 har virksomheder haft en forpligtelse til både at registrere oplysninger omkring deres legale- og reelle ejere ved Erhvervsstyrelsen.</div>
       </div>
       <div class="article-card">
-        <span class="article-tag">Bolig</span>
-        <div class="article-title">5 ting du skal tjekke inden du underskriver boligkøbsaftalen</div>
-        <div class="article-meta">21. juli 2026 · 6 min. læsning</div>
+        <div class="article-tags"><span class="article-tag">Privatrådgivning</span><span class="article-tag">Strafferet</span></div>
+        <div class="article-date">28. august 2026</div>
+        <div class="article-title">Bistandsadvokaten – din advokat under straffesagen</div>
+        <div class="article-excerpt">I visse straffesager har ofret ret til en bistandsadvokat – en advokat, der er dedikeret til at hjælpe ofret igennem sagen.</div>
+      </div>
+      <div class="article-card">
+        <div class="article-tags"><span class="article-tag">Ansættelse &amp; Arbejde</span><span class="article-tag">Erstatning</span></div>
+        <div class="article-date">26. august 2026</div>
+        <div class="article-title">Psykiske arbejdsskader – kan stress, depression og PTSD give ret til erstatning?</div>
+        <div class="article-excerpt">Et stort arbejdspres, overarbejde, mobning, chikane, vold eller trusler kan påvirke dig psykisk og give ret til erstatning.</div>
+      </div>
+      <div class="article-card">
+        <div class="article-tags"><span class="article-tag">Ansættelse &amp; Arbejde</span></div>
+        <div class="article-date">19. august 2026</div>
+        <div class="article-title">Må du opsige far, inden han går på barsel?</div>
+        <div class="article-excerpt">Traditionelt set har udfordringen med far på barsel og opsigelse ikke fået den store opmærksomhed — men reglerne er klare.</div>
+      </div>
+      <div class="article-card">
+        <div class="article-tags"><span class="article-tag">Bolig</span><span class="article-tag">Privatrådgivning</span></div>
+        <div class="article-date">18. august 2026</div>
+        <div class="article-title">Drømmer du om at købe en ejendom på tvangsauktion?</div>
+        <div class="article-excerpt">Et godt køb til langt under markedsværdien — men der er faldgruber du skal kende til, inden du byder.</div>
+      </div>
+    </div>
+    <div class="articles-more">
+      <a href="#" class="btn btn-outline" onclick="return false">Læs flere artikler</a>
+    </div>
+  </div>
+</section>
+
+<!-- OFFICES -->
+<section class="offices">
+  <div class="offices-inner">
+    <div class="section-eyebrow">Vi er tæt på dig</div>
+    <h2 class="section-h2">Find kontor</h2>
+    <div class="offices-grid">
+      <div>
+        <div class="office-region">Nordjylland</div>
+        <div class="office-list">
+          <a href="#" class="office-link" onclick="return false">Advokat i Aalborg</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Dronninglund</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Hurup</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Kjellerupsgade</a>
+        </div>
+      </div>
+      <div>
+        <div class="office-region">Midtjylland</div>
+        <div class="office-list">
+          <a href="#" class="office-link" onclick="return false">Advokat i Grenaa</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Hinnerup</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Holstebro</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Randers</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Rønde</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Silkeborg</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Aarhus C</a>
+        </div>
+      </div>
+      <div>
+        <div class="office-region">Syddanmark</div>
+        <div class="office-list">
+          <a href="#" class="office-link" onclick="return false">Advokat i Faaborg</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Middelfart</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Odense</a>
+        </div>
+        <div class="office-region" style="margin-top:var(--sp-2)">Sjælland</div>
+        <div class="office-list">
+          <a href="#" class="office-link" onclick="return false">Advokat i Køge</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Næstved</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Slagelse</a>
+        </div>
+      </div>
+      <div>
+        <div class="office-region">Hovedstaden</div>
+        <div class="office-list">
+          <a href="#" class="office-link" onclick="return false">Advokat i Ballerup</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Bredgade</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Gentofte</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Glostrup</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Hillerød</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i København</a>
+        </div>
+        <div class="office-region" style="margin-top:var(--sp-2)">International</div>
+        <div class="office-list">
+          <a href="#" class="office-link" onclick="return false">Advokat i Hamborg</a>
+          <a href="#" class="office-link" onclick="return false">Advokat i Malmø</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- BOTTOM CTA -->
+<section class="bottom-cta">
+  <div class="bottom-cta-inner">
+    <h2>Få juridisk hjælp</h2>
+    <p>Find nemt og hurtigt din lokale Ret&amp;Råd-advokat</p>
+    <a href="#" class="btn btn-primary" onclick="return false">Find din advokat her</a>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-inner">
+    <h2>Tilmeld nyhedsbrev</h2>
+    <p>Tilmeld dig Ret&amp;Råds nyhedsbrev og få gode juridiske råd direkte i din indbakke hver måned.</p>
+    <form class="nl-form" onsubmit="return false">
+      <div class="nl-row">
+        <input class="nl-field" type="email" placeholder="E-mail *" required>
+        <input class="nl-field" type="text" placeholder="Fulde navn">
+      </div>
+      <div class="nl-checks">
+        <label class="nl-check"><input type="checkbox"> Erhvervsjuridiske nyheder</label>
+        <label class="nl-check"><input type="checkbox"> Privatjuridiske nyheder</label>
+      </div>
+      <p class="nl-consent">Jeg accepterer, at mit navn og min e-mailadresse bruges til, at Ret&amp;Råd A/S sender mig nyhedsbreve på e-mail med juridiske råd og nyheder. <a href="#" onclick="return false">Persondatapolitik</a></p>
+      <div><button type="submit" class="btn btn-primary">Tilmeld</button></div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div>
-      <div class="nav-logo" style="color:#fff;margin-bottom:var(--sp-2)">Ret&amp;Råd<small style="color:rgba(255,255,255,.45)">Advokater</small></div>
-      <div style="font-size:var(--size-xs);color:rgba(255,255,255,.35);">© 2026 Ret&amp;Råd. Konceptdemo.</div>
+      <div class="f-brand">Ret&amp;Råd<small>Advokater</small></div>
+      <div class="f-contact">
+        Nørre Voldgade 16, 4. sal<br>
+        1358 København K<br>
+        <a href="#">+45 70 20 70 70</a><br>
+        <a href="#">sekretariatet@ret-raad.dk</a><br>
+        CVR: 16 76 34 97
+      </div>
+    </div>
+    <div>
+      <div class="f-col-title">Om Ret&amp;Råd</div>
+      <a href="#" class="f-link" onclick="return false">Om Ret&amp;Råd</a>
+      <a href="#" class="f-link" onclick="return false">Bliv medlem af Ret&amp;Råd</a>
+      <a href="#" class="f-link" onclick="return false">R&amp;R International</a>
+      <a href="#" class="f-link" onclick="return false">Presse</a>
+      <a href="#" class="f-link" onclick="return false">Lovpligtige oplysninger</a>
+      <a href="#" class="f-link" onclick="return false">Tilgængelighedserklæring</a>
     </div>
     <div>
       <div class="f-col-title">Privat</div>
-      <a href="#" class="f-link" onclick="return false">Boligkøb</a>
-      <a href="#" class="f-link" onclick="return false">Familieret</a>
-      <a href="#" class="f-link" onclick="return false">Arveret</a>
-      <a href="#" class="f-link" onclick="return false">Gældssanering</a>
+      <a href="#" class="f-link" onclick="return false">Boligkøb, -salg &amp; leje</a>
+      <a href="#" class="f-link" onclick="return false">Ægteskab &amp; skilsmisse</a>
+      <a href="#" class="f-link" onclick="return false">Testamente &amp; arv</a>
+      <a href="#" class="f-link" onclick="return false">Gældsrådgivning</a>
+      <a href="#" class="f-link" onclick="return false">Erstatning</a>
+      <a href="#" class="f-link" onclick="return false">Strafferet</a>
     </div>
     <div>
       <div class="f-col-title">Erhverv</div>
-      <a href="#" class="f-link" onclick="return false">Erhvervsret</a>
-      <a href="#" class="f-link" onclick="return false">Selskabsret</a>
-      <a href="#" class="f-link" onclick="return false">Konkurs</a>
-    </div>
-    <div>
-      <div class="f-col-title">Om os</div>
-      <a href="#" class="f-link" onclick="return false">Find kontor</a>
-      <a href="#" class="f-link" onclick="return false">Find advokat</a>
-      <a href="#" class="f-link" onclick="return false">Kontakt</a>
+      <a href="#" class="f-link" onclick="return false">Erhvervsrådgivning</a>
+      <a href="#" class="f-link" onclick="return false">Erhvervsejendomme</a>
+      <a href="#" class="f-link" onclick="return false">Ansættelse &amp; Arbejde</a>
+      <a href="#" class="f-link" onclick="return false">Konfliktmægling</a>
+      <a href="#" class="f-link" onclick="return false">Foreninger &amp; Fonde</a>
     </div>
   </div>
-  <div class="footer-bottom">Ret&amp;Råd Advokater · 31 år i markedet · 140+ advokater · Tilgængelighed</div>
+  <div class="footer-bottom">
+    <span class="footer-bottom-note">© 2026 Ret&amp;Råd A/S · Konceptdemo · iO Agency</span>
+    <div class="social-links">
+      <a href="#" class="social-link" aria-label="Facebook" onclick="return false"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="#" class="social-link" aria-label="LinkedIn" onclick="return false"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="#" class="social-link" aria-label="Instagram" onclick="return false"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a href="#" class="social-link" aria-label="YouTube" onclick="return false"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+    </div>
+  </div>
 </footer>
 
 <script>
-var catData = {
-  gaeld:      {q:'Hvad er din primære udfordring?',      opts:['Kan ikke betale mine kreditorer','Overvejer gældssanering','Har modtaget inkassovarsel','Konkurs eller rekonstruktion'], spec:'Gæld &amp; privatøkonomi · Frederiksberg', name:'Thomas Nørgaard', ini:'TN', role:'Advokat · Gæld &amp; privatøkonomi<br>Ret&amp;Råd Frederiksberg'},
-  skilsmisse: {q:'Hvad handler det primært om?',         opts:['Separation eller skilsmisse','Samværsret og børn','Bodeling og formueforhold','Underholdsbidrag'],                         spec:'Familieret · Ret&amp;Råd',              name:'Louise Madsen',    ini:'LM', role:'Advokat · Familieret<br>Ret&amp;Råd'},
-  bolig:      {q:'Hvad drejer det sig om?',              opts:['Køb eller salg af bolig','Lejeforhold','Nabotvist eller byggesag','Andet ejendomsspørgsmål'],                              spec:'Bolig &amp; ejendom · Ret&amp;Råd',      name:'Peter Krogsgaard', ini:'PK', role:'Advokat · Bolig &amp; ejendom<br>Ret&amp;Råd'},
-  erhverv:    {q:'Hvad har du brug for hjælp til?',      opts:['Kontrakter og aftaler','Ansættelses- og personalejura','Selskabsret','Konkurs og rekonstruktion'],                         spec:'Erhvervsret · Ret&amp;Råd',             name:'Morten Bach',      ini:'MB', role:'Advokat · Erhvervsret<br>Ret&amp;Råd'},
-  arv:        {q:'Hvad drejer det sig om?',              opts:['Oprettelse af testamente','Skiftebehandling efter dødsfald','Tvist om arv eller arvefordeling','Fremtidsfuldmagt'],        spec:'Arveret · Ret&amp;Råd',                 name:'Hanne Skovbjerg',  ini:'HS', role:'Advokat · Arveret<br>Ret&amp;Råd'},
-  andet:      {q:'Hvad handler din sag om?',             opts:['Erstatning eller personskade','Forsikringssag','Straffesag','Andet juridisk spørgsmål'],                                   spec:'Generalist · Ret&amp;Råd',              name:'Klaus Friis',      ini:'KF', role:'Generalist · Ret&amp;Råd'},
+var catData={
+  gaeld:      {q:'Hvad er din primære udfordring?',     opts:['Kan ikke betale mine kreditorer','Overvejer gældssanering','Har modtaget inkassovarsel','Konkurs eller betalingsstandsning'], spec:'Gæld &amp; privatøkonomi · Frederiksberg', name:'Thomas Nørgaard', ini:'TN', role:'Advokat · Gæld &amp; privatøkonomi<br>Ret&amp;Råd Frederiksberg'},
+  skilsmisse: {q:'Hvad handler det primært om?',        opts:['Separation eller skilsmisse','Samværsret og børn','Bodeling og formueforhold','Underholdsbidrag'],                        spec:'Familieret · Ret&amp;Råd',              name:'Louise Madsen',    ini:'LM', role:'Advokat · Familieret<br>Ret&amp;Råd'},
+  bolig:      {q:'Hvad drejer det sig om?',             opts:['Køb eller salg af bolig','Lejeforhold og huslejenævn','Nabotvist eller byggesag','Erhvervsejendom'],                       spec:'Bolig &amp; ejendom · Ret&amp;Råd',      name:'Peter Krogsgaard', ini:'PK', role:'Advokat · Bolig &amp; ejendom<br>Ret&amp;Råd'},
+  erhverv:    {q:'Hvad har du brug for hjælp til?',     opts:['Kontrakter og aftaler','Ansættelses- og personalejura','Selskabsret','Konkurs og rekonstruktion'],                        spec:'Erhvervsret · Ret&amp;Råd',             name:'Morten Bach',      ini:'MB', role:'Advokat · Erhvervsret<br>Ret&amp;Råd'},
+  arv:        {q:'Hvad drejer det sig om?',             opts:['Oprettelse af testamente','Skiftebehandling efter dødsfald','Tvist om arv eller arvefordeling','Fremtidsfuldmagt'],       spec:'Arveret · Ret&amp;Råd',                 name:'Hanne Skovbjerg',  ini:'HS', role:'Advokat · Arveret<br>Ret&amp;Råd'},
+  andet:      {q:'Hvad handler din sag om?',            opts:['Erstatning eller personskade','Forsikringssag','Straffesag','Andet juridisk spørgsmål'],                                  spec:'Generalist · Ret&amp;Råd',              name:'Klaus Friis',      ini:'KF', role:'Generalist · Ret&amp;Råd'},
 };
 
 function showStep(n){
   document.querySelectorAll('.ps').forEach(p=>p.classList.remove('active'));
   document.getElementById('ps'+n).classList.add('active');
-  document.getElementById('pNav').style.display = n===2 ? 'flex' : 'none';
-  if(n===2) document.getElementById('pNext').disabled = true;
+  document.getElementById('pNav').style.display=n===2?'flex':'none';
+  if(n===2)document.getElementById('pNext').disabled=true;
 }
 
-function selCat(el, cat){
+function selCat(el,cat){
   document.querySelectorAll('.cat-p').forEach(b=>b.classList.remove('sel'));
   el.classList.add('sel');
-  var d = catData[cat];
-  document.getElementById('pQ').textContent = d.q;
-  document.getElementById('pOpts').innerHTML = d.opts.map(o=>`<button class="p-radio" onclick="selQ(this)"><span class="p-rdot"></span>${o}</button>`).join('');
-  document.getElementById('pmSpec').innerHTML = d.spec;
-  document.getElementById('pmName').textContent = d.name;
-  document.getElementById('pmInitials').textContent = d.ini;
-  document.getElementById('pmRole').innerHTML = d.role;
-  setTimeout(()=>showStep(2), 140);
+  var d=catData[cat];
+  document.getElementById('pQ').textContent=d.q;
+  document.getElementById('pOpts').innerHTML=d.opts.map(o=>'<button class="p-radio" onclick="selQ(this)"><span class="p-rdot"></span>'+o+'</button>').join('');
+  document.getElementById('pmSpec').innerHTML=d.spec;
+  document.getElementById('pmName').textContent=d.name;
+  document.getElementById('pmInitials').textContent=d.ini;
+  document.getElementById('pmRole').innerHTML=d.role;
+  setTimeout(()=>showStep(2),140);
 }
 
 function selQ(el){
   document.querySelectorAll('#pOpts .p-radio').forEach(b=>b.classList.remove('sel'));
   el.classList.add('sel');
-  document.getElementById('pNext').disabled = false;
+  document.getElementById('pNext').disabled=false;
 }
 
 function showDone(){showStep(4);}
+
+function scrollTo(e,id){
+  e.preventDefault();
+  var el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
 </script>

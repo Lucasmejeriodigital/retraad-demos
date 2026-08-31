@@ -40,8 +40,8 @@ a:hover{text-decoration:underline;}
 .demo-banner strong{color:#fff;}
 
 /* Nav */
-.nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);}
-.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-3);display:flex;align-items:center;justify-content:space-between;height:64px;gap:var(--sp-3);}
+.nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0 var(--sp-3);}
+.nav-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:var(--sp-3);}
 .nav-logo{font-weight:700;font-size:1.4rem;color:var(--c-forest);line-height:1;flex-shrink:0;letter-spacing:-0.02em;}
 .nav-logo small{display:block;font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--text-muted);margin-top:3px;}
 .nav-links{display:flex;gap:var(--sp-2);list-style:none;flex:1;margin-left:var(--sp-2);}
@@ -123,93 +123,6 @@ a:hover{text-decoration:underline;}
 .booking-confirm-icon{width:48px;height:48px;background:var(--bg-tint);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-2);color:var(--c-forest);}
 .booking-confirm h4{font-size:var(--size-md);font-weight:600;color:var(--text);margin-bottom:6px;}
 .booking-confirm p{font-size:var(--size-xs);color:var(--text-muted);line-height:1.5;}
-
-/* ── Flow ── */
-.flow-section{background:var(--bg-surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:var(--sp-5) var(--sp-3);}
-.flow-inner{max-width:720px;margin:0 auto;}
-.flow-label{font-size:var(--size-xs);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:var(--sp-1);}
-.flow-inner>h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;color:var(--text);margin-bottom:var(--sp-1);text-wrap:balance;}
-.flow-intro{font-size:var(--size-sm);color:var(--text-muted);margin-bottom:var(--sp-3);}
-
-/* Step indicator */
-.flow-indicator{display:flex;align-items:center;margin-bottom:var(--sp-3);}
-.step-dot-wrap{display:flex;flex-direction:column;align-items:center;gap:5px;}
-.step-circle{width:28px;height:28px;border-radius:50%;border:2px solid var(--border-dark);display:flex;align-items:center;justify-content:center;font-size:var(--size-xs);font-weight:600;color:var(--text-muted);background:var(--bg);transition:all var(--transition);flex-shrink:0;}
-.step-circle.active{border-color:var(--c-forest);background:var(--c-forest);color:#fff;}
-.step-circle.done{border-color:var(--c-leaf);background:var(--bg-tint);color:var(--c-forest);}
-.step-label{font-size:9.5px;color:var(--text-muted);font-weight:500;white-space:nowrap;}
-.step-label.active{color:var(--c-forest);font-weight:600;}
-.step-line{flex:1;height:2px;background:var(--border-dark);margin-bottom:18px;transition:background var(--transition);min-width:20px;}
-.step-line.done{background:var(--c-leaf);}
-
-/* Panels */
-.flow-panel{display:none;}
-.flow-panel.visible{display:block;}
-
-/* Question */
-.flow-q{font-size:var(--size-lg);font-weight:600;color:var(--text);margin-bottom:var(--sp-2);line-height:1.3;}
-.flow-q-sub{font-size:var(--size-sm);color:var(--text-muted);margin-top:4px;font-weight:400;}
-
-/* Option tiles (step 1) */
-.flow-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-1);}
-.flow-tile{background:var(--bg);border:2px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);cursor:pointer;text-align:left;transition:border-color var(--transition),box-shadow var(--transition);font-family:var(--f-body);}
-.flow-tile:hover{border-color:var(--c-leaf);box-shadow:var(--shadow-card);}
-.flow-tile.selected{border-color:var(--c-forest);background:var(--bg-tint);}
-.flow-tile-icon{font-size:1.4rem;margin-bottom:8px;display:block;}
-.flow-tile-title{font-size:var(--size-sm);font-weight:600;color:var(--text);margin-bottom:3px;}
-.flow-tile-desc{font-size:var(--size-xs);color:var(--text-muted);line-height:1.4;}
-
-/* Radio buttons (steps 2-5) */
-.flow-radios{display:flex;flex-direction:column;gap:9px;}
-.flow-radio{background:var(--bg);border:1.5px solid var(--border-dark);border-radius:var(--radius);padding:12px 16px;cursor:pointer;font-family:var(--f-body);font-size:var(--size-sm);font-weight:500;color:var(--text);text-align:left;transition:all var(--transition);display:flex;align-items:center;gap:10px;}
-.flow-radio:hover{border-color:var(--c-leaf);}
-.flow-radio.selected{border-color:var(--c-forest);background:var(--bg-tint);color:var(--c-forest);}
-.radio-check{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border-dark);flex-shrink:0;transition:all var(--transition);}
-.flow-radio.selected .radio-check{border-color:var(--c-forest);background:var(--c-forest);}
-
-/* Warning banner */
-.flow-warning{display:none;background:#fff8e1;border:1.5px solid #f0c030;border-radius:var(--radius);padding:12px 16px;font-size:var(--size-sm);color:#5a4000;margin-top:var(--sp-2);align-items:flex-start;gap:10px;}
-.flow-warning.show{display:flex;}
-@media(prefers-color-scheme:dark){.flow-warning{background:#2a220a;border-color:#7a6000;color:#e0c060;}}
-
-/* Step 4: two columns of questions */
-.flow-two-q{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2);}
-@media(max-width:580px){.flow-two-q{grid-template-columns:1fr;}}
-.flow-sub-q-label{font-size:var(--size-sm);font-weight:600;color:var(--text);margin-bottom:10px;}
-
-/* Match result */
-.match-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card);}
-.match-top{background:var(--c-pine);padding:var(--sp-2) var(--sp-3);display:flex;align-items:center;gap:var(--sp-2);}
-.match-check{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;}
-.match-top-text h3{font-size:var(--size-md);font-weight:600;color:#fff;}
-.match-top-text p{font-size:var(--size-xs);color:rgba(255,255,255,.72);}
-.match-body{padding:var(--sp-3);display:flex;gap:var(--sp-2);align-items:flex-start;}
-.match-avatar{width:58px;height:58px;border-radius:50%;flex-shrink:0;overflow:hidden;background:var(--bg-tint);}
-.match-avatar svg{width:100%;height:100%;}
-.match-info{flex:1;}
-.match-name{font-size:var(--size-lg);font-weight:600;color:var(--c-forest);margin-bottom:2px;}
-.match-role{font-size:var(--size-xs);color:var(--text-muted);margin-bottom:8px;}
-.match-why{font-size:var(--size-xs);background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;margin-bottom:var(--sp-1);color:var(--text);}
-.match-why strong{color:var(--c-forest);}
-.match-status{display:inline-flex;align-items:center;gap:6px;font-size:var(--size-xs);font-weight:500;color:var(--c-leaf);margin-bottom:var(--sp-2);}
-.match-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--c-leaf);box-shadow:0 0 0 3px rgba(42,155,71,.2);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(42,155,71,.2);}50%{box-shadow:0 0 0 5px rgba(42,155,71,.06);}}
-.match-btns{display:flex;gap:var(--sp-1);flex-wrap:wrap;}
-
-/* Confirm */
-.flow-done{text-align:center;padding:var(--sp-5) var(--sp-3);background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);}
-.flow-done-icon{width:60px;height:60px;border-radius:50%;background:var(--bg-tint);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-2);color:var(--c-forest);}
-.flow-done h3{font-size:var(--size-xl);font-weight:600;color:var(--text);margin-bottom:var(--sp-1);}
-.flow-done p{font-size:var(--size-sm);color:var(--text-muted);max-width:44ch;margin:0 auto;line-height:1.6;}
-
-/* Flow nav */
-.flow-nav{display:flex;justify-content:space-between;align-items:center;margin-top:var(--sp-3);padding-top:var(--sp-2);border-top:1px solid var(--border);}
-.flow-back-btn{background:none;border:none;color:var(--text-muted);font-size:var(--size-sm);font-family:var(--f-body);cursor:pointer;padding:0;display:flex;align-items:center;gap:5px;}
-.flow-back-btn:hover{color:var(--text);}
-.flow-next-btn{background:var(--c-forest);color:#fff;border:2px solid var(--c-forest);border-radius:var(--radius);padding:10px 22px;font-size:var(--size-sm);font-weight:600;font-family:var(--f-body);cursor:pointer;transition:background var(--transition);display:flex;align-items:center;gap:6px;}
-.flow-next-btn:hover{background:var(--c-pine);border-color:var(--c-pine);}
-.flow-next-btn:disabled{opacity:.35;cursor:not-allowed;}
-.flow-next-btn:disabled:hover{background:var(--c-forest);border-color:var(--c-forest);}
 
 /* Content */
 .content-section{padding:var(--sp-6) var(--sp-3);}
@@ -335,7 +248,7 @@ a:hover{text-decoration:underline;}
         <div><span class="hero-stat-num">+2.400</span><span class="hero-stat-label">ansøgninger om året</span></div>
         <div><span class="hero-stat-num">Gratis</span><span class="hero-stat-label">indledende samtale</span></div>
       </div>
-      <a href="#flow" class="btn btn-cta" onclick="scrollToFlow(event)">Tjek om du er berettiget →</a>
+      <a href="#booking" class="btn btn-cta" onclick="scrollToBooking(event)">Book gratis afklaringsopkald →</a>
     </div>
     <div class="hero-visual">
       <div class="hero-big-stat">
@@ -348,7 +261,7 @@ a:hover{text-decoration:underline;}
   </div>
 </section>
 
-<section class="personalized">
+<section class="personalized" id="booking">
   <div class="personalized-inner">
     <div class="personalized-pill">
       <svg width="11" height="11" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a5 5 0 0 0-5 5c0 4.2 5 11 5 11s5-6.8 5-11a5 5 0 0 0-5-5zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
@@ -404,181 +317,6 @@ a:hover{text-decoration:underline;}
   </div>
 </section>
 
-<!-- ═══ FLOW ═══ -->
-<section class="flow-section" id="flow">
-  <div class="flow-inner">
-    <div class="flow-label">Kvalificering</div>
-    <h2>Tjek om du kan søge gældssanering</h2>
-    <p class="flow-intro">5 korte spørgsmål — vi bruger dine svar til at finde den advokat, der passer præcist til din situation.</p>
-
-    <!-- Indicator: 5 steps + match = 6 states, show 5 dots -->
-    <div class="flow-indicator" id="flowInd">
-      <div class="step-dot-wrap"><div class="step-circle active" id="d1">1</div><span class="step-label active" id="l1">Gældstype</span></div>
-      <div class="step-line" id="ln1"></div>
-      <div class="step-dot-wrap"><div class="step-circle" id="d2">2</div><span class="step-label" id="l2">Omfang</span></div>
-      <div class="step-line" id="ln2"></div>
-      <div class="step-dot-wrap"><div class="step-circle" id="d3">3</div><span class="step-label" id="l3">Varighed</span></div>
-      <div class="step-line" id="ln3"></div>
-      <div class="step-dot-wrap"><div class="step-circle" id="d4">4</div><span class="step-label" id="l4">Situation</span></div>
-      <div class="step-line" id="ln4"></div>
-      <div class="step-dot-wrap"><div class="step-circle" id="d5">5</div><span class="step-label" id="l5">Match</span></div>
-    </div>
-
-    <!-- Step 1: Gældstype -->
-    <div class="flow-panel visible" id="fp1">
-      <div class="flow-q">Hvad er din primære gældstype?<span class="flow-q-sub">Vælg det der fylder mest.</span></div>
-      <div class="flow-tiles">
-        <div class="flow-tile" onclick="selTile(this,1)">
-          <span class="flow-tile-icon">💳</span>
-          <div class="flow-tile-title">Forbrugslån / kreditkort</div>
-          <div class="flow-tile-desc">Kviklån, afbetalinger, banklån</div>
-        </div>
-        <div class="flow-tile" onclick="selTile(this,1)">
-          <span class="flow-tile-icon">🏠</span>
-          <div class="flow-tile-title">Boliglån / friværdi</div>
-          <div class="flow-tile-desc">Restgæld, friværdigæld</div>
-        </div>
-        <div class="flow-tile" onclick="selTile(this,1)">
-          <span class="flow-tile-icon">🏛️</span>
-          <div class="flow-tile-title">Skat / SKAT</div>
-          <div class="flow-tile-desc">Restance, restskat, moms</div>
-        </div>
-        <div class="flow-tile" onclick="selTile(this,1)">
-          <span class="flow-tile-icon">🏢</span>
-          <div class="flow-tile-title">Erhvervsgæld</div>
-          <div class="flow-tile-desc">Fra tidligere virksomhed</div>
-        </div>
-        <div class="flow-tile" onclick="selTile(this,1)">
-          <span class="flow-tile-icon">🔀</span>
-          <div class="flow-tile-title">Blandet</div>
-          <div class="flow-tile-desc">Flere typer fra flere kreditorer</div>
-        </div>
-      </div>
-      <div class="flow-nav">
-        <span></span>
-        <button class="flow-next-btn" id="fn1" disabled onclick="goStep(2)">
-          Næste <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Step 2: Omfang -->
-    <div class="flow-panel" id="fp2">
-      <div class="flow-q">Hvad er din samlede gæld ca.?</div>
-      <div class="flow-radios">
-        <button class="flow-radio" onclick="selRadio(this,'s2')"><span class="radio-check"></span>Under 100.000 kr.</button>
-        <button class="flow-radio" onclick="selRadio(this,'s2')"><span class="radio-check"></span>100.000 – 500.000 kr.</button>
-        <button class="flow-radio" onclick="selRadio(this,'s2')"><span class="radio-check"></span>Over 500.000 kr.</button>
-        <button class="flow-radio" onclick="selRadio(this,'s2')"><span class="radio-check"></span>Ved ikke præcist</button>
-      </div>
-      <div class="flow-nav">
-        <button class="flow-back-btn" onclick="goStep(1)"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
-        <button class="flow-next-btn" id="fn2" disabled onclick="goStep(3)">
-          Næste <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Step 3: Varighed + inkasso -->
-    <div class="flow-panel" id="fp3">
-      <div class="flow-two-q">
-        <div>
-          <div class="flow-sub-q-label">Hvor længe har du haft betalingsproblemer?</div>
-          <div class="flow-radios">
-            <button class="flow-radio" onclick="selRadio(this,'s3a');checkStep3()"><span class="radio-check"></span>Under 1 år</button>
-            <button class="flow-radio" onclick="selRadio(this,'s3a');checkStep3()"><span class="radio-check"></span>1 – 2 år</button>
-            <button class="flow-radio" onclick="selRadio(this,'s3a');checkStep3()"><span class="radio-check"></span>Over 2 år</button>
-            <button class="flow-radio" onclick="selRadio(this,'s3a');checkStep3()"><span class="radio-check"></span>Har netop mistet indkomst</button>
-          </div>
-        </div>
-        <div>
-          <div class="flow-sub-q-label">Har du modtaget inkassovarsel eller stævning?</div>
-          <div class="flow-radios">
-            <button class="flow-radio" onclick="selRadio(this,'s3b');checkStep3()"><span class="radio-check"></span>Ja, inkassovarsel</button>
-            <button class="flow-radio" onclick="selRadio(this,'s3b');checkStep3()"><span class="radio-check"></span>Ja, stævning / dom</button>
-            <button class="flow-radio" onclick="selRadio(this,'s3b');checkStep3()"><span class="radio-check"></span>Nej endnu</button>
-            <button class="flow-radio" onclick="selRadio(this,'s3b');checkStep3()"><span class="radio-check"></span>Usikker</button>
-          </div>
-          <div class="flow-warning" id="warnIncasso">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <span><strong>Vigtigt:</strong> Hvis du har modtaget stævning, er frister afgørende. Ring til os i dag på <strong>70 20 76 00</strong> for hurtig hjælp.</span>
-          </div>
-        </div>
-      </div>
-      <div class="flow-nav">
-        <button class="flow-back-btn" onclick="goStep(2)"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
-        <button class="flow-next-btn" id="fn3" disabled onclick="goStep(4)">
-          Næste <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Step 4: Personlig situation -->
-    <div class="flow-panel" id="fp4">
-      <div class="flow-q">Hvad beskriver din situation bedst?</div>
-      <div class="flow-radios">
-        <button class="flow-radio" onclick="selRadio(this,'s4')"><span class="radio-check"></span>Arbejdsløs eller sygemeldt</button>
-        <button class="flow-radio" onclick="selRadio(this,'s4')"><span class="radio-check"></span>Lav fast indkomst</button>
-        <button class="flow-radio" onclick="selRadio(this,'s4')"><span class="radio-check"></span>Selvstændig / tidligere selvstændig</button>
-        <button class="flow-radio" onclick="selRadio(this,'s4')"><span class="radio-check"></span>Har bolig med gæld</button>
-      </div>
-      <div class="flow-nav">
-        <button class="flow-back-btn" onclick="goStep(3)"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
-        <button class="flow-next-btn" id="fn4" disabled onclick="goStep(5)">
-          Se dit match <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Step 5: Match -->
-    <div class="flow-panel" id="fp5">
-      <div class="match-card">
-        <div class="match-top">
-          <div class="match-check"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <div class="match-top-text">
-            <h3>Du matcher betingelserne for gældssanering</h3>
-            <p>Baseret på dine svar har vi fundet den rette specialist til dig</p>
-          </div>
-        </div>
-        <div class="match-body">
-          <div class="match-avatar">
-            <svg viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg">
-              <rect width="58" height="58" fill="#d7e6d8"/>
-              <circle cx="29" cy="21" r="10" fill="#1b642e"/>
-              <ellipse cx="29" cy="46" rx="16" ry="11" fill="#1b642e"/>
-              <text x="29" y="26" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" font-weight="700" fill="white">TN</text>
-            </svg>
-          </div>
-          <div class="match-info">
-            <div class="match-name">Thomas Nørgaard</div>
-            <div class="match-role">Advokat · Gældssanering &amp; privatret · Ret&amp;Råd Frederiksberg</div>
-            <div class="match-why" id="matchWhy">
-              <strong>Matchet fordi:</strong> Thomas har speciale i <span id="matchSpec">forbrugsgæld og inkassosager</span> og har hjulpet klienter med lignende situationer i <span id="matchYears">over 10 år</span>.
-            </div>
-            <div class="match-status">Ledig i dag</div>
-            <div class="match-btns">
-              <button class="btn btn-cta" onclick="goStep(6)">Book gratis opkald</button>
-              <button class="btn btn-secondary" onclick="goStep(6)">Videomøde</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flow-nav">
-        <button class="flow-back-btn" onclick="goStep(4)"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button>
-        <span></span>
-      </div>
-    </div>
-
-    <!-- Step 6: Done -->
-    <div class="flow-panel" id="fp6">
-      <div class="flow-done">
-        <div class="flow-done-icon"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <h3>Alt klaret. Thomas ringer dig op.</h3>
-        <p>Du modtager en SMS-bekræftelse. Opkaldet er gratis og uforpligtende — ca. 15 minutter.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="content-section">
   <div class="content-inner">
@@ -695,7 +433,7 @@ a:hover{text-decoration:underline;}
     <h2>Klar til at tage første skridt?</h2>
     <p>En gratis samtale med Thomas Nørgaard koster dig ingenting — men kan betyde alt.</p>
     <div class="footer-cta-btns">
-      <a href="#flow" class="btn btn-cta" onclick="scrollToFlow(event)">Kom i gang</a>
+      <a href="#booking" class="btn btn-cta" onclick="scrollToBooking(event)">Book gratis opkald</a>
       <a href="#" class="btn btn-outline-white" onclick="return false">Læs om processen</a>
     </div>
   </div>
@@ -727,75 +465,8 @@ a:hover{text-decoration:underline;}
 /* Booking */
 function selTime(el){el.closest('.booking-times').querySelectorAll('.booking-time').forEach(t=>t.classList.remove('selected'));el.classList.add('selected');}
 function confirmBook(){if(!document.querySelector('.booking-time.selected'))document.querySelectorAll('.booking-time')[0].classList.add('selected');document.getElementById('bBody').style.display='none';document.getElementById('bConfirm').classList.add('visible');}
-function scrollToFlow(e){e.preventDefault();document.getElementById('flow').scrollIntoView({behavior:'smooth',block:'start'});}
+function scrollToBooking(e){e.preventDefault();document.getElementById('booking').scrollIntoView({behavior:'smooth',block:'start'});}
 
-/* Flow state */
-var fs={s2:false,s3a:false,s3b:false,s4:false,debtType:'forbrugslån'};
-
-var stepLabels=['Gældstype','Omfang','Varighed','Situation','Match'];
-var checkSvg='<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
-
-function goStep(n){
-  for(var i=1;i<=6;i++){var p=document.getElementById('fp'+i);if(p)p.classList.toggle('visible',i===n);}
-  updateInd(n);
-}
-
-function updateInd(n){
-  for(var i=1;i<=5;i++){
-    var d=document.getElementById('d'+i),l=document.getElementById('l'+i);
-    if(i<n){d.className='step-circle done';d.innerHTML=checkSvg;l.className='step-label';}
-    else if(i===n){d.className='step-circle active';d.textContent=i;l.className='step-label active';}
-    else{d.className='step-circle';d.textContent=i;l.className='step-label';}
-  }
-  for(var j=1;j<=4;j++){var ln=document.getElementById('ln'+j);if(ln)ln.className='step-line'+(j<n?' done':'');}
-}
-
-function selTile(el,step){
-  el.closest('.flow-tiles').querySelectorAll('.flow-tile').forEach(o=>o.classList.remove('selected'));
-  el.classList.add('selected');
-  fs.debtType=el.querySelector('.flow-tile-title').textContent;
-  var nb=document.getElementById('fn'+step);if(nb)nb.disabled=false;
-}
-
-function selRadio(el,group){
-  el.closest('.flow-radios').querySelectorAll('.flow-radio').forEach(b=>b.classList.remove('selected'));
-  el.classList.add('selected');
-  fs[group]=true;
-  var nb4=document.getElementById('fn4');
-  if(nb4&&group==='s4')nb4.disabled=false;
-  var nb2=document.getElementById('fn2');
-  if(nb2&&group==='s2')nb2.disabled=false;
-  // inkasso warning
-  if(group==='s3b'){
-    var w=document.getElementById('warnIncasso');
-    var txt=el.textContent.trim();
-    w.classList.toggle('show',txt.indexOf('stævning')!==-1);
-  }
-}
-
-function checkStep3(){
-  var nb=document.getElementById('fn3');
-  if(nb&&fs.s3a&&fs.s3b)nb.disabled=false;
-}
-
-/* When step 5 shows, update match text */
-var _origGoStep=goStep;
-goStep=function(n){
-  _origGoStep(n);
-  if(n===5){buildMatch();}
-};
-
-function buildMatch(){
-  var specMap={
-    'Forbrugslån / kreditkort':'forbrugsgæld, kviklån og inkassosager',
-    'Boliglån / friværdi':'boliggæld og friværdisager',
-    'Skat / SKAT':'skattegæld og SKAT-restancer',
-    'Erhvervsgæld':'erhvervsgæld fra tidligere virksomhed',
-    'Blandet':'komplekse sager med blandet gældssammensætning'
-  };
-  var spec=specMap[fs.debtType]||'gældssanering og privatret';
-  var el=document.getElementById('matchSpec');if(el)el.textContent=spec;
-}
 
 /* FAQ */
 function toggleFaq(btn){var ex=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!ex);btn.nextElementSibling.classList.toggle('open',!ex);}
