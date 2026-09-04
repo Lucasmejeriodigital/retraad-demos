@@ -18,7 +18,7 @@
   --radius:1px;
   --shadow-card:4px 3px 35px 5px rgba(0,0,0,.1);
   --shadow-hover:4px 25px 35px 5px rgba(0,0,0,.45);
-  --transition:150ms ease-in-out;
+  --transition:150ms ease-out;
   --max-w:960px;
 }
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -77,7 +77,8 @@ a:hover{text-decoration:underline;}
 /* keep old names non-breaking */
 .hero-big-stat{display:none;}
 .hero-big-num,.hero-big-note,.hero-big-sep,.hero-big-sub{display:none;}
-.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;line-height:1;padding:14px 24px;border-radius:var(--radius);border:2px solid transparent;cursor:pointer;text-decoration:none;transition:opacity var(--transition),box-shadow var(--transition),background var(--transition);letter-spacing:.01em;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;line-height:1;padding:14px 24px;border-radius:var(--radius);border:2px solid transparent;cursor:pointer;text-decoration:none;transition:opacity var(--transition),box-shadow var(--transition),background var(--transition),transform 120ms ease-out;letter-spacing:.01em;}
+.btn:active{transform:scale(0.97);}
 .btn-cta{background:var(--c-terracotta);color:var(--c-white);border-color:var(--c-terracotta);}
 .btn-cta:hover{opacity:.88;text-decoration:none;color:var(--c-white);}
 .btn-primary{background:var(--c-forest);color:var(--c-white);border-color:var(--c-forest);}
@@ -125,8 +126,9 @@ a:hover{text-decoration:underline;}
 .booking-widget.hidden{display:none;}
 .booking-widget.reveal{animation:slideDown 280ms ease-out;}
 @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-.lawyer-cta{align-self:flex-start;background:var(--c-forest);color:#fff;border:none;border-radius:var(--radius);padding:10px 18px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background var(--transition);}
+.lawyer-cta{align-self:flex-start;background:var(--c-forest);color:#fff;border:none;border-radius:var(--radius);padding:10px 18px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background var(--transition),transform 120ms ease-out;}
 .lawyer-cta:hover{background:var(--c-pine);}
+.lawyer-cta:active{transform:scale(0.97);}
 /* tabs */
 .bw-tabs{display:flex;border-bottom:1px solid var(--border);}
 .bw-tab{flex:1;background:var(--bg-surface);border:none;border-right:1px solid var(--border);padding:10px 6px;font-family:var(--f-body);font-size:var(--size-xs);font-weight:600;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:color var(--transition),background var(--transition);}
@@ -150,8 +152,9 @@ a:hover{text-decoration:underline;}
 .lead-input:focus{outline:none;border-color:var(--c-forest);}
 .lead-consent{font-size:10px;color:var(--text-muted);line-height:1.5;margin-top:2px;}
 .lead-gdpr{font-weight:600;color:var(--c-leaf);}
-.booking-btn{width:100%;background:var(--c-forest);color:var(--c-white);border:2px solid var(--c-forest);border-radius:var(--radius);padding:12px 16px;font-size:var(--size-sm);font-weight:600;font-family:var(--f-body);cursor:pointer;transition:background var(--transition);display:flex;align-items:center;justify-content:center;gap:7px;}
+.booking-btn{width:100%;background:var(--c-forest);color:var(--c-white);border:2px solid var(--c-forest);border-radius:var(--radius);padding:12px 16px;font-size:var(--size-sm);font-weight:600;font-family:var(--f-body);cursor:pointer;transition:background var(--transition),transform 120ms ease-out;display:flex;align-items:center;justify-content:center;gap:7px;}
 .booking-btn:hover{background:var(--c-pine);border-color:var(--c-pine);}
+.booking-btn:active:not(:disabled){transform:scale(0.97);}
 .booking-note{text-align:center;font-size:11px;color:var(--text-muted);margin-top:var(--sp-1);}
 .booking-step{display:none;animation:slideDown 220ms ease-out;}
 .booking-step.is-active{display:block;}
@@ -181,8 +184,9 @@ a:hover{text-decoration:underline;}
 .bwc-input-wrap{display:flex;gap:6px;padding:var(--sp-1) var(--sp-1);border-top:1px solid var(--border);}
 .bwc-input{flex:1;border:1.5px solid var(--border-dark);border-radius:var(--radius);padding:7px 10px;font-family:var(--f-body);font-size:var(--size-xs);color:var(--text);background:var(--bg);}
 .bwc-input:focus{outline:none;border-color:var(--c-forest);}
-.bwc-send{background:var(--c-forest);border:none;border-radius:var(--radius);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;flex-shrink:0;}
+.bwc-send{background:var(--c-forest);border:none;border-radius:var(--radius);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;flex-shrink:0;transition:background var(--transition),transform 120ms ease-out;}
 .bwc-send:hover{background:var(--c-pine);}
+.bwc-send:active{transform:scale(0.93);}
 
 /* Content */
 .anchor-nav{position:sticky;top:64px;z-index:99;background:var(--bg);border-bottom:1px solid var(--border);padding:0 var(--sp-3);}
@@ -260,13 +264,15 @@ a:hover{text-decoration:underline;}
 .faq-inner{max-width:720px;margin:0 auto;}
 .faq-inner>h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;margin-bottom:var(--sp-3);}
 .faq-item{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);margin-bottom:8px;overflow:hidden;}
-.faq-q{width:100%;background:none;border:none;padding:16px var(--sp-2);text-align:left;font-family:var(--f-body);font-size:var(--size-md);font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--sp-2);transition:background var(--transition);}
+.faq-q{width:100%;background:none;border:none;padding:16px var(--sp-2);text-align:left;font-family:var(--f-body);font-size:var(--size-md);font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--sp-2);transition:background var(--transition),transform 120ms ease-out;}
 .faq-q:hover{background:var(--bg-surface);}
+.faq-q:active{transform:scale(0.99);}
 .faq-q[aria-expanded="true"]{color:var(--c-forest);}
 .faq-icon{width:18px;height:18px;border-radius:50%;background:var(--bg-surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform var(--transition);color:var(--text-muted);}
 .faq-q[aria-expanded="true"] .faq-icon{transform:rotate(45deg);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 var(--sp-2);}
-.faq-a.open{max-height:300px;padding:0 var(--sp-2) var(--sp-2);}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows 250ms ease-out;padding:0 var(--sp-2);}
+.faq-a.open{grid-template-rows:1fr;padding-bottom:var(--sp-2);}
+.faq-a-inner{overflow:hidden;}
 .faq-a p{font-size:var(--size-sm);color:var(--text-muted);line-height:1.7;border-top:1px solid var(--border);padding-top:var(--sp-1);}
 
 /* Contact methods */
@@ -282,8 +288,9 @@ a:hover{text-decoration:underline;}
 .contact-card h3{font-size:var(--size-md);font-weight:600;color:var(--text);}
 .contact-card p{font-size:var(--size-sm);color:var(--text-muted);line-height:1.6;flex:1;}
 .contact-tag{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--c-leaf);border:1px solid var(--c-leaf);padding:2px 7px;border-radius:var(--radius);align-self:flex-start;}
-.contact-btn{background:transparent;border:1.5px solid var(--c-forest);color:var(--c-forest);border-radius:var(--radius);padding:10px 16px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background var(--transition);}
+.contact-btn{background:transparent;border:1.5px solid var(--c-forest);color:var(--c-forest);border-radius:var(--radius);padding:10px 16px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background var(--transition),transform 120ms ease-out;}
 .contact-btn:hover{background:var(--bg-tint);}
+.contact-btn:active{transform:scale(0.97);}
 .contact-btn.primary{background:var(--c-terracotta);border-color:var(--c-terracotta);color:#fff;}
 .contact-btn.primary:hover{opacity:.88;background:var(--c-terracotta);}
 @media(max-width:700px){.contact-grid{grid-template-columns:1fr;}}
@@ -336,8 +343,9 @@ a:hover{text-decoration:underline;}
 .postcode-row,.standard-find-row{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;}
 .postcode-input{border:1.5px solid var(--border-dark);border-radius:var(--radius);padding:10px 14px;font-family:var(--f-body);font-size:var(--size-sm);color:var(--text);background:var(--bg);width:130px;}
 .postcode-input:focus{outline:none;border-color:var(--c-forest);}
-.postcode-btn{background:var(--c-forest);color:#fff;border:none;border-radius:var(--radius);padding:10px 20px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;cursor:pointer;white-space:nowrap;transition:background var(--transition);}
+.postcode-btn{background:var(--c-forest);color:#fff;border:none;border-radius:var(--radius);padding:10px 20px;font-family:var(--f-body);font-size:var(--size-sm);font-weight:600;cursor:pointer;white-space:nowrap;transition:background var(--transition),transform 120ms ease-out;}
 .postcode-btn:hover{background:var(--c-pine);}
+.postcode-btn:active{transform:scale(0.97);}
 .standard-find-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-3);box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:14px;min-height:220px;justify-content:center;}
 .standard-find-icon{width:52px;height:52px;border-radius:50%;background:var(--c-sage);color:var(--c-forest);display:flex;align-items:center;justify-content:center;}
 .standard-find-h{font-size:1.3rem;line-height:1.2;color:var(--text);font-weight:600;}
@@ -378,25 +386,25 @@ a:hover{text-decoration:underline;}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;}}
 
 /* ── Animations ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes slideRight{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);}}
-@keyframes heroTitle{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
-@keyframes heroBg{from{transform:scale(1.04);}to{transform:scale(1);}}
 @keyframes bmOverlayIn{from{opacity:0}to{opacity:1}}
 @keyframes bmCardIn{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes bmCheckIn{0%{transform:scale(0);opacity:0}60%{transform:scale(1.18)}100%{transform:scale(1);opacity:1}}
+@keyframes bmCheckIn{0%{transform:scale(0.5);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
 @keyframes bmConfirmIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 /* Scroll reveal base */
 .wa{opacity:0;}
-.wa.in{animation:fadeUp .6s cubic-bezier(.22,1,.36,1) forwards;}
+.wa.in{animation:fadeUp .4s cubic-bezier(.22,1,.36,1) forwards;}
 .wa.fade.in{animation:fadeIn .5s ease forwards;}
 .wa.slide.in{animation:slideRight .55s cubic-bezier(.22,1,.36,1) forwards;}
 .wa[data-d="1"].in{animation-delay:.08s;}
 .wa[data-d="2"].in{animation-delay:.16s;}
 .wa[data-d="3"].in{animation-delay:.24s;}
 .wa[data-d="4"].in{animation-delay:.32s;}
+.wa[data-d="5"].in{animation-delay:.40s;}
+.wa[data-d="6"].in{animation-delay:.48s;}
 </style>
 
 
@@ -762,28 +770,28 @@ a:hover{text-decoration:underline;}
         Hvad sker der med min bolig under gældssanering?
         <span class="faq-icon"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 0v16M0 8h16"/></svg></span>
       </button>
-      <div class="faq-a"><p>Det afhænger af din situation. Hvis din bolig har positiv friværdi, vil den typisk indgå i saneringsregnskabet. En advokat kan hjælpe dig med at vurdere konsekvenserne, inden du søger.</p></div>
+      <div class="faq-a"><div class="faq-a-inner"><p>Det afhænger af din situation. Hvis din bolig har positiv friværdi, vil den typisk indgå i saneringsregnskabet. En advokat kan hjælpe dig med at vurdere konsekvenserne, inden du søger.</p></div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
         Kan jeg få gældssanering, hvis jeg er selvstændig?
         <span class="faq-icon"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 0v16M0 8h16"/></svg></span>
       </button>
-      <div class="faq-a"><p>Ja, selvstændige kan søge gældssanering, men processen er mere kompleks — særligt hvis gælden er opstået erhvervsmæssigt. Det kræver grundig vurdering af en specialist.</p></div>
+      <div class="faq-a"><div class="faq-a-inner"><p>Ja, selvstændige kan søge gældssanering, men processen er mere kompleks — særligt hvis gælden er opstået erhvervsmæssigt. Det kræver grundig vurdering af en specialist.</p></div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
         Hvad koster det at søge gældssanering?
         <span class="faq-icon"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 0v16M0 8h16"/></svg></span>
       </button>
-      <div class="faq-a"><p>Retsafgiften er pt. 750 kr. Advokatbistand betales enten selv eller via retshjælpsforsikring — mange har den via indboforsikringen. Vi afklarer dette i den første samtale.</p></div>
+      <div class="faq-a"><div class="faq-a-inner"><p>Retsafgiften er pt. 750 kr. Advokatbistand betales enten selv eller via retshjælpsforsikring — mange har den via indboforsikringen. Vi afklarer dette i den første samtale.</p></div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
         Hvad sker der, hvis skifteretten afviser min ansøgning?
         <span class="faq-icon"><svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 0v16M0 8h16"/></svg></span>
       </button>
-      <div class="faq-a"><p>En afvisning er ikke nødvendigvis endeligt. Afgørelsen kan ankes, og der kan søges igen, hvis din situation ændrer sig. En advokat vurderer dine muligheder.</p></div>
+      <div class="faq-a"><div class="faq-a-inner"><p>En afvisning er ikke nødvendigvis endeligt. Afgørelsen kan ankes, og der kan søges igen, hvis din situation ændrer sig. En advokat vurderer dine muligheder.</p></div></div>
     </div>
   </div>
 </section>
