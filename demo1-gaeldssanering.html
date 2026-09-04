@@ -104,7 +104,7 @@ a:hover{text-decoration:underline;}
 .personalized-grid.expanded{grid-template-columns:1fr minmax(300px,380px);align-items:start;}
 .lawyer-wrap{display:flex;align-items:center;gap:var(--sp-4);}
 .lawyer-photo-wrap{flex-shrink:0;width:280px;height:280px;border-radius:50%;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.2);background:#e8e1d6;}
-.lawyer-photo{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;}
+.lawyer-photo{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;}
 .lawyer-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-card);flex:1;}
 .lawyer-body{padding:var(--sp-3) var(--sp-4) var(--sp-4);display:flex;flex-direction:column;gap:var(--sp-2);}
 .lawyer-name{font-size:var(--size-lg);font-weight:600;color:var(--c-forest);margin-bottom:2px;}
@@ -382,6 +382,8 @@ a:hover{text-decoration:underline;}
 @keyframes slideRight{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);}}
 @keyframes heroTitle{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 @keyframes heroBg{from{transform:scale(1.04);}to{transform:scale(1);}}
+@keyframes bmOverlayIn{from{opacity:0}to{opacity:1}}
+@keyframes bmCardIn{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 
 /* Scroll reveal base */
 .wa{opacity:0;}
@@ -475,17 +477,17 @@ a:hover{text-decoration:underline;}
       <!-- Personalized state: shown after postcode match -->
       <div id="lawyerCard" class="lawyer-wrap" style="display:none;">
         <div class="lawyer-photo-wrap">
-          <img class="lawyer-photo" src="assets/lawyer-photo.png" alt="Thomas Nørgaard, advokat">
+          <img class="lawyer-photo" src="assets/michael-roth.jpg" alt="Michael Roth, advokat">
         </div>
         <div class="lawyer-card">
         <div class="lawyer-body">
           <blockquote class="lawyer-quote">„De fleste, der ringer til mig om gældssanering, har ventet et år for længe. Vi starter med at få overblik over hvem du skylder — så finder vi ud af, om skifteretten er vejen, eller om en akkord med kreditorerne er hurtigere."</blockquote>
           <div class="lawyer-attribution">
-            <div class="lawyer-name">Thomas Nørgaard</div>
-            <div class="lawyer-title">Advokat · specialist i gældsrådgivning</div>
+            <div class="lawyer-name">Michael Roth</div>
+            <div class="lawyer-title">Advokat (L) · specialist i gældsrådgivning</div>
           </div>
           <div class="lawyer-cta-row">
-            <button class="lawyer-cta" id="lawyerCta" onclick="showBookingWidget()">Book et opkald med Thomas</button>
+            <button class="lawyer-cta" id="lawyerCta" onclick="showBookingWidget()">Book et opkald med Michael</button>
           </div>
           <p class="lawyer-cta-note">Uforpligtende · gratis · ca. 15 min.</p>
         </div>
@@ -892,8 +894,8 @@ function showBookingWidget(){
   var phoneSvg='<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.13 2 2 0 012 .93h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>';
   var modal=document.createElement('div');
   modal.id='bookingModal';
-  modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;';
-  modal.innerHTML='<div id="bmCard" style="background:var(--bg);border-radius:1px;width:100%;max-width:440px;box-shadow:4px 3px 35px 5px rgba(0,0,0,.3);font-family:var(--f-body);overflow:hidden;">'
+  modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;animation:bmOverlayIn 180ms ease-out both;';
+  modal.innerHTML='<div id="bmCard" style="background:var(--bg);border-radius:1px;width:100%;max-width:440px;box-shadow:4px 3px 35px 5px rgba(0,0,0,.3);font-family:var(--f-body);overflow:hidden;animation:bmCardIn 240ms 60ms ease-out both;">'
     +'<div style="background:var(--c-forest);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;">'
       +'<div><div style="font-size:.85rem;font-weight:700;color:#fff;">Book gratis opkald med '+fn+'</div>'
       +'<div style="font-size:.65rem;color:rgba(255,255,255,.6);margin-top:3px;">Ringer dig op &middot; ca. 15 min. &middot; ingen forpligtelse</div></div>'
@@ -1189,7 +1191,7 @@ syncWebinarDate();
 
 /* Office switcher */
 var offices=[
-  {id:'frederiksberg',label:'Frederiksberg',lawyer:'Thomas Nørgaard',title:'Advokat · specialist i gældsrådgivning',quote:'„De fleste, der ringer til mig om gældssanering, har ventet et år for længe. Vi starter med at få overblik over hvem du skylder — så finder vi ud af, om skifteretten er vejen, eller om en akkord med kreditorerne er hurtigere."',photo:'assets/lawyer-photo.png'},
+  {id:'frederiksberg',label:'Frederiksberg',lawyer:'Michael Roth',title:'Advokat (L) · specialist i gældsrådgivning',quote:'„De fleste, der ringer til mig om gældssanering, har ventet et år for længe. Vi starter med at få overblik over hvem du skylder — så finder vi ud af, om skifteretten er vejen, eller om en akkord med kreditorerne er hurtigere."',photo:'assets/michael-roth.jpg'},
   {id:'koebenhavn',label:'København K',lawyer:'Maria Søndergaard',title:'Advokat · specialist i gældsrådgivning',quote:'„Mange tror, de har prøvet alt. Men der er næsten altid en vej — enten via retten eller en frivillig aftale med kreditorerne. Lad os kigge på det sammen."',photo:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80&fit=crop&crop=faces'},
   {id:'aarhus',label:'Aarhus C',lawyer:'Henrik Dalgaard',title:'Advokat (L) · specialist i gældsrådgivning',quote:'„Jeg har arbejdet med gældssanering i over ti år. Ingen sag ligner en anden — men alle ender med at se en vej frem."',photo:'assets/lawyer-photo-kbh.png'},
   {id:'odense',label:'Odense',lawyer:'Lene Christoffersen',title:'Advokat · specialist i gældsrådgivning',quote:'„Det første, vi gør, er at skabe overblik. Når man ved præcis hvad man skylder og til hvem, er det meget lettere at finde den rigtige løsning."',photo:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80&fit=crop&crop=faces'}
