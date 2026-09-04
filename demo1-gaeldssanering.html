@@ -399,7 +399,7 @@ a:hover{text-decoration:underline;}
 
 <nav class="nav" aria-label="Primær navigation">
   <div class="nav-inner">
-    <div class="nav-logo">Ret&amp;Råd<small>Advokater</small></div>
+    <a href="index.html" class="nav-logo" style="text-decoration:none;">Ret&amp;Råd<small>Advokater</small></a>
     <ul class="nav-links">
       <li><a href="#" onclick="return false">Specialer</a></li>
       <li><a href="#" onclick="return false">Find advokat</a></li>
@@ -461,11 +461,13 @@ a:hover{text-decoration:underline;}
       <!-- Standard state: shown until a postcode is resolved -->
       <div id="standardCard" class="lawyer-wrap">
         <div class="standard-find-card">
-          <div class="standard-find-icon">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div class="standard-find-icon" style="flex-shrink:0;">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <p class="standard-find-p" style="margin:0;">Ret&amp;Råd har specialiserede advokater i gældsrådgivning over hele Danmark. Indtast dit postnummer — vi finder din nærmeste specialist.</p>
           </div>
           <h3 class="standard-find-h">Find din lokale gældsadvokat</h3>
-          <p class="standard-find-p">Ret&amp;Råd har specialiserede advokater i gældsrådgivning over hele Danmark. Indtast dit postnummer — vi finder din nærmeste specialist.</p>
           <div class="standard-find-row" id="standardFindRow">
             <input class="postcode-input" id="standardZipInput" type="text" inputmode="numeric" maxlength="4" placeholder="Postnr." onkeydown="if(event.key==='Enter')findAdvokatFromCard()">
             <button class="postcode-btn" onclick="findAdvokatFromCard()">Find min advokat</button>
