@@ -1,0 +1,438 @@
+<meta charset="utf-8">
+<title>Demo 3 — Skærm 1: Forsiden</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+:root {
+  --c-forest: #214b0d; --c-pine: #1b642e; --c-leaf: #2a9b47;
+  --c-sage: #d7e6d8; --c-terracotta: #cc8080;
+  --c-ink: #0c0c0c; --c-paper: #f9f9f9; --c-white: #ffffff; --c-gray: #d3d3d3;
+  --f: 'Barlow', sans-serif; --r: 1px;
+  --shadow: 4px 3px 35px 5px rgba(0,0,0,.1); --max: 1130px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--f); background: var(--c-paper); color: var(--c-ink); }
+
+/* ── Nav ── */
+.nav { background: var(--c-white); border-bottom: 1px solid var(--c-sage); padding: 0 30px; position: sticky; top: 0; z-index: 50; }
+.nav-i { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 20px; }
+.logo { font-size: 1.35rem; font-weight: 700; color: var(--c-forest); text-decoration: none; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: .875rem; font-weight: 500; color: var(--c-forest); text-decoration: none; transition: color 150ms; }
+.nav-links a:hover { color: var(--c-leaf); }
+.nav-cta { font-family: var(--f); font-size: .8rem; font-weight: 600; padding: 9px 18px; border: 2px solid var(--c-forest); background: none; color: var(--c-forest); cursor: pointer; border-radius: var(--r); transition: background 150ms, color 150ms; }
+.nav-cta:hover { background: var(--c-forest); color: #fff; }
+
+/* ── Hero banner ── */
+.hero-banner { width: 100%; height: 420px; object-fit: cover; object-position: center 32%; display: block; }
+
+/* ── Hero content ── */
+.hero-content { background: var(--c-white); padding: 52px 30px 56px; border-bottom: 1px solid var(--c-sage); }
+.hero-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 390px 1fr; gap: 56px; align-items: start; }
+
+.eyebrow { font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--c-leaf); margin-bottom: 16px; }
+h1 { font-size: clamp(1.875rem, 3vw, 2.6rem); font-weight: 700; color: var(--c-forest); line-height: 1.05; text-wrap: balance; margin-bottom: 14px; }
+.hero-sub { font-size: 1.0625rem; color: rgba(12,12,12,.55); line-height: 1.55; max-width: 44ch; margin-bottom: 24px; }
+.gratis-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--c-sage); color: var(--c-forest);
+  font-size: .75rem; font-weight: 700; letter-spacing: .03em;
+  padding: 7px 14px; border-radius: var(--r);
+}
+.trust-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 18px; margin-top: 20px; }
+.trust-stat { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.trust-stat strong { font-size: 1.1rem; font-weight: 700; color: var(--c-forest); line-height: 1; }
+.trust-stat span { font-size: .68rem; font-weight: 500; color: rgba(12,12,12,.5); text-transform: uppercase; letter-spacing: .06em; }
+.trust-divider { display: none; }
+.trust-tp { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.trust-tp .tp-score { font-size: 1.1rem; font-weight: 700; color: var(--c-forest); line-height: 1; }
+.trust-tp .tp-stars-row { display: flex; gap: 2px; }
+.trust-tp .tp-star { width: 14px; height: 14px; background: var(--c-leaf); display: inline-flex; align-items: center; justify-content: center; }
+.trust-tp .tp-star svg { width: 9px; height: 9px; fill: #fff; }
+.trust-tp .tp-star.half { background: linear-gradient(to right, var(--c-leaf) 60%, var(--c-gray) 60%); }
+.trust-tp .tp-meta { font-size: .65rem; color: rgba(12,12,12,.5); margin-top: 1px; }
+
+/* ── Hero CTA + quote ── */
+.hero-cta {
+  display: inline-block; margin-top: 24px;
+  font-family: var(--f); font-size: .9rem; font-weight: 700;
+  padding: 13px 24px; background: var(--c-forest); color: #fff;
+  border: none; border-radius: var(--r); cursor: pointer;
+  text-decoration: none; transition: background 150ms;
+}
+.hero-cta:hover { background: var(--c-pine); }
+.hero-quote {
+  margin-top: 24px; padding: 16px 18px;
+  border-left: 3px solid var(--c-sage); background: var(--c-paper);
+  border-radius: var(--r);
+}
+.hero-quote blockquote { font-size: .875rem; color: rgba(12,12,12,.55); line-height: 1.55; font-style: italic; margin-bottom: 8px; }
+.hero-quote cite { font-size: .7rem; font-weight: 600; color: var(--c-forest); font-style: normal; text-transform: uppercase; letter-spacing: .07em; }
+
+/* ── Nav search ── */
+.nav-search-btn { background: none; border: none; cursor: pointer; padding: 8px; color: var(--c-forest); display: flex; align-items: center; }
+.nav-search-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+.nav-search-bar {
+  display: none; background: var(--c-white); border-top: 1px solid var(--c-sage);
+  border-bottom: 1px solid var(--c-sage); padding: 12px 30px;
+}
+.nav-search-bar.open { display: block; }
+.nav-search-inner { max-width: var(--max); margin: 0 auto; position: relative; }
+.nav-search-input {
+  width: 100%; font-family: var(--f); font-size: 1rem; font-weight: 400;
+  padding: 10px 44px 10px 16px; border: 1.5px solid var(--c-sage);
+  border-radius: var(--r); background: var(--c-white); color: var(--c-ink);
+  outline: none; transition: border-color 150ms;
+}
+.nav-search-input::placeholder { color: rgba(12,12,12,.35); }
+.nav-search-input:focus { border-color: var(--c-leaf); }
+.nav-search-close {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; font-size: 1.1rem; color: rgba(12,12,12,.35); padding: 4px;
+}
+
+/* ── Situation cards ── */
+.sit-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.sit-card {
+  background: var(--c-white); border: 1.5px solid var(--c-sage);
+  border-radius: var(--r); padding: 16px 15px 13px;
+  cursor: pointer; text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: border-color 150ms, box-shadow 150ms;
+}
+.sit-card:hover { border-color: var(--c-leaf); box-shadow: var(--shadow); }
+.sit-q { font-size: .875rem; font-weight: 600; color: var(--c-forest); line-height: 1.3; }
+.sit-cat { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--c-leaf); }
+.sit-arrow { font-size: .85rem; color: var(--c-leaf); margin-top: auto; padding-top: 4px; }
+.sit-other {
+  border: 1.5px dashed var(--c-sage); border-radius: var(--r);
+  padding: 20px 18px 16px; display: flex; align-items: center; justify-content: center;
+  text-align: center; opacity: .7; cursor: pointer;
+}
+.sit-other-txt { font-size: .85rem; color: rgba(12,12,12,.45); font-weight: 500; line-height: 1.45; }
+.sit-other-lnk { font-size: .75rem; color: var(--c-leaf); font-weight: 600; text-decoration: none; }
+
+/* ── Bridge — fagområde tags ── */
+.bridge { background: var(--c-paper); padding: 32px 30px 28px; border-bottom: 1px solid var(--c-sage); }
+.bridge-inner { max-width: var(--max); margin: 0 auto; }
+.bridge-label { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(12,12,12,.45); margin-bottom: 12px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  font-size: .8rem; font-weight: 500; color: var(--c-forest);
+  padding: 7px 15px; border: 1.5px solid var(--c-sage);
+  background: var(--c-white); border-radius: var(--r);
+  cursor: pointer; text-decoration: none; transition: border-color 150ms, color 150ms;
+}
+.tag:hover { border-color: var(--c-leaf); color: var(--c-leaf); }
+.tag-all { font-weight: 600; color: var(--c-leaf); border-color: transparent; }
+
+/* ── Section shared ── */
+.section { padding: 56px 30px 52px; border-bottom: 1px solid var(--c-sage); }
+.section-inner { max-width: var(--max); margin: 0 auto; }
+.section-hd { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 26px; }
+.section-hd h2 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 700; color: var(--c-forest); }
+.section-hd a { font-size: .8rem; color: var(--c-leaf); text-decoration: none; font-weight: 600; }
+.section-hd a:hover { text-decoration: underline; }
+
+/* ── Articles ── */
+.art-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.art-card {
+  background: var(--c-white); border: 1px solid var(--c-sage);
+  border-radius: var(--r); padding: 22px 20px; box-shadow: var(--shadow);
+  cursor: pointer; transition: box-shadow 150ms;
+}
+.art-card:hover { box-shadow: 4px 3px 35px 8px rgba(0,0,0,.14); }
+.art-cat { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--c-leaf); margin-bottom: 8px; }
+.art-title { font-size: .9rem; font-weight: 600; color: var(--c-forest); line-height: 1.35; margin-bottom: 9px; }
+.art-body { font-size: .78rem; color: rgba(12,12,12,.55); line-height: 1.58; }
+
+/* ── Kontorer strip ── */
+.offices { background: var(--c-sage); padding: 40px 30px; border-bottom: 1px solid #b8d1ba; }
+.offices-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.offices-txt h3 { font-size: 1.1rem; font-weight: 700; color: var(--c-forest); margin-bottom: 4px; }
+.offices-txt p { font-size: .85rem; color: var(--c-pine); }
+.offices-btn { font-family: var(--f); font-size: .8rem; font-weight: 700; padding: 11px 22px; background: var(--c-forest); color: #fff; border: none; border-radius: var(--r); cursor: pointer; transition: background 150ms; white-space: nowrap; }
+.offices-btn:hover { background: var(--c-pine); }
+
+/* ── Footer ── */
+.footer { background: var(--c-pine); color: rgba(255,255,255,.82); padding: 52px 30px 36px; }
+.footer-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 40px; }
+.footer h4 { font-size: .78rem; font-weight: 700; color: #fff; margin-bottom: 14px; letter-spacing: .04em; text-transform: uppercase; }
+.footer ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer li { font-size: .78rem; }
+.footer a { color: rgba(255,255,255,.75); text-decoration: none; }
+.footer a:hover { color: #fff; }
+.footer-copy { max-width: var(--max); margin: 32px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.15); font-size: .7rem; color: rgba(255,255,255,.5); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+/* Demo label */
+.demo-label { background: var(--c-forest); color: rgba(255,255,255,.7); font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; text-align: center; padding: 7px; }
+.demo-label span { color: #fff; }
+</style>
+
+<div class="demo-label">Demo 3 · iO Agency · <span>Skærm 1 — Forsiden</span></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-i">
+    <a href="index.html" class="logo"><img src="assets/logo-green.png" alt="Ret&Råd Advokater" style="height:36px;width:auto;display:block;"></a>
+    <ul class="nav-links">
+      <li><a href="https://www.ret-raad.dk/privatpersoner/" target="_blank">Privatpersoner</a></li>
+      <li><a href="https://www.ret-raad.dk/erhverv/" target="_blank">Erhverv</a></li>
+      <li><a href="https://www.ret-raad.dk/om-ret-raad/" target="_blank">Om os</a></li>
+      <li><a href="https://www.ret-raad.dk/find-kontor/" target="_blank">Find kontor</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:4px;">
+      <button class="nav-search-btn" id="navSearchBtn" aria-label="Søg">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+      </button>
+      <button class="nav-cta">Ring til os</button>
+    </div>
+  </div>
+</nav>
+<div class="nav-search-bar" id="navSearchBar">
+  <div class="nav-search-inner">
+    <input class="nav-search-input" id="navSearchInput" type="text" placeholder="Søg efter din situation, fx 'skilsmisse', 'arv', 'fyret'…" autocomplete="off">
+    <button class="nav-search-close" id="navSearchClose">✕</button>
+  </div>
+</div>
+
+<!-- HERO BANNER -->
+<img class="hero-banner" src="assets/par.jpg" alt="Par ved køkkenbordet med dokumenter">
+
+<!-- HERO CONTENT -->
+<section class="hero-content">
+  <div class="hero-inner">
+    <div>
+      <h1>Hvad er der sket?</h1>
+      <p class="hero-sub">Fortæl os, hvad du står i. Vi finder den rette hjælp — og vi starter altid med en gratis samtale.</p>
+      <div class="gratis-badge">✓ &nbsp;Første samtale: gratis · ingen forpligtelse</div>
+      <div class="trust-row">
+        <div class="trust-stat">
+          <strong>100.000+</strong>
+          <span>danskere hjulpet</span>
+        </div>
+        <div class="trust-stat">
+          <strong>47</strong>
+          <span>kontorer</span>
+        </div>
+        <div class="trust-stat">
+          <strong>+35 år</strong>
+          <span>dansk advokatfirma</span>
+        </div>
+        <div class="trust-tp">
+          <div class="tp-stars-row">
+            <div class="tp-star"><svg viewBox="0 0 10 10"><polygon points="5,1 6.2,3.8 9.5,4 7,6.2 7.9,9.5 5,7.8 2.1,9.5 3,6.2 0.5,4 3.8,3.8"/></svg></div>
+            <div class="tp-star"><svg viewBox="0 0 10 10"><polygon points="5,1 6.2,3.8 9.5,4 7,6.2 7.9,9.5 5,7.8 2.1,9.5 3,6.2 0.5,4 3.8,3.8"/></svg></div>
+            <div class="tp-star"><svg viewBox="0 0 10 10"><polygon points="5,1 6.2,3.8 9.5,4 7,6.2 7.9,9.5 5,7.8 2.1,9.5 3,6.2 0.5,4 3.8,3.8"/></svg></div>
+            <div class="tp-star"><svg viewBox="0 0 10 10"><polygon points="5,1 6.2,3.8 9.5,4 7,6.2 7.9,9.5 5,7.8 2.1,9.5 3,6.2 0.5,4 3.8,3.8"/></svg></div>
+            <div class="tp-star half"><svg viewBox="0 0 10 10"><polygon points="5,1 6.2,3.8 9.5,4 7,6.2 7.9,9.5 5,7.8 2.1,9.5 3,6.2 0.5,4 3.8,3.8"/></svg></div>
+          </div>
+          <div class="tp-meta">297 anmeldelser · Trustpilot</div>
+        </div>
+      </div>
+      <a href="#" class="hero-cta">Book gratis samtale →</a>
+      <div class="hero-quote">
+        <blockquote>»Jeg vidste ikke, hvor jeg skulle starte. En samtale med Ret &amp; Råd gav mig overblik — og ro til at tage den rigtige beslutning.«</blockquote>
+        <cite>Maria, 41 år · Skilsmisse</cite>
+      </div>
+    </div>
+    <div class="sit-grid" id="sitGrid">
+      <a href="#" class="sit-card">
+        <div class="sit-q">Vi skal gå fra hinanden.</div>
+        <div class="sit-cat">Familieret</div>
+        <div class="sit-arrow">→</div>
+      </a>
+      <a href="#" class="sit-card">
+        <div class="sit-q">Min far er død, og der er et hus.</div>
+        <div class="sit-cat">Arv &amp; skifte</div>
+        <div class="sit-arrow">→</div>
+      </a>
+      <a href="#" class="sit-card">
+        <div class="sit-q">Vi starter noget sammen — hvad hvis vi bliver uvenner?</div>
+        <div class="sit-cat">Erhvervsret</div>
+        <div class="sit-arrow">→</div>
+      </a>
+      <a href="#" class="sit-card">
+        <div class="sit-q">Jeg kan ikke se en vej ud af gælden.</div>
+        <div class="sit-cat">Gæld &amp; økonomi</div>
+        <div class="sit-arrow">→</div>
+      </a>
+      <a href="#" class="sit-card">
+        <div class="sit-q">Vi køber hus — men vi lægger ikke lige meget.</div>
+        <div class="sit-cat">Bolighandel</div>
+        <div class="sit-arrow">→</div>
+      </a>
+      <a href="#" class="sit-card">
+        <div class="sit-q">Vi er gået fra hinanden — hvad sker der med børnene?</div>
+        <div class="sit-cat">Forældremyndighed</div>
+        <div class="sit-arrow">→</div>
+      </a>
+      <a href="#" class="sit-card">
+        <div class="sit-q">Jeg er uretfærdigt fyret.</div>
+        <div class="sit-cat">Ansættelsesret</div>
+        <div class="sit-arrow">→</div>
+      </a>
+      <a href="#" class="sit-card">
+        <div class="sit-q">Jeg skal have lavet et testamente.</div>
+        <div class="sit-cat">Testamente</div>
+        <div class="sit-arrow">→</div>
+      </a>
+      <a href="#" class="sit-card">
+        <div class="sit-q">Min udlejer nægter at lave noget om.</div>
+        <div class="sit-cat">Lejeret</div>
+        <div class="sit-arrow">→</div>
+      </a>
+      <a href="#" class="sit-card">
+        <div class="sit-q">Vi er naboer og uenige om hegnet.</div>
+        <div class="sit-cat">Naboret</div>
+        <div class="sit-arrow">→</div>
+      </a>
+      <div class="sit-other">
+        <div>
+          <div class="sit-other-txt">Noget andet?</div>
+          <a href="https://www.ret-raad.dk/specialer/" class="sit-other-lnk">Se alle situationer →</a>
+        </div>
+      </div>
+    </div><!-- /sit-grid -->
+  </div>
+</section>
+
+<script>
+(function() {
+  var btn   = document.getElementById('navSearchBtn');
+  var bar   = document.getElementById('navSearchBar');
+  var input = document.getElementById('navSearchInput');
+  var close = document.getElementById('navSearchClose');
+
+  btn.addEventListener('click', function() {
+    bar.classList.toggle('open');
+    if (bar.classList.contains('open')) input.focus();
+  });
+  close.addEventListener('click', function() {
+    bar.classList.remove('open');
+    input.value = '';
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { bar.classList.remove('open'); input.value = ''; }
+  });
+})();
+</script>
+
+<!-- BRIDGE — FAGOMRÅDER -->
+<div class="bridge">
+  <div class="bridge-inner">
+    <div class="bridge-label">Eller søg direkte på fagområde</div>
+    <div class="tag-row">
+      <a href="https://www.ret-raad.dk/familieret/" target="_blank" class="tag">Familieret</a>
+      <a href="https://www.ret-raad.dk/arv-testamente/" target="_blank" class="tag">Arv &amp; skifte</a>
+      <a href="https://www.ret-raad.dk/gaeld/" target="_blank" class="tag">Gæld &amp; økonomi</a>
+      <a href="https://www.ret-raad.dk/boligkob-boligsalg/" target="_blank" class="tag">Bolighandel</a>
+      <a href="https://www.ret-raad.dk/erhverv/" target="_blank" class="tag">Erhvervsret</a>
+      <a href="https://www.ret-raad.dk/ansaettelsesret/" target="_blank" class="tag">Ansættelsesret</a>
+      <a href="https://www.ret-raad.dk/strafferet/" target="_blank" class="tag">Strafferet</a>
+      <a href="https://www.ret-raad.dk/udlaendingeret/" target="_blank" class="tag">Udlændingeret</a>
+      <a href="https://www.ret-raad.dk/specialer/" target="_blank" class="tag tag-all">Se alle fagområder →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ARTIKLER -->
+<section class="section" style="background:var(--c-white);">
+  <div class="section-inner">
+    <div class="section-hd">
+      <h2>Seneste fra Ret &amp; Råd</h2>
+      <a href="https://www.ret-raad.dk/viden/" target="_blank">Se alle artikler →</a>
+    </div>
+    <div class="art-grid">
+      <div class="art-card">
+        <div class="art-cat">Skilsmisse</div>
+        <div class="art-title">Hvad sker der med huset, når I går fra hinanden?</div>
+        <div class="art-body">De fleste ved ikke, at de har tre muligheder — og at to af dem ikke kræver en retssag.</div>
+      </div>
+      <div class="art-card">
+        <div class="art-cat">Arv</div>
+        <div class="art-title">Fem ting du skal gøre inden for seks uger efter et dødsfald</div>
+        <div class="art-body">Det føles tidligt, men frister gælder uanset hvad. Her er hvad der haster, og hvad der kan vente.</div>
+      </div>
+      <div class="art-card">
+        <div class="art-cat">Erhverv</div>
+        <div class="art-title">Iværksætterpartnerskab: Hvad der skal på papir, inden I starter</div>
+        <div class="art-body">En samtale nu er billigere end en konflikt senere. Her er de tre aftaler, alle partnerskaber bør have.</div>
+      </div>
+      <div class="art-card">
+        <div class="art-cat">Gæld</div>
+        <div class="art-title">Hvornår er gældssanering en mulighed — og hvornår er det ikke?</div>
+        <div class="art-body">Mange tror, de ikke kvalificerer sig. Sandheden er mere nuanceret end de fleste tror.</div>
+      </div>
+      <div class="art-card">
+        <div class="art-cat">Bolig</div>
+        <div class="art-title">Vi køber hus, men lægger ikke lige meget — hvad sker der, hvis vi går fra hinanden?</div>
+        <div class="art-body">Ejerforholdet i et fælles hus er ikke automatisk 50/50. Sådan sikrer I jer begge.</div>
+      </div>
+      <div class="art-card">
+        <div class="art-cat">Familie</div>
+        <div class="art-title">Forældremyndighed: Hvad kan bestemmes, og hvad kan ikke?</div>
+        <div class="art-body">Der er stor forskel på, hvad en aftale kan indeholde, og hvad der kræver en dom.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTORER STRIP -->
+<div class="offices">
+  <div class="offices-inner">
+    <div class="offices-txt">
+      <h3>Vi er tæt på dig — 47 kontorer i hele landet</h3>
+      <p>Find din lokale Ret &amp; Råd-advokat og book en gratis første samtale.</p>
+    </div>
+    <button class="offices-btn">Find dit nærmeste kontor →</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h4>Ret &amp; Råd</h4>
+      <ul>
+        <li><a href="#">Om Ret &amp; Råd</a></li>
+        <li><a href="#">Find kontor</a></li>
+        <li><a href="#">Ledige stillinger</a></li>
+        <li><a href="#">Presse</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Privatpersoner</h4>
+      <ul>
+        <li><a href="#">Skilsmisse &amp; separation</a></li>
+        <li><a href="#">Arv &amp; testamente</a></li>
+        <li><a href="#">Gæld &amp; økonomi</a></li>
+        <li><a href="#">Bolighandel</a></li>
+        <li><a href="#">Strafferet</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Erhverv</h4>
+      <ul>
+        <li><a href="#">Selskabsret</a></li>
+        <li><a href="#">Kontrakter</a></li>
+        <li><a href="#">Ansættelsesret</a></li>
+        <li><a href="#">Virksomhedssalg</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="#">Gratis første samtale</a></li>
+        <li><a href="#">Alle kontorer</a></li>
+        <li><a href="#">Privatlivspolitik</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Ret &amp; Råd Advokater A/S</span>
+    <span>iO Agency · Demo 3 · Skærm 1</span>
+  </div>
+</footer>
