@@ -385,6 +385,8 @@ a:hover{text-decoration:underline;}
 @keyframes heroBg{from{transform:scale(1.04);}to{transform:scale(1);}}
 @keyframes bmOverlayIn{from{opacity:0}to{opacity:1}}
 @keyframes bmCardIn{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes bmCheckIn{0%{transform:scale(0);opacity:0}60%{transform:scale(1.18)}100%{transform:scale(1);opacity:1}}
+@keyframes bmConfirmIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 /* Scroll reveal base */
 .wa{opacity:0;}
@@ -1007,15 +1009,21 @@ function bmConfirm(firstName){
   if(!nm||!ph||!nm.value.trim()||!ph.value.trim())return;
   var card=document.getElementById('bmCard');
   if(!card)return;
-  card.innerHTML='<div style="padding:48px 32px;text-align:center;font-family:var(--f-body);">'
-    +'<div style="width:54px;height:54px;border-radius:50%;background:var(--bg-tint);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--c-leaf);">'
-    +'<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>'
-    +'<h3 style="font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:8px;">Opkald bekræftet!</h3>'
-    +'<p style="font-size:.78rem;color:var(--text-muted);line-height:1.65;max-width:28ch;margin:0 auto 6px;">'
-    +firstName+' ringer dig op p\xe5 et af dine valgte tidspunkter: <strong style="color:var(--text);">'+_bmSelectedTimes.join(', ')+'</strong>. Du modtager en SMS-bek\xe6ftelse.</p>'
-    +'<p style="font-size:.63rem;color:var(--text-muted);margin-bottom:22px;">Ingen forpligtelse &middot; gratis</p>'
-    +'<button onclick="document.getElementById(\'bookingModal\').remove()" style="background:var(--c-sage);border:none;border-radius:1px;padding:10px 24px;font-family:var(--f-body);font-size:.78rem;font-weight:600;color:var(--c-forest);cursor:pointer;">Luk</button>'
-    +'</div>';
+  card.style.transition='opacity 180ms ease,transform 180ms ease';
+  card.style.opacity='0';
+  card.style.transform='scale(.97)';
+  setTimeout(function(){
+    card.style.transition='';card.style.opacity='';card.style.transform='';
+    card.innerHTML='<div style="padding:52px 32px 44px;text-align:center;font-family:var(--f-body);animation:bmConfirmIn 300ms ease-out both;">'
+      +'<div style="width:60px;height:60px;border-radius:50%;background:var(--c-sage);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--c-leaf);animation:bmCheckIn 420ms 80ms cubic-bezier(.34,1.56,.64,1) both;">'
+      +'<svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>'
+      +'<h3 style="font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:10px;">Opkald bekræftet!</h3>'
+      +'<p style="font-size:.8rem;color:var(--text-muted);line-height:1.7;max-width:30ch;margin:0 auto 6px;">'
+      +firstName+' ringer dig op p\xe5 et af dine valgte tidspunkter: <strong style="color:var(--text);">'+(_bmSelectedTimes[0]||'')+'</strong>. Du modtager en SMS-bek\xe6ftelse.</p>'
+      +'<p style="font-size:.65rem;color:var(--text-muted);margin-bottom:24px;">Ingen forpligtelse &middot; gratis</p>'
+      +'<button onclick="document.getElementById(\'bookingModal\').remove()" style="background:var(--c-sage);border:none;border-radius:1px;padding:11px 28px;font-family:var(--f-body);font-size:.8rem;font-weight:600;color:var(--c-forest);cursor:pointer;">Luk</button>'
+      +'</div>';
+  },180);
 }
 
 function showVideoModal(){
