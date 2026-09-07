@@ -642,8 +642,6 @@ function setVar(v, btn) {
   var SHOW_ALL_LIMIT = 6;
   var filters = document.querySelectorAll('.sit-filter');
   var cards = Array.from(document.querySelectorAll('#sit-grid .sit-card[data-cats]'));
-  var showMoreBtn = document.getElementById('sit-show-more');
-
   function applyFilter(f) {
     var visible = 0;
     cards.forEach(function(card) {
@@ -652,7 +650,6 @@ function setVar(v, btn) {
       if (match && withinLimit) { card.style.display = ''; visible++; }
       else { card.style.display = 'none'; }
     });
-    showMoreBtn.style.display = f === 'all' ? '' : 'none';
   }
 
   filters.forEach(function(btn) {
@@ -661,11 +658,6 @@ function setVar(v, btn) {
       btn.classList.add('sit-filter--active');
       applyFilter(btn.dataset.f);
     });
-  });
-
-  showMoreBtn.addEventListener('click', function() {
-    cards.forEach(function(card) { card.style.display = ''; });
-    showMoreBtn.style.display = 'none';
   });
 
   applyFilter('all');
