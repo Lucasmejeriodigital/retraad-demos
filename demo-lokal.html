@@ -149,11 +149,12 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 .chat-bubble{background:var(--c-sage);padding:14px 18px;border-radius:0 12px 12px 12px;max-width:380px}
 .chat-bubble-q{font-size:1rem;font-style:italic;color:var(--c-forest);font-weight:500;line-height:1.35;margin-bottom:4px}
 .chat-bubble-sub{font-size:.8rem;color:rgba(12,12,12,.55);line-height:1.45}
-.chat-reply{display:flex;flex-direction:column;align-items:flex-end;margin-bottom:12px}
+.chat-reply{display:flex;justify-content:flex-end;margin-bottom:12px;position:relative}
+.chat-ph{position:absolute;top:14px;left:16px;right:16px;font-family:var(--f);font-size:.9375rem;line-height:1.65;color:rgba(12,12,12,.38);pointer-events:none}
+.chat-ph::after{content:'|';opacity:1;animation:blink 600ms step-end infinite;color:var(--c-leaf)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .chat-textarea{width:calc(100% - 44px);font-family:var(--f);font-size:.9375rem;color:var(--c-ink);background:var(--c-white);border:1px solid #dde8de;border-radius:12px 0 12px 12px;padding:14px 16px;resize:none;min-height:100px;line-height:1.65;outline:none;transition:border-color 150ms,box-shadow 150ms;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .chat-textarea:focus{border-color:var(--c-leaf);box-shadow:0 0 0 3px rgba(42,155,71,.18);outline:2px solid var(--c-leaf);outline-offset:0}
-.chat-chip{font-family:var(--f);font-size:.75rem;color:rgba(12,12,12,.65);background:var(--c-white);border:1px solid var(--c-sage);border-radius:1px;padding:6px 12px;cursor:pointer;transition:border-color 150ms,color 150ms;text-align:left;line-height:1.4}
-.chat-chip:hover{border-color:var(--c-leaf);color:var(--c-forest)}
 .chat-footer{display:flex;justify-content:flex-end;margin-top:10px}
 .chat-note{font-size:.68rem;color:rgba(12,12,12,.28);line-height:1.45}
 .chat-send{font-family:var(--f);font-size:.8rem;font-weight:700;padding:11px 24px;background:var(--c-terracotta);color:#fff;border:none;border-radius:20px;cursor:pointer;white-space:nowrap}
@@ -392,8 +393,8 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
       </div>
     </div>
     <div class="chat-reply">
-      <textarea class="chat-textarea" id="chat-input" placeholder="Vi er ved at gå fra hinanden, og vi ved ikke hvad der sker med huset..."></textarea>
-      <div id="chat-suggestions" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;width:100%"></div>
+      <textarea class="chat-textarea" id="chat-input" placeholder=""></textarea>
+      <div class="chat-ph" id="chat-ph"></div>
     </div>
     <div class="chat-footer">
       <button class="chat-send" id="chat-send-btn">Start samtalen →</button>
@@ -690,45 +691,54 @@ function setVar(v, btn) {
 
 (function() {
   var input = document.getElementById('chat-input');
-  var suggestionsEl = document.getElementById('chat-suggestions');
+  var ph = document.getElementById('chat-ph');
 
   var examples = [
-    'Vi er ved at gå fra hinanden, og vi ved ikke hvad der sker med huset...',
+    'Vi er ved at gå fra hinanden, og vi ved ikke hvad der sker med huset',
     'Min far er død og vi kan ikke blive enige om arven',
     'Banken har truet med at sende min gæld til fogedretten',
     'Jeg er blevet fyret uden grund efter 8 år',
-    'Vi har købt et hus og opdager nu store fejl og mangler',
+    'Vi har købt hus og opdager nu store fejl og mangler',
     'Udlejeren vil ikke give depositum tilbage og truer med retten',
     'Vi vil lave testamente men ved ikke hvordan det fungerer',
     'Min kæreste og jeg er flyttet fra hinanden — hvad sker der med lejligheden?'
   ];
 
-  /* rotating placeholder */
-  var pi = 0;
-  function nextPlaceholder() {
-    if (document.activeElement === input) return;
-    pi = (pi + 1) % examples.length;
-    input.placeholder = examples[pi];
+  var i = 0, typeTimer = null, cycleTimer = null;
+
+  function showPh() { ph.style.display = input.value ? 'none' : ''; }
+  input.addEventListener('input', showPh);
+  input.addEventListener('focus', showPh);
+  input.addEventListener('blur',  showPh);
+
+  function type(text) {
+    ph.textContent = '';
+    var j = 0;
+    clearInterval(typeTimer);
+    typeTimer = setInterval(function() {
+      ph.textContent = text.slice(0, ++j);
+      if (j >= text.length) clearInterval(typeTimer);
+    }, 38);
   }
-  setInterval(nextPlaceholder, 3000);
 
-  /* suggestion chips */
-  examples.slice(0, 4).forEach(function(text) {
-    var btn = document.createElement('button');
-    btn.className = 'chat-chip';
-    btn.type = 'button';
-    btn.textContent = text;
-    btn.addEventListener('click', function() {
-      input.value = text;
-      input.focus();
-      suggestionsEl.style.display = 'none';
+  function erase(cb) {
+    clearInterval(typeTimer);
+    typeTimer = setInterval(function() {
+      if (ph.textContent.length === 0) { clearInterval(typeTimer); cb(); }
+      else { ph.textContent = ph.textContent.slice(0, -1); }
+    }, 18);
+  }
+
+  function cycle() {
+    if (document.activeElement === input || input.value) return;
+    erase(function() {
+      i = (i + 1) % examples.length;
+      setTimeout(function() { type(examples[i]); }, 180);
     });
-    suggestionsEl.appendChild(btn);
-  });
+  }
 
-  input.addEventListener('input', function() {
-    suggestionsEl.style.display = input.value ? 'none' : 'flex';
-  });
+  type(examples[0]);
+  cycleTimer = setInterval(cycle, 4000);
 })();
 
 (function() {
