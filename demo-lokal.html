@@ -642,13 +642,26 @@ function setVar(v, btn) {
   var SHOW_ALL_LIMIT = 6;
   var filters = document.querySelectorAll('.sit-filter');
   var cards = Array.from(document.querySelectorAll('#sit-grid .sit-card[data-cats]'));
+  var showMoreBtn = document.getElementById('sit-show-more');
+
   function applyFilter(f) {
-    var visible = 0;
-    cards.forEach(function(card) {
-      var match = f === 'all' || card.dataset.cats === f;
-      var withinLimit = f !== 'all' || visible < SHOW_ALL_LIMIT;
-      if (match && withinLimit) { card.style.display = ''; visible++; }
-      else { card.style.display = 'none'; }
+    if (f === 'all') {
+      cards.forEach(function(card, i) {
+        card.style.display = i < SHOW_ALL_LIMIT ? '' : 'none';
+      });
+      if (showMoreBtn) showMoreBtn.style.display = '';
+    } else {
+      cards.forEach(function(card) {
+        card.style.display = card.dataset.cats === f ? '' : 'none';
+      });
+      if (showMoreBtn) showMoreBtn.style.display = 'none';
+    }
+  }
+
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', function() {
+      cards.forEach(function(card) { card.style.display = ''; });
+      showMoreBtn.style.display = 'none';
     });
   }
 
@@ -692,20 +705,20 @@ function setVar(v, btn) {
     'Min kæreste og jeg er flyttet fra hinanden — hvad sker der med lejligheden?'
   ];
 
-  var i = 0, typeTimer = null, cycleTimer = null;
+  var i = 0, typeTimer = null;
 
   function showPh() { ph.style.display = input.value ? 'none' : ''; }
   input.addEventListener('input', showPh);
   input.addEventListener('focus', showPh);
   input.addEventListener('blur',  showPh);
 
-  function type(text) {
+  function type(text, onDone) {
     ph.textContent = '';
     var j = 0;
     clearInterval(typeTimer);
     typeTimer = setInterval(function() {
       ph.textContent = text.slice(0, ++j);
-      if (j >= text.length) clearInterval(typeTimer);
+      if (j >= text.length) { clearInterval(typeTimer); if (onDone) setTimeout(onDone, 2200); }
     }, 38);
   }
 
@@ -718,15 +731,14 @@ function setVar(v, btn) {
   }
 
   function cycle() {
-    if (document.activeElement === input || input.value) return;
+    if (document.activeElement === input || input.value) { setTimeout(cycle, 1000); return; }
     erase(function() {
       i = (i + 1) % examples.length;
-      setTimeout(function() { type(examples[i]); }, 180);
+      setTimeout(function() { type(examples[i], cycle); }, 180);
     });
   }
 
-  type(examples[0]);
-  cycleTimer = setInterval(cycle, 4000);
+  type(examples[0], cycle);
 })();
 
 (function() {
