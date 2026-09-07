@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ret&Råd — Lokal vinkel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+:root {
+  --c-forest:#214b0d; --c-pine:#1b642e; --c-leaf:#2a9b47;
+  --c-sage:#d7e6d8; --c-terracotta:#cc8080;
+  --c-ink:#0c0c0c; --c-paper:#f9f9f9; --c-white:#fff;
+  --f:'Barlow',sans-serif; --r:1px;
+  --shadow:4px 3px 35px 5px rgba(0,0,0,.08); --max:1130px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
+
+/* ═══ NAV ═══ */
+.nav{background:var(--c-white);border-bottom:1px solid var(--c-sage);position:sticky;top:0;z-index:100}
+.nav-i{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px;gap:20px;padding:0 30px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--c-forest);text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-search{background:none;border:none;cursor:pointer;padding:8px;color:var(--c-forest);display:flex;align-items:center}
+.nav-search svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.nav-cta{font-family:var(--f);font-size:.8rem;font-weight:600;padding:9px 18px;border:2px solid var(--c-forest);background:none;color:var(--c-forest);cursor:pointer;border-radius:var(--r)}
+
+/* ═══ HERO (A — INTIM SAMTALE) ═══ */
+.hero{background:var(--c-sage)}
+.hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:420px 1fr;gap:64px;align-items:center;padding:64px 30px 72px}
+.hero-left{position:relative;padding-left:16px}
+.hero-left::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;background:var(--c-forest)}
+.hero-eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c-pine);margin-bottom:16px}
+.hero-h1{font-size:clamp(2rem,3.2vw,2.8rem);font-weight:400;font-style:italic;color:var(--c-forest);line-height:1.08;text-wrap:balance;margin-bottom:18px}
+.hero-sub{font-size:1.0625rem;color:var(--c-pine);line-height:1.65;max-width:40ch;margin-bottom:26px}
+.badge{display:inline-flex;align-items:center;gap:7px;background:rgba(33,75,13,.1);color:var(--c-forest);font-size:.72rem;font-weight:700;padding:6px 12px;border-radius:var(--r);margin-bottom:22px}
+.hero-right{position:relative;padding-top:8px}
+.hero-photo{width:100%;height:380px;object-fit:cover;object-position:center 28%;display:block;border-radius:var(--r);filter:saturate(.9)}
+/* quote card base */
+.hero-quote-card{padding:16px 18px;margin-top:-44px;border-radius:var(--r);position:relative;z-index:1}
+/* position variants */
+.qp-left  .hero-quote-card{margin-left:-36px;margin-right:40px}
+.qp-right .hero-quote-card{margin-left:40px;margin-right:-36px}
+/* position toggle */
+.q-pos-toggle{display:flex;gap:4px;margin-bottom:8px}
+.q-pos-btn{font-family:var(--f);font-size:.65rem;font-weight:700;letter-spacing:.04em;padding:4px 10px;border:1px solid var(--c-sage);background:var(--c-white);color:rgba(12,12,12,.40);cursor:pointer;border-radius:var(--r)}
+.q-pos-btn.on{background:var(--c-terracotta);color:#fff;border-color:var(--c-terracotta)}
+.quote-body{transition:opacity 400ms ease-in-out}
+.quote-body.fade{opacity:0}
+.quote-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.quote-dots{display:flex;gap:7px}
+.quote-dot{width:6px;height:6px;border-radius:50%;opacity:.25;cursor:pointer;border:none;padding:0;transition:opacity 200ms}
+.quote-dot.active{opacity:.8}
+
+/* A — hvid + shadow (default) */
+.qv-a .hero-quote-card{background:var(--c-white);box-shadow:var(--shadow)}
+.qv-a .hero-quote-card blockquote{font-size:.88rem;font-style:italic;color:rgba(12,12,12,.73);line-height:1.6;margin-bottom:8px}
+.qv-a .hero-quote-card cite{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c-forest);font-style:normal}
+.qv-a .quote-dot{background:var(--c-forest)}
+
+/* B — terracotta-streg */
+.qv-b .hero-quote-card{background:var(--c-white);border-left:4px solid var(--c-terracotta);border:1px solid var(--c-sage);border-left:4px solid var(--c-terracotta)}
+.qv-b .hero-quote-card blockquote{font-size:.78rem;font-style:italic;color:rgba(12,12,12,.73);line-height:1.55;margin-bottom:6px}
+.qv-b .hero-quote-card cite{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c-terracotta);font-style:normal}
+.qv-b .quote-dot{background:var(--c-terracotta)}
+
+/* C — forest grøn */
+.qv-c .hero-quote-card{background:var(--c-forest)}
+.qv-c .hero-quote-card blockquote{font-size:.88rem;font-style:italic;color:rgba(255,255,255,.9);line-height:1.6;margin-bottom:8px}
+.qv-c .hero-quote-card cite{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);font-style:normal}
+.qv-c .quote-dot{background:#fff}
+
+/* switcher */
+.q-switcher{display:flex;gap:4px;margin-bottom:12px}
+.q-sw-btn{font-family:var(--f);font-size:.65rem;font-weight:700;letter-spacing:.06em;padding:4px 10px;border:1px solid var(--c-sage);background:var(--c-white);color:rgba(12,12,12,.40);cursor:pointer;border-radius:var(--r)}
+.q-sw-btn.on{background:var(--c-forest);color:#fff;border-color:var(--c-forest)}
+.cta-primary{display:inline-block;font-family:var(--f);font-size:.875rem;font-weight:700;padding:13px 26px;background:var(--c-terracotta);color:#fff;border:none;border-radius:var(--r);cursor:pointer;text-decoration:none}
+.cta-primary:hover{background:#b86e6e}
+.cta-secondary{display:inline-block;font-family:var(--f);font-size:.875rem;font-weight:700;padding:13px 26px;background:transparent;color:var(--c-forest);border:2px solid var(--c-forest);border-radius:var(--r);cursor:pointer;text-decoration:none}
+
+/* ═══ LOKAL BAR ═══ */
+.local-bar{background:var(--c-forest);padding:13px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.local-bar-left{display:flex;align-items:center;flex-wrap:wrap;gap:0}
+.local-bar-item{font-size:.6rem;font-weight:500;letter-spacing:.06em;color:rgba(255,255,255,.45);padding:0 18px;white-space:nowrap}
+.local-bar-item:first-child{padding-left:0}
+.local-bar-item strong{color:rgba(255,255,255,.9);font-weight:700}
+.local-bar-sep{width:1px;height:12px;background:rgba(255,255,255,.15);flex-shrink:0}
+.local-bar-link{font-family:var(--f);font-size:.62rem;font-weight:700;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:6px 14px;border-radius:var(--r);white-space:nowrap}
+
+/* ═══ LOKAL COPY ═══ */
+.local{background:var(--c-white);padding:60px 0 68px;border-bottom:1px solid var(--c-sage)}
+.local-token{color:var(--c-forest);font-weight:700;border-bottom:2px solid var(--c-forest);padding-bottom:1px}
+.local-token-inv{border-bottom:2px solid rgba(255,255,255,.45);padding-bottom:1px}
+.local-ctas{display:flex;gap:12px;justify-content:flex-start;flex-wrap:wrap}
+/* variant switcher */
+.var-toggle{display:flex;gap:4px;margin-bottom:32px}
+.var-btn{font-family:var(--f);font-size:.65rem;font-weight:700;letter-spacing:.06em;padding:5px 14px;border:1px solid var(--c-sage);background:var(--c-white);color:rgba(12,12,12,.40);cursor:pointer;border-radius:var(--r)}
+.var-btn.on{background:var(--c-forest);color:#fff;border-color:var(--c-forest)}
+.local-v{display:none}
+.local-v.active{display:block}
+
+/* A — to-kolonne + kort */
+.lv-a-inner{max-width:var(--max);margin:0 auto;padding:0 30px;display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:center}
+.lv-a-letter{font-size:clamp(1.4rem,2.2vw,2rem);font-weight:400;font-style:italic;color:var(--c-forest);line-height:1.15;margin-bottom:16px;text-wrap:balance}
+.lv-a-body{font-size:.9375rem;color:rgba(12,12,12,.73);line-height:1.7;margin-bottom:28px}
+.dk-map-wrap{width:100%;max-width:300px;margin:0 auto}
+.dk-map-wrap svg{width:100%;height:auto;display:block}
+.dk-map-label{text-align:center;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-top:10px}
+@keyframes dk-pulse{0%{transform:scale(1);opacity:.65}100%{transform:scale(3.8);opacity:0}}
+.dk-pulse-ring{animation:dk-pulse 2.6s ease-out infinite;transform-box:fill-box;transform-origin:center}
+
+/* D — split */
+.lv-d-inner{max-width:var(--max);margin:0 auto;padding:0 30px;display:grid;grid-template-columns:1fr 1px 1fr;gap:0;align-items:start}
+.lv-d-div{background:var(--c-sage);margin:8px 0}
+.lv-d-col{padding:0 48px}
+.lv-d-col:first-child{padding-left:0}
+.lv-d-col:last-child{padding-right:0}
+.lv-d-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:14px}
+.lv-d-h{font-size:clamp(1.1rem,1.8vw,1.4rem);font-weight:700;color:var(--c-forest);margin-bottom:12px;line-height:1.2}
+.lv-d-body{font-size:.875rem;color:rgba(12,12,12,.60);line-height:1.65;margin-bottom:20px}
+.lv-d-stats{display:flex;gap:28px;margin-bottom:24px}
+.lv-d-stat-n{font-size:2rem;font-weight:700;color:var(--c-forest);line-height:1}
+.lv-d-stat-l{font-size:.7rem;font-weight:500;color:rgba(12,12,12,.45);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+
+/* ═══ SITUATION-SEKTIONER (A, B, C) ═══ */
+.sit-section{padding:64px 30px 72px;border-bottom:1px solid var(--c-sage)}
+.sit-section-inner{max-width:640px;margin:0 auto}
+.sit-label{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c-white);background:var(--c-forest);padding:3px 10px;margin-bottom:28px}
+.sit-section-h{font-size:clamp(1.3rem,2.2vw,1.75rem);font-weight:400;font-style:italic;color:var(--c-forest);margin-bottom:8px;line-height:1.15}
+.sit-section-sub{font-size:.875rem;color:rgba(12,12,12,.55);margin-bottom:28px;line-height:1.6}
+
+/* A — chat-boble */
+.chat-section{background:var(--c-paper);padding:72px 30px 80px;border-bottom:1px solid var(--c-sage)}
+.chat-inner{max-width:500px;margin:0 auto}
+.chat-msg{display:flex;gap:12px;align-items:flex-start;margin-bottom:20px;margin-left:-24px}
+.chat-avatar{width:32px;height:32px;border-radius:50%;background:var(--c-forest);color:#fff;font-size:.55rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.chat-bubble{background:var(--c-sage);padding:14px 18px;border-radius:0 12px 12px 12px;max-width:380px}
+.chat-bubble-q{font-size:1rem;font-style:italic;color:var(--c-forest);font-weight:500;line-height:1.35;margin-bottom:4px}
+.chat-bubble-sub{font-size:.8rem;color:rgba(12,12,12,.55);line-height:1.45}
+.chat-reply{display:flex;justify-content:flex-end;margin-bottom:12px}
+.chat-textarea{width:calc(100% - 44px);font-family:var(--f);font-size:.9375rem;color:var(--c-ink);background:var(--c-white);border:1px solid #dde8de;border-radius:12px 0 12px 12px;padding:14px 16px;resize:none;min-height:100px;line-height:1.65;outline:none;transition:border-color 150ms,box-shadow 150ms;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.chat-textarea:focus{border-color:var(--c-leaf);box-shadow:0 0 0 3px rgba(42,155,71,.18);outline:2px solid var(--c-leaf);outline-offset:0}
+.chat-footer{display:flex;justify-content:flex-end;margin-top:10px}
+.chat-note{font-size:.68rem;color:rgba(12,12,12,.28);line-height:1.45}
+.chat-send{font-family:var(--f);font-size:.8rem;font-weight:700;padding:11px 24px;background:var(--c-terracotta);color:#fff;border:none;border-radius:20px;cursor:pointer;white-space:nowrap}
+.chat-outer{max-width:var(--max);margin:0 auto;padding:0 30px}
+.chat-hd{margin-bottom:32px}
+.chat-hd-title{font-size:clamp(1.25rem,2vw,1.75rem);font-weight:600;color:var(--c-forest);line-height:1.2;margin-bottom:8px;text-wrap:balance}
+.chat-hd-sub{font-size:.875rem;color:rgba(12,12,12,.55);line-height:1.6}
+
+
+/* ═══ SITUATIONER FILTER ═══ */
+.sit-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.sit-filter{font-family:var(--f);font-size:.78rem;font-weight:500;color:var(--c-forest);padding:6px 14px;border:1.5px solid var(--c-sage);background:var(--c-white);border-radius:var(--r);cursor:pointer;transition:border-color 150ms,background 150ms,color 150ms}
+.sit-filter:hover{border-color:var(--c-leaf)}
+.sit-filter--active{background:var(--c-forest);color:var(--c-white);border-color:var(--c-forest)}
+.sit-show-more{display:block;font-family:var(--f);font-size:.875rem;font-weight:600;color:var(--c-forest);background:none;border:2px solid var(--c-forest);border-radius:var(--r);padding:12px 28px;margin:24px auto 0;cursor:pointer;transition:background 150ms,color 150ms}
+.sit-show-more:hover{background:var(--c-forest);color:#fff}
+.tag-all{font-weight:600;color:var(--c-leaf);border-color:transparent}
+
+/* ═══ CARDS ═══ */
+.sit-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sit-card{background:var(--c-white);border:1.5px solid var(--c-sage);border-radius:var(--r);padding:15px 14px 12px;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:5px;transition:border-color 150ms,box-shadow 150ms,transform 150ms}
+.sit-card:hover{border-color:var(--c-leaf);box-shadow:var(--shadow);transform:translateY(-2px)}
+.sit-card:hover .sit-arr{transform:translateX(4px)}
+.sit-q{font-size:.85rem;font-weight:600;color:var(--c-forest);line-height:1.3}
+.sit-cat{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf)}
+.sit-arr{font-size:.8rem;color:var(--c-leaf);margin-top:auto;padding-top:4px;transition:transform 150ms}
+.sit-other{border:1.5px dashed var(--c-sage);border-radius:var(--r);padding:15px 14px 12px;display:flex;align-items:center;justify-content:center;text-align:center;opacity:.7}
+.sit-other a{font-size:.75rem;color:var(--c-leaf);font-weight:600;text-decoration:none}
+
+/* ═══ SITUATIONER ═══ */
+.section{padding:48px 0;border-bottom:1px solid var(--c-sage);background:var(--c-white)}
+.section-inner{max-width:var(--max);margin:0 auto;padding:0 30px}
+.section-hd{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px}
+.section-hd h2{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;color:var(--c-forest)}
+.section-hd a{font-size:.8rem;color:var(--c-leaf);text-decoration:none;font-weight:600}
+
+/* ═══ ARTICLES ═══ */
+.art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.art-card{display:block;background:var(--c-white);border:1px solid var(--c-sage);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:border-color 150ms,transform 150ms}
+.art-card:hover{border-color:var(--c-leaf);transform:translateY(-2px)}
+.art-cat{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:7px}
+.art-title{font-size:.875rem;font-weight:600;color:var(--c-forest);line-height:1.35;margin-bottom:8px}
+.art-body{font-size:.78rem;color:rgba(12,12,12,.60);line-height:1.55}
+
+/* ═══ OFFICES ═══ */
+.offices{background:var(--c-sage);padding:36px 0;border-bottom:1px solid var(--c-sage)}
+.offices-inner{max-width:var(--max);margin:0 auto;padding:0 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.offices-txt h3{font-size:1.05rem;font-weight:700;color:var(--c-forest);margin-bottom:4px}
+.offices-txt p{font-size:.85rem;color:var(--c-pine)}
+.offices-btn{font-family:var(--f);font-size:.8rem;font-weight:700;padding:11px 22px;background:var(--c-forest);color:#fff;border:none;border-radius:var(--r);cursor:pointer}
+
+/* ═══ FOREBYGGELSE ═══ */
+.prev-section{background:var(--c-forest);padding:80px 0 88px}
+.prev-inner{max-width:var(--max);margin:0 auto;padding:0 30px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.prev-img{aspect-ratio:4/3;background:var(--c-forest);position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.prev-img-caption{font-size:.65rem;color:rgba(255,255,255,.35);padding:14px 16px;line-height:1.4;font-style:italic}
+.prev-img-placeholder{position:absolute;inset:0;background:linear-gradient(135deg,rgba(33,75,13,.6) 0%,rgba(33,75,13,.9) 50%,rgba(33,75,13,.6) 100%)}
+.prev-img-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+.prev-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.1) 50%,transparent 100%)}
+.prev-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:20px}
+.prev-h{font-size:clamp(1.4rem,2.5vw,2.1rem);font-weight:600;color:#fff;line-height:1.15;margin-bottom:20px;text-wrap:balance}
+.prev-body{font-size:.9375rem;color:rgba(255,255,255,.72);line-height:1.75;margin-bottom:12px}
+.prev-body strong{color:rgba(255,255,255,.95);font-weight:500}
+.prev-note{font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.55;margin-bottom:32px;font-style:italic}
+.prev-cta{font-family:var(--f);font-size:.875rem;font-weight:700;padding:14px 28px;background:var(--c-terracotta);color:#fff;border:none;border-radius:var(--r);cursor:pointer;text-decoration:none;display:inline-block}
+.prev-cta-wrap{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+
+/* ═══ FOOTER ═══ */
+.footer{background:var(--c-pine);color:rgba(255,255,255,.8);padding:48px 30px 32px}
+.footer-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.footer h4{font-size:.75rem;font-weight:700;color:#fff;margin-bottom:12px;letter-spacing:.04em;text-transform:uppercase}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer li{font-size:.75rem}
+.footer a{color:rgba(255,255,255,.65);text-decoration:none}
+.footer-cta-strip{border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:40px;margin-bottom:40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer-cta-strip h3{font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:4px}
+.footer-cta-strip p{font-size:.85rem;color:rgba(255,255,255,.6);max-width:44ch}
+.footer-cta-strip a{flex-shrink:0;font-family:var(--f);font-size:.875rem;font-weight:700;padding:13px 26px;background:var(--c-terracotta);color:#fff;border-radius:var(--r);text-decoration:none;white-space:nowrap}
+.footer-cta-strip a:hover{background:#b86e6e}
+.footer-copy{max-width:var(--max);margin:28px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.15);font-size:.68rem;color:rgba(255,255,255,.4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero-inner{grid-template-columns:1fr;gap:32px;padding:40px 20px 48px}
+  .hero-right{display:none}
+  .hero-left{padding-left:12px}
+  .local-bar{flex-direction:column;align-items:flex-start;gap:10px}
+  .local-bar-left{flex-wrap:wrap}
+  .local-inner,.lv-inner,.sit-inner,.prev-inner,.art-inner,.offices-inner{padding:0 20px}
+  .lv-inner{grid-template-columns:1fr}
+  .prev-inner{grid-template-columns:1fr;gap:32px}
+  .prev-img{display:none}
+  .art-grid{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:28px}
+  .chat-panel{flex-direction:column}
+  .chat-sidebar,.chat-main{flex:none;width:100%}
+}
+@media(max-width:480px){
+  .art-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .sit-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-i">
+    <a href="#"><img src="assets/logo-green.png" alt="Ret&Råd" style="height:36px;display:block" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span style="display:none;font-size:1.1rem;font-weight:700;color:var(--c-forest);letter-spacing:-.01em">Ret&amp;Råd</span></a>
+    <ul class="nav-links">
+      <li><a href="#">Privatpersoner</a></li>
+      <li><a href="#">Erhverv</a></li>
+      <li><a href="#">Om os</a></li>
+      <li><a href="#">Find kontor</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></button>
+      <button class="nav-cta">Ring til os</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1 class="hero-h1">Det er okay at have brug for hjælp.</h1>
+      <p class="hero-sub">De fleste venter et år for længe med at ringe. Vi er her, når du er klar — med en gratis samtale og ingen forpligtelse.</p>
+      <div class="badge">✓&nbsp; Første samtale: gratis</div>
+      <br>
+      <a href="#" class="cta-primary">Fortæl os din situation →</a>
+    </div>
+    <div class="hero-right qv-b qp-right" id="hero-right">
+      <img class="hero-photo" src="assets/par.jpg" alt="" onerror="this.style.display='none'">
+      <div class="hero-quote-card">
+        <div class="quote-body">
+          <blockquote id="q-text"></blockquote>
+          <cite id="q-cite"></cite>
+        </div>
+        <div class="quote-footer">
+          <div class="quote-dots" id="q-dots"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- LOKAL COPY -->
+<div class="local">
+  <!-- VARIANT A: tekst + kort -->
+  <div class="local-v active" id="lv-a">
+    <div class="lv-a-inner">
+      <div>
+        <p class="lv-a-letter">Tæt på dig — uanset hvor du er.</p>
+        <p class="lv-a-body">Vi har kontorer i hele landet. Din advokat kender dit lokalområde, kender de mennesker du møder, og taler et sprog du forstår. Og bag dit lokale kontor står 150 kolleger med specialviden inden for alle juridiske områder.</p>
+        <div class="local-ctas">
+          <a href="#" class="cta-primary">Find kontoret i <span class="local-token-inv">Frederiksberg</span> →</a>
+          <a href="#" class="cta-secondary">Ring — koster ikke noget at spørge</a>
+        </div>
+      </div>
+      <div>
+        <div class="dk-map-wrap" id="dk-map-wrap"></div>
+        <div class="dk-map-label">47 kontorer · Hele landet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIANT D: split -->
+  <div class="local-v" id="lv-d">
+    <div class="lv-d-inner">
+      <div class="lv-d-col">
+        <div class="lv-d-eyebrow">Tæt på dig</div>
+        <h2 class="lv-d-h">Din advokat bor i <span class="local-token">Frederiksberg</span>.</h2>
+        <p class="lv-d-body">Hun kender byretten, mæglerne og naboerne. Når noget skal ordnes er der ti minutter derhen — og hun taler et sprog du forstår.</p>
+        <div class="local-ctas">
+          <a href="#" class="cta-primary">Find kontoret i <span class="local-token-inv">Frederiksberg</span> →</a>
+        </div>
+      </div>
+      <div class="lv-d-div"></div>
+      <div class="lv-d-col">
+        <div class="lv-d-eyebrow">Forbundet med resten</div>
+        <div class="lv-d-stats">
+          <div><div class="lv-d-stat-n">47</div><div class="lv-d-stat-l">Kontorer</div></div>
+          <div><div class="lv-d-stat-n">150</div><div class="lv-d-stat-l">Medarbejdere</div></div>
+        </div>
+        <p class="lv-d-body">Bag dit lokale kontor står et netværk af specialister inden for alle privat- og erhvervsretlige områder. Du får den bedste rådgivning — uanset hvor kompleks sagen er.</p>
+        <a href="#" class="cta-secondary">Ring — koster ikke noget at spørge</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SITUATION — chat -->
+<div class="chat-section">
+  <div class="chat-outer">
+    <div class="chat-hd">
+      <h2 class="chat-hd-title">Du behøver ikke vide hvad det hedder juridisk</h2>
+      <p class="chat-hd-sub">Skriv situationen med dine egne ord — vi finder ud af resten.</p>
+    </div>
+  </div>
+  <div class="chat-inner">
+    <div class="chat-msg">
+      <div class="chat-avatar">R&amp;R</div>
+      <div class="chat-bubble">
+        <div class="chat-bubble-q">Hvad er der sket?</div>
+        <div class="chat-bubble-sub">Skriv det med dine egne ord — vi finder ud af resten.</div>
+      </div>
+    </div>
+    <div class="chat-reply">
+      <textarea class="chat-textarea" placeholder="Vi er ved at gå fra hinanden, og vi ved ikke hvad der sker med huset..."></textarea>
+    </div>
+    <div class="chat-footer">
+      <button class="chat-send">Start samtalen →</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOREBYGGELSE — Kasper & Amira -->
+<section class="prev-section">
+  <div class="prev-inner">
+    <div class="prev-img">
+      <img class="prev-img-photo" src="https://images.unsplash.com/photo-1531536241097-b5c69a099e79?w=800&q=75&fit=crop&crop=faces,center" alt="To samarbejder på gulvet med laptop">
+      <div class="prev-img-caption">To i trediverne i et halvtomt lokale. Malerbøtter. En flyttekasse. Den ene sidder på gulvet med en bærbar — den anden griner.</div>
+    </div>
+    <div>
+      <div class="prev-eyebrow">Forebyggelse</div>
+      <h2 class="prev-h">De var enige om alt.<br>Derfor skrev de det ned.</h2>
+      <p class="prev-body">Kasper og Amira skulle starte firma sammen. De havde kendt hinanden i ti år og var enige om hver eneste ting.</p>
+      <p class="prev-body"><strong>Det er præcis dét tidspunkt, man laver en ejeraftale.</strong> Ikke fordi man tror, det går galt — men fordi det er nu, man kan blive enige om, hvad der skal ske, hvis en får et barn, en vil ud, eller en bliver syg.</p>
+      <p class="prev-note">Det tog en formiddag hos deres advokat i <span class="local-token" style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.3)">Frederiksberg</span>. Nu ligger det i en skuffe, og de har ikke kigget på det siden.</p>
+      <div class="prev-cta-wrap">
+        <a href="#" class="prev-cta">Skal I starte noget sammen? →</a>
+        <a href="#" class="cta-secondary" style="color:#fff;border-color:rgba(255,255,255,.4)">Bestil et møde om jeres papirer →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SITUATIONER + FILTER -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-hd"><h2>Hvad bringer dig hertil?</h2><a href="#">Se alle situationer →</a></div>
+    <div class="sit-filters" id="sit-filters">
+      <button class="sit-filter sit-filter--active" data-f="all">Alle</button>
+      <button class="sit-filter" data-f="familieret">Skilsmisse</button>
+      <button class="sit-filter" data-f="arv">Arv &amp; skifte</button>
+      <button class="sit-filter" data-f="gaeld">Gæld &amp; økonomi</button>
+      <button class="sit-filter" data-f="bolig">Bolighandel</button>
+      <button class="sit-filter" data-f="ansaet">Ansættelsesret</button>
+      <button class="sit-filter" data-f="leje">Lejeret</button>
+    </div>
+    <div class="sit-grid-3" id="sit-grid">
+      <a href="#" class="sit-card" data-cats="familieret"><div class="sit-q">Vi skal gå fra hinanden.</div><div class="sit-cat">Familieret</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="familieret"><div class="sit-q">Vi er gået fra hinanden — hvad sker der med børnene?</div><div class="sit-cat">Forældremyndighed</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="familieret"><div class="sit-q">Vi er ikke enige om samvær og bopæl.</div><div class="sit-cat">Forældremyndighed</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="arv"><div class="sit-q">Min far er død, og der er et hus.</div><div class="sit-cat">Arv &amp; skifte</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="arv"><div class="sit-q">Jeg skal have lavet et testamente.</div><div class="sit-cat">Testamente</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="arv"><div class="sit-q">Min søster og jeg er uenige om arven.</div><div class="sit-cat">Arv &amp; skifte</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="gaeld"><div class="sit-q">Jeg kan ikke se en vej ud af gælden.</div><div class="sit-cat">Gæld &amp; økonomi</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="gaeld"><div class="sit-q">Jeg er ved at miste mit hjem på grund af restancer.</div><div class="sit-cat">Gæld &amp; økonomi</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="gaeld"><div class="sit-q">Min ex har efterladt gæld i vores fælles navn.</div><div class="sit-cat">Gæld &amp; økonomi</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="bolig"><div class="sit-q">Vi køber hus — men vi lægger ikke lige meget.</div><div class="sit-cat">Bolighandel</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="bolig"><div class="sit-q">Sælger har fortiet fejl ved huset.</div><div class="sit-cat">Bolighandel</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="bolig"><div class="sit-q">Vi er faldet ud af et boligkøb — hvad nu?</div><div class="sit-cat">Bolighandel</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="ansaet"><div class="sit-q">Jeg er uretfærdigt fyret.</div><div class="sit-cat">Ansættelsesret</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="ansaet"><div class="sit-q">Min arbejdsgiver betaler mig ikke det aftalte.</div><div class="sit-cat">Ansættelsesret</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="ansaet"><div class="sit-q">Jeg er sygemeldt og bange for at miste jobbet.</div><div class="sit-cat">Ansættelsesret</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="leje"><div class="sit-q">Min udlejer nægter at lave noget om.</div><div class="sit-cat">Lejeret</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="leje"><div class="sit-q">Jeg er smidt ud uden varsel.</div><div class="sit-cat">Lejeret</div><div class="sit-arr">→</div></a>
+      <a href="#" class="sit-card" data-cats="leje"><div class="sit-q">Udlejeren vil ikke betale mit depositum tilbage.</div><div class="sit-cat">Lejeret</div><div class="sit-arr">→</div></a>
+      <div class="sit-other"><a href="#">Noget andet? Se alle situationer →</a></div>
+    </div>
+    <button class="sit-show-more" id="sit-show-more">Se alle situationer →</button>
+  </div>
+</section>
+
+<!-- ARTIKLER -->
+<section class="section" style="background:var(--c-paper)">
+  <div class="section-inner">
+    <div class="section-hd"><h2>Seneste fra Ret &amp; Råd</h2><a href="#">Se alle artikler →</a></div>
+    <div class="art-grid">
+      <a href="#" class="art-card"><div class="art-cat">Skilsmisse</div><div class="art-title">Hvad sker der med huset, når I går fra hinanden?</div><div class="art-body">De fleste ved ikke, at de har tre muligheder — og at to af dem ikke kræver en retssag.</div></a>
+      <a href="#" class="art-card"><div class="art-cat">Arv</div><div class="art-title">Fem ting du skal gøre inden for seks uger efter et dødsfald</div><div class="art-body">Det føles tidligt, men frister gælder uanset hvad. Her er hvad der haster.</div></a>
+      <a href="#" class="art-card"><div class="art-cat">Gæld</div><div class="art-title">Hvornår er gældssanering en mulighed?</div><div class="art-body">Mange tror, de ikke kvalificerer sig. Sandheden er mere nuanceret end de fleste tror.</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- OFFICES -->
+<div class="offices">
+  <div class="offices-inner">
+    <div class="offices-txt">
+      <h3>Vi er tæt på dig — 47 kontorer i hele landet</h3>
+      <p>Find din lokale Ret &amp; Råd-advokat og book en gratis første samtale.</p>
+    </div>
+    <button class="offices-btn">Find dit nærmeste kontor →</button>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div style="max-width:var(--max);margin:0 auto">
+    <div class="footer-cta-strip">
+      <div>
+        <h3>Tag det første skridt — det er gratis</h3>
+        <p>Første samtale koster ingenting. Fortæl os din situation, og vi finder den rette advokat til dig i Frederiksberg.</p>
+      </div>
+      <a href="#">Book gratis samtale →</a>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div><h4>Ret &amp; Råd</h4><ul><li><a href="#">Om Ret &amp; Råd</a></li><li><a href="#">Find kontor</a></li><li><a href="#">Ledige stillinger</a></li></ul></div>
+    <div><h4>Privatpersoner</h4><ul><li><a href="#">Skilsmisse &amp; separation</a></li><li><a href="#">Arv &amp; testamente</a></li><li><a href="#">Gæld &amp; økonomi</a></li><li><a href="#">Bolighandel</a></li></ul></div>
+    <div><h4>Erhverv</h4><ul><li><a href="#">Selskabsret</a></li><li><a href="#">Kontrakter</a></li><li><a href="#">Ansættelsesret</a></li></ul></div>
+    <div><h4>Kontakt</h4><ul><li><a href="#">Gratis første samtale</a></li><li><a href="#">Alle kontorer</a></li></ul></div>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Ret &amp; Råd Advokater A/S</span>
+    <span>iO Agency · Demo</span>
+  </div>
+</footer>
+
+<script>
+var quotes = [
+  { text: '»Jeg vidste ikke, hvor jeg skulle starte. Én samtale gav mig overblik og ro til at handle.«', cite: 'Maria, 41 år · Skilsmisse' },
+  { text: '»Vi troede, det ville tage år. Det tog tre måneder — og vi forstå hvert eneste skridt.«', cite: 'Thomas, 54 år · Arv og skifte' },
+  { text: '»Det føltes helt umuligt. De talte til mig som et menneske, ikke som en juridisk sag.«', cite: 'Lene, 38 år · Gæld og økonomi' },
+  { text: '»Jeg tøvede i to år med at ringe. Den første samtale kostede ingenting — og ændrede alt.«', cite: 'Søren, 47 år · Ansættelsesret' }
+];
+
+var current = 0;
+var body = document.getElementById('q-text');
+var cite = document.getElementById('q-cite');
+var dotsEl = document.getElementById('q-dots');
+var wrapper = document.querySelector('.quote-body');
+var timer;
+
+quotes.forEach(function(_, i) {
+  var d = document.createElement('button');
+  d.className = 'quote-dot' + (i === 0 ? ' active' : '');
+  d.setAttribute('aria-label', 'Citat ' + (i+1));
+  d.addEventListener('click', function() { goTo(i); resetTimer(); });
+  dotsEl.appendChild(d);
+});
+
+function render(i) {
+  body.innerHTML = quotes[i].text;
+  cite.textContent = quotes[i].cite;
+  document.querySelectorAll('.quote-dot').forEach(function(d, j) {
+    d.classList.toggle('active', j === i);
+  });
+}
+
+function goTo(i) {
+  wrapper.classList.add('fade');
+  setTimeout(function() {
+    current = i;
+    render(current);
+    wrapper.classList.remove('fade');
+  }, 400);
+}
+
+function next() { goTo((current + 1) % quotes.length); }
+
+function resetTimer() { clearInterval(timer); timer = setInterval(next, 5000); }
+
+render(0);
+resetTimer();
+
+function setQV(v, btn) {
+  var hr = document.getElementById('hero-right');
+  hr.className = hr.className.replace(/qv-\w+/, 'qv-' + v);
+  document.querySelectorAll('.q-sw-btn').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+}
+function setQP(p, btn) {
+  var hr = document.getElementById('hero-right');
+  hr.className = hr.className.replace(/qp-\w+/, 'qp-' + p);
+  document.querySelectorAll('.q-pos-btn').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+}
+
+/* ── Denmark map via D3 + world-atlas ── */
+(function() {
+  var BY_LON = 12.52, BY_LAT = 55.68; // Frederiksberg, København
+
+  var offices = [
+    { lon: 9.92,  lat: 57.05 }, // Aalborg
+    { lon: 9.97,  lat: 57.47 }, // Hjørring
+    { lon: 10.54, lat: 57.44 }, // Frederikshavn
+    { lon: 9.97,  lat: 57.27 }, // Brønderslev
+    { lon: 8.69,  lat: 56.96 }, // Thisted
+    { lon: 8.86,  lat: 56.79 }, // Nykøbing M
+    { lon: 9.02,  lat: 56.56 }, // Skive
+    { lon: 8.31,  lat: 56.55 }, // Lemvig
+    { lon: 9.40,  lat: 56.45 }, // Viborg
+    { lon: 8.61,  lat: 56.49 }, // Struer
+    { lon: 10.04, lat: 56.46 }, // Randers
+    { lon: 10.88, lat: 56.41 }, // Grenaa
+    { lon: 8.62,  lat: 56.36 }, // Holstebro
+    { lon: 9.55,  lat: 56.17 }, // Silkeborg
+    { lon: 8.97,  lat: 56.14 }, // Herning
+    { lon: 9.16,  lat: 56.14 }, // Ikast
+    { lon: 8.24,  lat: 56.09 }, // Ringkøbing
+    { lon: 12.61, lat: 56.04 }, // Helsingør
+    { lon: 9.94,  lat: 56.04 }, // Skanderborg
+    { lon: 9.85,  lat: 55.86 }, // Horsens
+    { lon: 12.30, lat: 55.93 }, // Hillerød
+    { lon: 12.07, lat: 55.84 }, // Frederikssund
+    { lon: 9.53,  lat: 55.71 }, // Vejle
+    { lon: 11.72, lat: 55.72 }, // Holbæk
+    { lon: 9.75,  lat: 55.57 }, // Fredericia
+    { lon: 9.47,  lat: 55.49 }, // Kolding
+    { lon: 10.79, lat: 55.31 }, // Nyborg
+    { lon: 8.46,  lat: 55.47 }, // Esbjerg
+    { lon: 10.39, lat: 55.40 }, // Odense
+    { lon: 11.35, lat: 55.40 }, // Slagelse
+    { lon: 12.18, lat: 55.46 }, // Køge
+    { lon: 10.66, lat: 55.45 }, // Kerteminde
+    { lon: 9.90,  lat: 55.27 }, // Assens
+    { lon: 9.49,  lat: 55.25 }, // Haderslev
+    { lon: 11.09, lat: 55.68 }, // Kalundborg
+    { lon: 12.07, lat: 55.64 }, // Roskilde
+    { lon: 12.57, lat: 55.68 }, // København
+    { lon: 10.24, lat: 55.10 }, // Faaborg
+    { lon: 9.73,  lat: 55.50 }, // Middelfart
+    { lon: 10.61, lat: 55.06 }, // Svendborg
+    { lon: 9.42,  lat: 55.04 }, // Aabenraa
+    { lon: 11.77, lat: 55.23 }, // Næstved
+    { lon: 11.79, lat: 55.45 }, // Ringsted
+    { lon: 9.79,  lat: 54.91 }, // Sønderborg
+    { lon: 11.87, lat: 54.77 }, // Nykøbing F
+    { lon: 11.91, lat: 55.01 }, // Vordingborg
+    { lon: 12.07, lat: 55.64 }, // Roskilde (dup — brug Greve i stedet)
+  ];
+  // fjern dup
+  offices = offices.filter(function(o, i, a) {
+    return a.findIndex(function(x){ return x.lon===o.lon && x.lat===o.lat; }) === i;
+  });
+
+  var wrap = document.getElementById('dk-map-wrap');
+  if (!wrap) return;
+
+  var W = 360, H = 340;
+  var svg = d3.select('#dk-map-wrap').append('svg')
+    .attr('viewBox', '0 0 ' + W + ' ' + H)
+    .attr('width', '100%');
+
+  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(function(world) {
+    var countries = topojson.feature(world, world.objects.countries);
+    var denmark = countries.features.find(function(f) { return +f.id === 208; });
+    if (!denmark) return;
+
+    // Fjern Bornholm (polygon med koordinater øst for 13.5°E)
+    if (denmark.geometry.type === 'MultiPolygon') {
+      denmark = Object.assign({}, denmark, {
+        geometry: Object.assign({}, denmark.geometry, {
+          coordinates: denmark.geometry.coordinates.filter(function(poly) {
+            return !poly[0].some(function(c) { return c[0] > 13.5; });
+          })
+        })
+      });
+    }
+
+    var proj = d3.geoMercator().fitExtent([[12, 12], [W - 52, H - 12]], denmark);
+    var path = d3.geoPath().projection(proj);
+
+    svg.append('path')
+      .datum(denmark)
+      .attr('d', path)
+      .attr('fill', '#d7e6d8')
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 1.5)
+      .attr('stroke-linejoin', 'round');
+
+    offices.forEach(function(o) {
+      var p = proj([o.lon, o.lat]);
+      svg.append('circle')
+        .attr('cx', p[0]).attr('cy', p[1]).attr('r', 3.5)
+        .attr('fill', '#1b642e').attr('opacity', 0.45);
+    });
+
+    var byPos = proj([BY_LON, BY_LAT]);
+    var byG = svg.append('g')
+      .attr('transform', 'translate(' + byPos[0] + ',' + byPos[1] + ')');
+
+    byG.append('circle')   // puls-ring
+      .attr('r', 7)
+      .attr('fill', 'none')
+      .attr('stroke', '#cc8080')
+      .attr('stroke-width', 2)
+      .classed('dk-pulse-ring', true);
+
+    byG.append('circle')   // fyldt dot
+      .attr('r', 7)
+      .attr('fill', '#cc8080');
+
+    byG.append('text')
+      .attr('x', 11).attr('y', 4)
+      .attr('font-size', '10').attr('font-weight', '700')
+      .attr('font-family', 'Barlow,sans-serif').attr('fill', '#cc8080')
+      .text('Frederiksberg');
+  }).catch(function() {
+    wrap.innerHTML = '<p style="font-size:.75rem;color:rgba(12,12,12,.40);text-align:center;padding:40px 0">Kort ikke tilgængeligt offline</p>';
+  });
+})();
+
+function setVar(v, btn) {
+  document.querySelectorAll('.local-v').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById('lv-' + v).classList.add('active');
+  document.querySelectorAll('.var-btn').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+}
+
+// Situationskort filter + "Alle"-begrænsning
+(function() {
+  var SHOW_ALL_LIMIT = 6;
+  var filters = document.querySelectorAll('.sit-filter');
+  var cards = Array.from(document.querySelectorAll('#sit-grid .sit-card[data-cats]'));
+  var showMoreBtn = document.getElementById('sit-show-more');
+
+  function applyFilter(f) {
+    var visible = 0;
+    cards.forEach(function(card) {
+      var match = f === 'all' || card.dataset.cats === f;
+      var withinLimit = f !== 'all' || visible < SHOW_ALL_LIMIT;
+      if (match && withinLimit) {
+        card.style.display = '';
+        visible++;
+      } else if (match) {
+        card.style.display = 'none'; // hidden beyond limit in "alle"
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    showMoreBtn.style.display = f === 'all' ? '' : 'none';
+  }
+
+  filters.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filters.forEach(function(b) { b.classList.remove('sit-filter--active'); });
+      btn.classList.add('sit-filter--active');
+      applyFilter(btn.dataset.f);
+    });
+  });
+
+  showMoreBtn.addEventListener('click', function() {
+    cards.forEach(function(card) { card.style.display = ''; });
+    showMoreBtn.style.display = 'none';
+  });
+
+  applyFilter('all');
+})();
+</script>
+</body>
+</html>
