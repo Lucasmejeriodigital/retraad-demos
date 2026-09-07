@@ -150,7 +150,7 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 .chat-bubble-q{font-size:1rem;font-style:italic;color:var(--c-forest);font-weight:500;line-height:1.35;margin-bottom:4px}
 .chat-bubble-sub{font-size:.8rem;color:rgba(12,12,12,.55);line-height:1.45}
 .chat-reply{display:flex;justify-content:flex-end;margin-bottom:12px;position:relative}
-.chat-ph{position:absolute;top:14px;left:16px;right:16px;font-family:var(--f);font-size:.9375rem;line-height:1.65;color:rgba(12,12,12,.38);pointer-events:none}
+.chat-ph{position:absolute;top:14px;left:16px;right:calc(44px + 16px);font-family:var(--f);font-size:.9375rem;line-height:1.65;color:rgba(12,12,12,.38);pointer-events:none;word-break:break-word}
 .chat-ph::after{content:'|';opacity:1;animation:blink 600ms step-end infinite;color:var(--c-leaf)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .chat-textarea{width:calc(100% - 44px);font-family:var(--f);font-size:.9375rem;color:var(--c-ink);background:var(--c-white);border:1px solid #dde8de;border-radius:12px 0 12px 12px;padding:14px 16px;resize:none;min-height:100px;line-height:1.65;outline:none;transition:border-color 150ms,box-shadow 150ms;box-shadow:0 1px 4px rgba(0,0,0,.06)}
@@ -318,7 +318,7 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
         <p class="lv-a-letter">Din egen lokale advokat — år efter år</p>
         <p class="lv-a-body">Du får én fast advokat, der kender din historie og dit lokalområde. Så du ved, hvor du skal henvende dig, når problemer skal afværges og aftaler på plads. Og bag dit lokale kontor står 150 kolleger med specialviden inden for alle juridiske områder.</p>
         <div class="local-ctas">
-          <a href="https://www.ret-raad.dk/find-kontor" target="_blank" class="cta-primary">Find kontoret i <span class="local-token-inv">Frederiksberg</span> →</a>
+          <a href="https://www.ret-raad.dk/find-kontor" target="_blank" class="cta-primary">Find kontoret i Frederiksberg →</a>
           <a href="tel:+4570201215" class="cta-secondary">Ring — koster ikke noget at spørge</a>
         </div>
       </div>
@@ -334,10 +334,10 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
     <div class="lv-d-inner">
       <div class="lv-d-col">
         <div class="lv-d-eyebrow">Tæt på dig</div>
-        <h2 class="lv-d-h">Din advokat bor i <span class="local-token">Frederiksberg</span>.</h2>
+        <h2 class="lv-d-h">Din advokat bor i Frederiksberg.</h2>
         <p class="lv-d-body">Hun kender byretten, mæglerne og naboerne. Når noget skal ordnes er der ti minutter derhen — og hun taler et sprog du forstår.</p>
         <div class="local-ctas">
-          <a href="https://www.ret-raad.dk/find-kontor" target="_blank" class="cta-primary">Find kontoret i <span class="local-token-inv">Frederiksberg</span> →</a>
+          <a href="https://www.ret-raad.dk/find-kontor" target="_blank" class="cta-primary">Find kontoret i Frederiksberg →</a>
         </div>
       </div>
       <div class="lv-d-div"></div>
