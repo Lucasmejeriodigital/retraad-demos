@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gældssanering · Ret&Råd</title>
@@ -10,7 +13,7 @@
   --c-sage:#d7e6d8;--c-terracotta:#cc8080;
   --c-ink:#0c0c0c;--c-paper:#f9f9f9;--c-white:#ffffff;--c-gray:#d3d3d3;
   --bg:var(--c-white);--bg-surface:var(--c-paper);--bg-tint:var(--c-sage);
-  --text:var(--c-ink);--text-muted:#4a4a4a;--text-on-dark:var(--c-white);
+  --text:var(--c-ink);--text-muted:rgba(12,12,12,.55);--text-on-dark:var(--c-white);
   --border:var(--c-sage);--border-dark:var(--c-gray);
   --f-body:'Barlow',sans-serif;
   --size-xs:.75rem;--size-sm:.9375rem;--size-md:1rem;--size-lg:1.25rem;
@@ -63,7 +66,7 @@ a:hover{text-decoration:underline;}
 /* Hero */
 .hero{background:linear-gradient(to right,rgba(0,15,5,.85) 0%,rgba(0,15,5,.7) 42%,rgba(0,10,3,.15) 68%,transparent 100%),url('https://images.unsplash.com/photo-1461468611824-46457c0e11fd?w=1400&q=80&fit=crop') center 55%/cover no-repeat;padding:var(--sp-6) var(--sp-3);}
 .hero-inner{max-width:var(--max-w);margin:0 auto;}
-.hero-visual{margin-top:var(--sp-3);padding-left:0;}
+.hero-visual{margin-top:var(--sp-3);padding-left:0;display:flex;justify-content:center;align-items:center;}
 .hero-eyebrow{font-size:var(--size-xs);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.9);margin-bottom:var(--sp-2);text-shadow:0 1px 8px rgba(0,0,0,.7);}
 .hero h1{font-size:clamp(1.875rem,1.35rem + 2.1vw,3.875rem);font-weight:600;line-height:1;color:var(--c-white);margin-bottom:var(--sp-2);text-wrap:balance;letter-spacing:-0.02em;text-shadow:0 2px 24px rgba(0,0,0,.7),0 1px 6px rgba(0,0,0,.6);}
 .hero-lead{font-size:var(--size-md);color:#fff;line-height:1.6;margin-bottom:var(--sp-3);max-width:48ch;text-shadow:0 1px 12px rgba(0,0,0,.65);}
@@ -71,10 +74,10 @@ a:hover{text-decoration:underline;}
 .hero-stat-num{font-size:var(--size-2xl);font-weight:700;color:var(--c-white);line-height:1;display:block;}
 .hero-stat-label{font-size:var(--size-sm);color:rgba(255,255,255,.65);display:block;margin-top:3px;font-weight:300;letter-spacing:.03em;}
 .hero-stats-row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-top:var(--sp-1);}
-.hero-stat-item{display:flex;flex-direction:row;align-items:baseline;gap:10px;padding:0 var(--sp-3) 0 0;}
+.hero-stat-item{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:0 var(--sp-3) 0 0;}
 .hero-stat-item+.hero-stat-item{padding-left:var(--sp-3);border-left:1px solid rgba(255,255,255,.2);}
 .hero-stat-val{font-size:clamp(2rem,3vw,3rem);font-weight:700;color:var(--c-white);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;text-shadow:0 1px 10px rgba(0,0,0,.6);flex-shrink:0;}
-.hero-stat-lbl{font-size:clamp(.95rem,1.2vw,1.2rem);color:rgba(255,255,255,.75);font-weight:400;text-shadow:0 1px 6px rgba(0,0,0,.5);line-height:1.3;}
+.hero-stat-lbl{font-size:var(--size-sm);color:rgba(255,255,255,.7);font-weight:400;text-shadow:0 1px 6px rgba(0,0,0,.5);line-height:1.35;max-width:28ch;}
 /* keep old names non-breaking */
 .hero-big-stat{display:none;}
 .hero-big-num,.hero-big-note,.hero-big-sep,.hero-big-sub{display:none;}
@@ -86,7 +89,7 @@ a:hover{text-decoration:underline;}
 .btn-primary:hover{background:var(--c-pine);border-color:var(--c-pine);text-decoration:none;color:var(--c-white);}
 .btn-secondary{background:transparent;color:var(--c-forest);border-color:var(--c-forest);}
 .btn-secondary:hover{background:var(--bg-tint);text-decoration:none;color:var(--c-forest);}
-.hero-visual{display:flex;justify-content:center;align-items:center;}
+
 .hero-stat-block{padding:var(--sp-3);border-left:3px solid var(--c-leaf);}
 .hero-stat-block+.hero-stat-block{margin-top:var(--sp-3);border-top:1px solid rgba(255,255,255,.12);padding-top:var(--sp-3);}
 
@@ -106,7 +109,7 @@ a:hover{text-decoration:underline;}
 .personalized-grid{display:grid;grid-template-columns:1fr;gap:var(--sp-3);}
 .personalized-grid.expanded{grid-template-columns:1fr minmax(300px,380px);align-items:start;}
 .lawyer-wrap{display:flex;align-items:center;gap:var(--sp-4);}
-.lawyer-photo-wrap{flex-shrink:0;width:280px;height:280px;border-radius:50%;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.2);background:#e8e1d6;}
+.lawyer-photo-wrap{flex-shrink:0;width:280px;height:280px;border-radius:50%;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.2);background:rgba(12,12,12,.08);}
 .lawyer-photo{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;}
 .lawyer-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-card);flex:1;}
 .lawyer-body{padding:var(--sp-3) var(--sp-4) var(--sp-4);display:flex;flex-direction:column;gap:var(--sp-2);}
@@ -115,7 +118,7 @@ a:hover{text-decoration:underline;}
 :root[data-theme="dark"] .lawyer-name{color:var(--c-leaf);}
 .lawyer-title{font-size:var(--size-xs);color:var(--text-muted);margin-bottom:4px;}
 .lawyer-rating{display:flex;align-items:center;gap:6px;font-size:var(--size-xs);color:var(--text-muted);}
-.stars{color:#c9950f;letter-spacing:1px;}
+.stars{color:var(--c-leaf);letter-spacing:1px;}
 .lawyer-bio{font-size:var(--size-xs);color:var(--text-muted);line-height:1.6;}
 .lawyer-quote{font-size:1.22rem;color:var(--text);line-height:1.6;font-style:normal;border:none;padding:0;margin:0;font-weight:400;}
 .lawyer-attribution{display:flex;flex-direction:column;gap:2px;margin-top:4px;}
@@ -202,6 +205,10 @@ a:hover{text-decoration:underline;}
 .anchor-nav-link.anchor-nav-cta{margin-left:auto;color:var(--c-leaf);font-weight:700;padding-left:20px;flex-shrink:0;}
 .anchor-nav-link.anchor-nav-cta:hover,.anchor-nav-link.anchor-nav-cta.active{color:var(--c-forest);border-bottom-color:var(--c-forest);}
 @media(max-width:700px){.anchor-nav-tagline{display:none;}}
+@media(max-width:600px){
+  .anchor-nav{overflow:hidden;}
+  .anchor-nav::after{content:'';position:absolute;top:0;right:0;width:48px;height:100%;background:linear-gradient(to right,transparent,var(--bg));pointer-events:none;z-index:1;}
+}
 .content-section{padding:var(--sp-6) var(--sp-3);}
 .content-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr;gap:var(--sp-6);}
 .content-main h2{font-size:clamp(1.25rem,1rem + .99vw,2.1875rem);font-weight:600;color:var(--text);margin-bottom:var(--sp-2);text-wrap:balance;line-height:1.2;}
@@ -255,7 +262,7 @@ a:hover{text-decoration:underline;}
 .social-score-label{font-size:var(--size-xs);color:var(--text-muted);margin-top:3px;}
 .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);}
 .review-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-2);}
-.review-stars{color:#c9950f;font-size:var(--size-sm);margin-bottom:var(--sp-1);}
+.review-stars{color:var(--c-leaf);font-size:var(--size-sm);margin-bottom:var(--sp-1);}
 .review-text{font-size:var(--size-sm);color:var(--text);line-height:1.6;margin-bottom:var(--sp-1);font-style:italic;position:relative;padding-top:28px;}
 .review-text::before{content:'\201C';font-size:3.5rem;font-weight:700;font-style:normal;color:var(--c-leaf);opacity:.35;line-height:1;position:absolute;top:-6px;left:0;}
 .review-author{font-size:var(--size-xs);font-weight:600;color:var(--text-muted);}
@@ -407,6 +414,8 @@ a:hover{text-decoration:underline;}
 .wa[data-d="5"].in{animation-delay:.40s;}
 .wa[data-d="6"].in{animation-delay:.48s;}
 </style>
+</head>
+<body>
 
 
 <nav class="nav" aria-label="Primær navigation">
@@ -459,6 +468,8 @@ a:hover{text-decoration:underline;}
     </div>
   </div>
 </nav>
+
+<main>
 
 <section class="personalized" id="booking">
   <div class="personalized-inner">
@@ -739,7 +750,7 @@ a:hover{text-decoration:underline;}
     <div class="social-header wa">
       <h2>Hvad siger vores klienter?</h2>
       <div class="social-score">
-        <div class="social-score-num">4,8 <span style="font-size:1.2rem;color:#c9950f">★</span></div>
+        <div class="social-score-num">4,8 <span style="font-size:1.2rem;color:var(--c-leaf)">★</span></div>
         <div class="social-score-label">Baseret på 340 anmeldelser</div>
       </div>
     </div>
@@ -844,6 +855,8 @@ a:hover{text-decoration:underline;}
     </div>
   </div>
 </section>
+
+</main>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -1295,3 +1308,5 @@ function selectOffice(o){
   }
 }
 </script>
+</body>
+</html>
