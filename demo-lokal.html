@@ -225,6 +225,18 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 .footer-cta-strip a:hover{background:#b86e6e}
 .footer-copy{max-width:var(--max);margin:28px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.15);font-size:.68rem;color:rgba(255,255,255,.4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
+/* ═══ MATCH CARD ═══ */
+.match-card{background:var(--c-white);border:1.5px solid var(--c-leaf);border-radius:var(--r);padding:24px 24px 20px;margin-top:4px}
+.match-label{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:16px}
+.match-body{display:flex;gap:20px;align-items:flex-start;margin-bottom:16px}
+.match-photo{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;background:var(--c-sage)}
+.match-info{flex:1;min-width:0}
+.match-name{font-size:1rem;font-weight:700;color:var(--c-forest);margin-bottom:2px}
+.match-specialty{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:10px}
+.match-quote{font-size:.82rem;font-style:italic;color:rgba(12,12,12,.65);line-height:1.6;margin-bottom:0}
+.match-next{font-size:.8rem;color:rgba(12,12,12,.55);line-height:1.5;margin-bottom:16px;padding-left:12px;border-left:2px solid var(--c-sage)}
+.match-cta{display:inline-block;font-family:var(--f);font-size:.8rem;font-weight:700;padding:11px 22px;background:var(--c-terracotta);color:#fff;border:none;border-radius:var(--r);cursor:pointer;text-decoration:none}
+
 @media(max-width:768px){
   .nav-links{display:none}
   .hero-inner{grid-template-columns:1fr;gap:32px;padding:40px 20px 48px}
@@ -253,16 +265,16 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-i">
-    <a href="#"><img src="assets/logo-green.png" alt="Ret&Råd" style="height:36px;display:block" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span style="display:none;font-size:1.1rem;font-weight:700;color:var(--c-forest);letter-spacing:-.01em">Ret&amp;Råd</span></a>
+    <a href="https://www.ret-raad.dk" target="_blank"><img src="assets/logo-green.png" alt="Ret&Råd" style="height:36px;display:block" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span style="display:none;font-size:1.1rem;font-weight:700;color:var(--c-forest);letter-spacing:-.01em">Ret&amp;Råd</span></a>
     <ul class="nav-links">
-      <li><a href="#">Privatpersoner</a></li>
-      <li><a href="#">Erhverv</a></li>
-      <li><a href="#">Om os</a></li>
-      <li><a href="#">Find kontor</a></li>
+      <li><a href="https://www.ret-raad.dk/specialer/" target="_blank">Privatpersoner</a></li>
+      <li><a href="https://www.ret-raad.dk/specialer/virksomhedsraadgivning/" target="_blank">Erhverv</a></li>
+      <li><a href="https://www.ret-raad.dk/om-retraad/" target="_blank">Om os</a></li>
+      <li><a href="https://www.ret-raad.dk/find-kontor" target="_blank">Find kontor</a></li>
     </ul>
     <div class="nav-right">
       <button class="nav-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></button>
-      <button class="nav-cta">Ring til os</button>
+      <a href="tel:+4570201215" class="nav-cta" style="text-decoration:none">Ring til os</a>
     </div>
   </div>
 </nav>
@@ -277,7 +289,7 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
       <p class="hero-sub">De fleste venter et år for længe med at ringe. Vi er her, når du er klar — med en gratis samtale og ingen forpligtelse.</p>
       <div class="badge">✓&nbsp; Første samtale: gratis</div>
       <br>
-      <a href="#" class="cta-primary">Fortæl os din situation →</a>
+      <a href="#chat" class="cta-primary" onclick="document.querySelector('.chat-section').scrollIntoView({behavior:'smooth'});return false;">Fortæl os din situation →</a>
     </div>
     <div class="hero-right qv-b qp-right" id="hero-right">
       <img class="hero-photo" src="assets/par.jpg" alt="" onerror="this.style.display='none'">
@@ -304,13 +316,13 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
         <p class="lv-a-letter">Tæt på dig — uanset hvor du er.</p>
         <p class="lv-a-body">Vi har kontorer i hele landet. Din advokat kender dit lokalområde, kender de mennesker du møder, og taler et sprog du forstår. Og bag dit lokale kontor står 150 kolleger med specialviden inden for alle juridiske områder.</p>
         <div class="local-ctas">
-          <a href="#" class="cta-primary">Find kontoret i <span class="local-token-inv">Frederiksberg</span> →</a>
-          <a href="#" class="cta-secondary">Ring — koster ikke noget at spørge</a>
+          <a href="https://www.ret-raad.dk/find-kontor" target="_blank" class="cta-primary">Find kontoret i <span class="local-token-inv">Frederiksberg</span> →</a>
+          <a href="tel:+4570201215" class="cta-secondary">Ring — koster ikke noget at spørge</a>
         </div>
       </div>
       <div>
         <div class="dk-map-wrap" id="dk-map-wrap"></div>
-        <div class="dk-map-label">47 kontorer · Hele landet</div>
+        <div class="dk-map-label">28 kontorer · Hele landet</div>
       </div>
     </div>
   </div>
@@ -323,7 +335,7 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
         <h2 class="lv-d-h">Din advokat bor i <span class="local-token">Frederiksberg</span>.</h2>
         <p class="lv-d-body">Hun kender byretten, mæglerne og naboerne. Når noget skal ordnes er der ti minutter derhen — og hun taler et sprog du forstår.</p>
         <div class="local-ctas">
-          <a href="#" class="cta-primary">Find kontoret i <span class="local-token-inv">Frederiksberg</span> →</a>
+          <a href="https://www.ret-raad.dk/find-kontor" target="_blank" class="cta-primary">Find kontoret i <span class="local-token-inv">Frederiksberg</span> →</a>
         </div>
       </div>
       <div class="lv-d-div"></div>
@@ -353,15 +365,15 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
       <div class="chat-avatar">R&amp;R</div>
       <div class="chat-bubble">
         <div class="chat-bubble-q">Hvad er der sket?</div>
-        <div class="chat-bubble-sub">Skriv det med dine egne ord — vi finder ud af resten.</div>
       </div>
     </div>
     <div class="chat-reply">
-      <textarea class="chat-textarea" placeholder="Vi er ved at gå fra hinanden, og vi ved ikke hvad der sker med huset..."></textarea>
+      <textarea class="chat-textarea" id="chat-input" placeholder="Vi er ved at gå fra hinanden, og vi ved ikke hvad der sker med huset..."></textarea>
     </div>
     <div class="chat-footer">
-      <button class="chat-send">Start samtalen →</button>
+      <button class="chat-send" id="chat-send-btn">Start samtalen →</button>
     </div>
+    <div id="chat-response" style="display:none;margin-top:16px"></div>
   </div>
 </div>
 
@@ -379,8 +391,8 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
       <p class="prev-body"><strong>Det er præcis dét tidspunkt, man laver en ejeraftale.</strong> Ikke fordi man tror, det går galt — men fordi det er nu, man kan blive enige om, hvad der skal ske, hvis en får et barn, en vil ud, eller en bliver syg.</p>
       <p class="prev-note">Det tog en formiddag hos deres advokat i <span class="local-token" style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.3)">Frederiksberg</span>. Nu ligger det i en skuffe, og de har ikke kigget på det siden.</p>
       <div class="prev-cta-wrap">
-        <a href="#" class="prev-cta">Skal I starte noget sammen? →</a>
-        <a href="#" class="cta-secondary" style="color:#fff;border-color:rgba(255,255,255,.4)">Bestil et møde om jeres papirer →</a>
+        <a href="https://www.ret-raad.dk/specialer/virksomhedsraadgivning/" target="_blank" class="prev-cta">Skal I starte noget sammen? →</a>
+        <a href="https://www.ret-raad.dk/find-kontor" target="_blank" class="cta-secondary" style="color:#fff;border-color:rgba(255,255,255,.4)">Bestil et møde om jeres papirer →</a>
       </div>
     </div>
   </div>
@@ -389,7 +401,7 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 <!-- SITUATIONER + FILTER -->
 <section class="section">
   <div class="section-inner">
-    <div class="section-hd"><h2>Hvad bringer dig hertil?</h2><a href="#">Se alle situationer →</a></div>
+    <div class="section-hd"><h2>Hvad bringer dig hertil?</h2><a href="https://www.ret-raad.dk/specialer/" target="_blank">Se alle situationer →</a></div>
     <div class="sit-filters" id="sit-filters">
       <button class="sit-filter sit-filter--active" data-f="all">Alle</button>
       <button class="sit-filter" data-f="familieret">Skilsmisse</button>
@@ -418,20 +430,20 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
       <a href="#" class="sit-card" data-cats="leje"><div class="sit-q">Min udlejer nægter at lave noget om.</div><div class="sit-cat">Lejeret</div><div class="sit-arr">→</div></a>
       <a href="#" class="sit-card" data-cats="leje"><div class="sit-q">Jeg er smidt ud uden varsel.</div><div class="sit-cat">Lejeret</div><div class="sit-arr">→</div></a>
       <a href="#" class="sit-card" data-cats="leje"><div class="sit-q">Udlejeren vil ikke betale mit depositum tilbage.</div><div class="sit-cat">Lejeret</div><div class="sit-arr">→</div></a>
-      <div class="sit-other"><a href="#">Noget andet? Se alle situationer →</a></div>
+      <div class="sit-other"><a href="https://www.ret-raad.dk/specialer/" target="_blank">Noget andet? Se alle situationer →</a></div>
     </div>
-    <button class="sit-show-more" id="sit-show-more">Se alle situationer →</button>
+    <button class="sit-show-more" id="sit-show-more">Se alle situationer</button>
   </div>
 </section>
 
 <!-- ARTIKLER -->
 <section class="section" style="background:var(--c-paper)">
   <div class="section-inner">
-    <div class="section-hd"><h2>Seneste fra Ret &amp; Råd</h2><a href="#">Se alle artikler →</a></div>
+    <div class="section-hd"><h2>Seneste fra Ret &amp; Råd</h2><a href="https://www.ret-raad.dk/artikler/" target="_blank">Se alle artikler →</a></div>
     <div class="art-grid">
-      <a href="#" class="art-card"><div class="art-cat">Skilsmisse</div><div class="art-title">Hvad sker der med huset, når I går fra hinanden?</div><div class="art-body">De fleste ved ikke, at de har tre muligheder — og at to af dem ikke kræver en retssag.</div></a>
-      <a href="#" class="art-card"><div class="art-cat">Arv</div><div class="art-title">Fem ting du skal gøre inden for seks uger efter et dødsfald</div><div class="art-body">Det føles tidligt, men frister gælder uanset hvad. Her er hvad der haster.</div></a>
-      <a href="#" class="art-card"><div class="art-cat">Gæld</div><div class="art-title">Hvornår er gældssanering en mulighed?</div><div class="art-body">Mange tror, de ikke kvalificerer sig. Sandheden er mere nuanceret end de fleste tror.</div></a>
+      <a href="https://www.ret-raad.dk/specialer/aegteskab-samliv-og-skilsmisse/" target="_blank" class="art-card"><div class="art-cat">Skilsmisse</div><div class="art-title">Hvad sker der med huset, når I går fra hinanden?</div><div class="art-body">De fleste ved ikke, at de har tre muligheder — og at to af dem ikke kræver en retssag.</div></a>
+      <a href="https://www.ret-raad.dk/specialer/testamente-arv/" target="_blank" class="art-card"><div class="art-cat">Arv</div><div class="art-title">Fem ting du skal gøre inden for seks uger efter et dødsfald</div><div class="art-body">Det føles tidligt, men frister gælder uanset hvad. Her er hvad der haster.</div></a>
+      <a href="https://www.ret-raad.dk/specialer/gaeld/" target="_blank" class="art-card"><div class="art-cat">Gæld</div><div class="art-title">Hvornår er gældssanering en mulighed?</div><div class="art-body">Mange tror, de ikke kvalificerer sig. Sandheden er mere nuanceret end de fleste tror.</div></a>
     </div>
   </div>
 </section>
@@ -440,10 +452,10 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 <div class="offices">
   <div class="offices-inner">
     <div class="offices-txt">
-      <h3>Vi er tæt på dig — 47 kontorer i hele landet</h3>
+      <h3>Vi er tæt på dig — 28 kontorer i hele landet</h3>
       <p>Find din lokale Ret &amp; Råd-advokat og book en gratis første samtale.</p>
     </div>
-    <button class="offices-btn">Find dit nærmeste kontor →</button>
+    <button class="offices-btn" onclick="document.getElementById('dk-map-wrap').scrollIntoView({behavior:'smooth',block:'center'})">Find dit nærmeste kontor →</button>
   </div>
 </div>
 
@@ -457,14 +469,14 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
         <h3>Tag det første skridt — det er gratis</h3>
         <p>Første samtale koster ingenting. Fortæl os din situation, og vi finder den rette advokat til dig i Frederiksberg.</p>
       </div>
-      <a href="#">Book gratis samtale →</a>
+      <a href="https://www.ret-raad.dk/find-kontor" target="_blank">Book gratis samtale →</a>
     </div>
   </div>
   <div class="footer-inner">
-    <div><h4>Ret &amp; Råd</h4><ul><li><a href="#">Om Ret &amp; Råd</a></li><li><a href="#">Find kontor</a></li><li><a href="#">Ledige stillinger</a></li></ul></div>
-    <div><h4>Privatpersoner</h4><ul><li><a href="#">Skilsmisse &amp; separation</a></li><li><a href="#">Arv &amp; testamente</a></li><li><a href="#">Gæld &amp; økonomi</a></li><li><a href="#">Bolighandel</a></li></ul></div>
-    <div><h4>Erhverv</h4><ul><li><a href="#">Selskabsret</a></li><li><a href="#">Kontrakter</a></li><li><a href="#">Ansættelsesret</a></li></ul></div>
-    <div><h4>Kontakt</h4><ul><li><a href="#">Gratis første samtale</a></li><li><a href="#">Alle kontorer</a></li></ul></div>
+    <div><h4>Ret &amp; Råd</h4><ul><li><a href="https://www.ret-raad.dk/om-retraad/" target="_blank">Om Ret &amp; Råd</a></li><li><a href="https://www.ret-raad.dk/find-kontor" target="_blank">Find kontor</a></li><li><a href="https://www.ret-raad.dk/om-retraad/" target="_blank">Ledige stillinger</a></li></ul></div>
+    <div><h4>Privatpersoner</h4><ul><li><a href="https://www.ret-raad.dk/specialer/aegteskab-samliv-og-skilsmisse/" target="_blank">Skilsmisse &amp; separation</a></li><li><a href="https://www.ret-raad.dk/specialer/testamente-arv/" target="_blank">Arv &amp; testamente</a></li><li><a href="https://www.ret-raad.dk/specialer/gaeld/" target="_blank">Gæld &amp; økonomi</a></li><li><a href="https://www.ret-raad.dk/specialer/boligkoeb-salg-leje/" target="_blank">Bolighandel</a></li></ul></div>
+    <div><h4>Erhverv</h4><ul><li><a href="https://www.ret-raad.dk/specialer/virksomhedsraadgivning/" target="_blank">Selskabsret</a></li><li><a href="https://www.ret-raad.dk/specialer/virksomhedsraadgivning/" target="_blank">Kontrakter</a></li><li><a href="https://www.ret-raad.dk/specialer/ansaettelse-arbejde/" target="_blank">Ansættelsesret</a></li></ul></div>
+    <div><h4>Kontakt</h4><ul><li><a href="https://www.ret-raad.dk/find-kontor" target="_blank">Gratis første samtale</a></li><li><a href="https://www.ret-raad.dk/find-kontor" target="_blank">Alle kontorer</a></li></ul></div>
   </div>
   <div class="footer-copy">
     <span>© 2026 Ret &amp; Råd Advokater A/S</span>
@@ -537,53 +549,37 @@ function setQP(p, btn) {
   var BY_LON = 12.52, BY_LAT = 55.68; // Frederiksberg, København
 
   var offices = [
-    { lon: 9.92,  lat: 57.05 }, // Aalborg
-    { lon: 9.97,  lat: 57.47 }, // Hjørring
-    { lon: 10.54, lat: 57.44 }, // Frederikshavn
-    { lon: 9.97,  lat: 57.27 }, // Brønderslev
-    { lon: 8.69,  lat: 56.96 }, // Thisted
-    { lon: 8.86,  lat: 56.79 }, // Nykøbing M
-    { lon: 9.02,  lat: 56.56 }, // Skive
-    { lon: 8.31,  lat: 56.55 }, // Lemvig
-    { lon: 9.40,  lat: 56.45 }, // Viborg
-    { lon: 8.61,  lat: 56.49 }, // Struer
-    { lon: 10.04, lat: 56.46 }, // Randers
-    { lon: 10.88, lat: 56.41 }, // Grenaa
-    { lon: 8.62,  lat: 56.36 }, // Holstebro
-    { lon: 9.55,  lat: 56.17 }, // Silkeborg
-    { lon: 8.97,  lat: 56.14 }, // Herning
-    { lon: 9.16,  lat: 56.14 }, // Ikast
-    { lon: 8.24,  lat: 56.09 }, // Ringkøbing
-    { lon: 12.61, lat: 56.04 }, // Helsingør
-    { lon: 9.94,  lat: 56.04 }, // Skanderborg
-    { lon: 9.85,  lat: 55.86 }, // Horsens
-    { lon: 12.30, lat: 55.93 }, // Hillerød
-    { lon: 12.07, lat: 55.84 }, // Frederikssund
-    { lon: 9.53,  lat: 55.71 }, // Vejle
-    { lon: 11.72, lat: 55.72 }, // Holbæk
-    { lon: 9.75,  lat: 55.57 }, // Fredericia
-    { lon: 9.47,  lat: 55.49 }, // Kolding
-    { lon: 10.79, lat: 55.31 }, // Nyborg
-    { lon: 8.46,  lat: 55.47 }, // Esbjerg
-    { lon: 10.39, lat: 55.40 }, // Odense
-    { lon: 11.35, lat: 55.40 }, // Slagelse
-    { lon: 12.18, lat: 55.46 }, // Køge
-    { lon: 10.66, lat: 55.45 }, // Kerteminde
-    { lon: 9.90,  lat: 55.27 }, // Assens
-    { lon: 9.49,  lat: 55.25 }, // Haderslev
-    { lon: 11.09, lat: 55.68 }, // Kalundborg
-    { lon: 12.07, lat: 55.64 }, // Roskilde
-    { lon: 12.57, lat: 55.68 }, // København
-    { lon: 10.24, lat: 55.10 }, // Faaborg
-    { lon: 9.73,  lat: 55.50 }, // Middelfart
-    { lon: 10.61, lat: 55.06 }, // Svendborg
-    { lon: 9.42,  lat: 55.04 }, // Aabenraa
-    { lon: 11.77, lat: 55.23 }, // Næstved
-    { lon: 11.79, lat: 55.45 }, // Ringsted
-    { lon: 9.79,  lat: 54.91 }, // Sønderborg
-    { lon: 11.87, lat: 54.77 }, // Nykøbing F
-    { lon: 11.91, lat: 55.01 }, // Vordingborg
-    { lon: 12.07, lat: 55.64 }, // Roskilde (dup — brug Greve i stedet)
+    // Nordjylland
+    { lon: 9.919,  lat: 57.052 }, // Nørresundby (Aalborg)
+    { lon: 9.933,  lat: 57.049 }, // Aalborg (Kjellerupsgade)
+    { lon: 10.317, lat: 57.167 }, // Dronninglund
+    { lon: 8.421,  lat: 56.754 }, // Hurup Thy
+    // Midtjylland
+    { lon: 10.877, lat: 56.416 }, // Grenaa
+    { lon: 10.066, lat: 56.271 }, // Hinnerup
+    { lon: 8.616,  lat: 56.360 }, // Holstebro
+    { lon: 10.037, lat: 56.462 }, // Randers
+    { lon: 10.483, lat: 56.301 }, // Rønde
+    { lon: 9.549,  lat: 56.167 }, // Silkeborg
+    { lon: 10.211, lat: 56.157 }, // Aarhus C
+    // Syddanmark
+    { lon: 10.244, lat: 55.096 }, // Faaborg
+    { lon: 9.733,  lat: 55.504 }, // Middelfart
+    { lon: 10.388, lat: 55.396 }, // Odense C
+    // Sjælland
+    { lon: 12.177, lat: 55.457 }, // Køge
+    { lon: 11.760, lat: 55.230 }, // Næstved
+    { lon: 11.355, lat: 55.402 }, // Slagelse
+    // Hovedstaden (Frederiksberg plottes separat som [by])
+    { lon: 12.363, lat: 55.726 }, // Ballerup
+    { lon: 12.589, lat: 55.682 }, // Bredgade, København K
+    { lon: 12.573, lat: 55.727 }, // Hellerup (Gentofte)
+    { lon: 12.396, lat: 55.669 }, // Glostrup
+    { lon: 12.306, lat: 55.930 }, // Hillerød
+    { lon: 12.578, lat: 55.684 }, // Nørre Voldgade, København K
+    // Bornholm vises ikke på kort (ø filtreret fra kortflade)
+    // { lon: 15.133, lat: 55.065 }, // Nexø
+    // { lon: 14.703, lat: 55.100 }, // Rønne
   ];
   // fjern dup
   offices = offices.filter(function(o, i, a) {
@@ -676,14 +672,8 @@ function setVar(v, btn) {
     cards.forEach(function(card) {
       var match = f === 'all' || card.dataset.cats === f;
       var withinLimit = f !== 'all' || visible < SHOW_ALL_LIMIT;
-      if (match && withinLimit) {
-        card.style.display = '';
-        visible++;
-      } else if (match) {
-        card.style.display = 'none'; // hidden beyond limit in "alle"
-      } else {
-        card.style.display = 'none';
-      }
+      if (match && withinLimit) { card.style.display = ''; visible++; }
+      else { card.style.display = 'none'; }
     });
     showMoreBtn.style.display = f === 'all' ? '' : 'none';
   }
@@ -702,6 +692,115 @@ function setVar(v, btn) {
   });
 
   applyFilter('all');
+
+  // Sæt rigtige links på situationskort
+  var catUrls = {
+    familieret: 'https://www.ret-raad.dk/specialer/aegteskab-samliv-og-skilsmisse/',
+    arv:        'https://www.ret-raad.dk/specialer/testamente-arv/',
+    gaeld:      'https://www.ret-raad.dk/specialer/gaeld/',
+    bolig:      'https://www.ret-raad.dk/specialer/boligkoeb-salg-leje/',
+    ansaet:     'https://www.ret-raad.dk/specialer/ansaettelse-arbejde/',
+    leje:       'https://www.ret-raad.dk/specialer/boligkoeb-salg-leje/'
+  };
+  cards.forEach(function(card) {
+    var url = catUrls[card.dataset.cats];
+    if (url) { card.href = url; card.target = '_blank'; }
+  });
+})();
+
+(function() {
+  var btn = document.getElementById('chat-send-btn');
+  var input = document.getElementById('chat-input');
+  var responseEl = document.getElementById('chat-response');
+
+  var lawyers = [
+    {
+      name: 'Mette Kjær', speciale: 'Familieret',
+      photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80&fit=crop&crop=faces',
+      quote: '»De fleste der ringer til mig har ventet for længe. Men det er aldrig for sent — vi finder en løsning, der er til at leve med.«',
+      keys: ['skilsmisse','separation','skilles','fra hinanden','børn','forældremyndighed','samvær','bopæl','ægteskab','samliv','papirer','parforhold','kæreste','gift','ægtefælle'],
+      next: 'Book en gratis samtale, så gennemgår Mette din situation og forklarer dine muligheder.'
+    },
+    {
+      name: 'Thomas Holm', speciale: 'Arv & testamente',
+      photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80&fit=crop&crop=faces',
+      quote: '»Et dødsfald er svært nok i sig selv. Jeg sørger for, at det juridiske ikke bliver endnu en byrde oveni.«',
+      keys: ['arv','testamente','dødsfald','skifte','bo','boopgørelse','afdød','arving','efterladt','død','arvelader','bedstemor','bedstefar','far er død','mor er død'],
+      next: 'Book en samtale, så gennemgår Thomas hvad der skal ske og inden for hvilke frister.'
+    },
+    {
+      name: 'Sara Lindberg', speciale: 'Gæld & økonomi',
+      photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80&fit=crop&crop=faces',
+      quote: '»Der er næsten altid en vej ud — enten via skifteretten eller en aftale med kreditorerne. Lad os finde den sammen.«',
+      keys: ['gæld','lån','restancer','gældssanering','inkasso','banken','kreditor','økonomi','afdrag','rykkere','fogedretten','udlæg','konkurs','insolvent','betale','råd til'],
+      next: 'Book en gratis samtale, så kigger Sara på din samlede situation og hvilke løsninger der er realistiske.'
+    },
+    {
+      name: 'Anders Vestergaard', speciale: 'Bolighandel',
+      photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&fit=crop&crop=faces',
+      quote: '»Sælger har pligt til at oplyse om fejl. Når de ikke gør det, er der næsten altid grundlag for at gøre krav gældende.«',
+      keys: ['hus','lejlighed','køber','sælger','bolig','ejendom','handel','købesum','fejl','mangler','tilstandsrapport','ejendomsmægler','overtagelse','tinglysning','skøde'],
+      next: 'Book en samtale, så gennemgår Anders sagen og vurderer om du har krav på erstatning eller prisafslag.'
+    },
+    {
+      name: 'Lene Christoffersen', speciale: 'Ansættelsesret',
+      photo: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=200&q=80&fit=crop&crop=faces',
+      quote: '»Mange accepterer en afskedigelse, der faktisk er ulovlig. Et kvarters samtale kan afdække, om du har krav på godtgørelse.«',
+      keys: ['fyret','opsagt','arbejde','job','arbejdsgiver','løn','sygemeldt','syg','afskediget','bortvist','kontrakt','overenskomst','ansættelse','fratræden','godtgørelse'],
+      next: 'Book en gratis samtale, så vurderer Lene om din arbejdsgiver har handlet ulovligt og hvad du kan gøre.'
+    },
+    {
+      name: 'Peter Møller', speciale: 'Lejeret',
+      photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80&fit=crop&crop=faces',
+      quote: '»Lejeloven er kompleks — og udlejere ved det godt. Jeg sikrer, at du kender dine rettigheder, inden du skriver under på noget.«',
+      keys: ['lejer','udlejer','husleje','leje','lejemål','depositum','opsigelse','fraflytning','vedligeholdelse','fraflytningsrapport','boligret','fremleje','leje af'],
+      next: 'Book en samtale, så gennemgår Peter din sag og fortæller hvad du har ret til.'
+    }
+  ];
+
+  function match(text) {
+    var t = text.toLowerCase();
+    var scores = lawyers.map(function(l) {
+      return { lawyer: l, score: l.keys.filter(function(k) { return t.includes(k); }).length };
+    });
+    scores.sort(function(a, b) { return b.score - a.score; });
+    return scores[0].lawyer;
+  }
+
+  btn.addEventListener('click', function() {
+    var text = input.value.trim();
+    if (!text) { input.focus(); return; }
+
+    input.disabled = true;
+    btn.disabled = true;
+    btn.textContent = 'Matcher…';
+    responseEl.style.display = 'block';
+    responseEl.innerHTML = '<div class="chat-msg"><div class="chat-avatar">R&R</div><div class="chat-bubble"><div class="chat-bubble-q" style="opacity:.5">Analyserer din situation…</div></div></div>';
+
+    setTimeout(function() {
+      var m = match(text);
+      responseEl.innerHTML =
+        '<div class="chat-msg">' +
+          '<div class="chat-avatar">R&R</div>' +
+          '<div class="chat-bubble"><div class="chat-bubble-q">Vi har fundet din advokat.</div></div>' +
+        '</div>' +
+        '<div class="match-card">' +
+          '<div class="match-label">Dit match på Frederiksberg</div>' +
+          '<div class="match-body">' +
+            '<img class="match-photo" src="' + m.photo + '" alt="' + m.name + '">' +
+            '<div class="match-info">' +
+              '<div class="match-name">' + m.name + '</div>' +
+              '<div class="match-specialty">' + m.speciale + '</div>' +
+              '<p class="match-quote">' + m.quote + '</p>' +
+            '</div>' +
+          '</div>' +
+          '<p class="match-next">' + m.next + '</p>' +
+          '<a href="https://www.ret-raad.dk/find-kontor" target="_blank" class="match-cta">Book gratis samtale med ' + m.name.split(' ')[0] + ' →</a>' +
+        '</div>';
+      btn.style.display = 'none';
+      responseEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 900);
+  });
 })();
 </script>
 </body>
