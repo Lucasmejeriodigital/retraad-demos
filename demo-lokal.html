@@ -150,10 +150,10 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 .chat-bubble-q{font-size:1rem;font-style:italic;color:var(--c-forest);font-weight:500;line-height:1.35;margin-bottom:4px}
 .chat-bubble-sub{font-size:.8rem;color:rgba(12,12,12,.55);line-height:1.45}
 .chat-reply{display:flex;justify-content:flex-end;margin-bottom:12px;position:relative}
-.chat-ph{position:absolute;top:14px;left:16px;right:calc(44px + 16px);font-family:var(--f);font-size:.9375rem;line-height:1.65;color:rgba(12,12,12,.38);pointer-events:none;word-break:break-word}
+.chat-ph{position:absolute;top:14px;left:16px;right:16px;font-family:var(--f);font-size:.9375rem;line-height:1.65;color:rgba(12,12,12,.38);pointer-events:none;word-break:break-word}
 .chat-ph::after{content:'|';opacity:1;animation:blink 600ms step-end infinite;color:var(--c-leaf)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.chat-textarea{width:calc(100% - 44px);font-family:var(--f);font-size:.9375rem;color:var(--c-ink);background:var(--c-white);border:1px solid #dde8de;border-radius:12px 0 12px 12px;padding:14px 16px;resize:none;min-height:100px;line-height:1.65;outline:none;transition:border-color 150ms,box-shadow 150ms;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.chat-textarea{width:100%;font-family:var(--f);font-size:.9375rem;color:var(--c-ink);background:var(--c-white);border:1px solid #dde8de;border-radius:12px 0 12px 12px;padding:14px 16px;resize:none;min-height:100px;line-height:1.65;outline:none;transition:border-color 150ms,box-shadow 150ms;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .chat-textarea:focus{border-color:var(--c-leaf);box-shadow:0 0 0 3px rgba(42,155,71,.18);outline:2px solid var(--c-leaf);outline-offset:0}
 .chat-footer{display:flex;justify-content:flex-end;margin-top:10px}
 .chat-note{font-size:.68rem;color:rgba(12,12,12,.28);line-height:1.45}
@@ -236,11 +236,10 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 .footer-copy{max-width:var(--max);margin:28px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.15);font-size:.68rem;color:rgba(255,255,255,.4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
 /* ═══ MATCH CARD ═══ */
-.match-card{background:var(--c-white);border-radius:var(--r);padding:24px 24px 20px;margin-top:4px}
-.match-label{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:16px}
-.match-body{display:flex;gap:20px;align-items:flex-start;margin-bottom:16px}
-.match-photo{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;background:var(--c-sage)}
-.match-info{flex:1;min-width:0}
+.match-wrap{display:flex;gap:20px;align-items:flex-start;margin-top:4px}
+.match-photo{width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;background:var(--c-sage)}
+.match-card{background:var(--c-white);border-radius:var(--r);padding:20px 24px;flex:1;min-width:0}
+.match-label{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:12px}
 .match-name{font-size:1rem;font-weight:700;color:var(--c-forest);margin-bottom:2px}
 .match-specialty{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:10px}
 .match-quote{font-size:.82rem;font-style:italic;color:rgba(12,12,12,.65);line-height:1.6;margin-bottom:0}
@@ -815,17 +814,15 @@ function setVar(v, btn) {
           '<div class="chat-avatar">R&R</div>' +
           '<div class="chat-bubble"><div class="chat-bubble-q">Vi har fundet din advokat.</div></div>' +
         '</div>' +
-        '<div class="match-card">' +
-          '<div class="match-label">Dit match på Frederiksberg</div>' +
-          '<div class="match-body">' +
-            '<img class="match-photo" src="' + m.photo + '" alt="' + m.name + '">' +
-            '<div class="match-info">' +
-              '<div class="match-name">' + m.name + '</div>' +
-              '<div class="match-specialty">' + m.speciale + '</div>' +
-              '<p class="match-quote">' + m.quote + '</p>' +
-            '</div>' +
+        '<div class="match-wrap">' +
+          '<img class="match-photo" src="' + m.photo + '" alt="' + m.name + '">' +
+          '<div class="match-card">' +
+            '<div class="match-label">Dit match på Frederiksberg</div>' +
+            '<div class="match-name">' + m.name + '</div>' +
+            '<div class="match-specialty">' + m.speciale + '</div>' +
+            '<p class="match-quote">' + m.quote + '</p>' +
+            '<a href="https://www.ret-raad.dk/find-kontor" target="_blank" class="match-cta">Book gratis samtale med ' + m.name.split(' ')[0] + ' →</a>' +
           '</div>' +
-          '<a href="https://www.ret-raad.dk/find-kontor" target="_blank" class="match-cta">Book gratis samtale med ' + m.name.split(' ')[0] + ' →</a>' +
         '</div>';
       btn.style.display = 'none';
       responseEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
