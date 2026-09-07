@@ -236,9 +236,9 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 .footer-copy{max-width:var(--max);margin:28px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.15);font-size:.68rem;color:rgba(255,255,255,.4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
 /* ═══ MATCH CARD ═══ */
-.match-wrap{position:relative;display:flex;gap:0;align-items:stretch;margin-top:4px;overflow:visible;padding-left:174px}
-.match-photo{position:absolute;left:0;top:50%;transform:translateY(-50%);width:154px!important;height:190px!important;min-width:154px;min-height:190px;object-fit:cover;object-position:center top;border-radius:1px;display:block}
-.match-card{background:var(--c-white);border:1.5px solid var(--c-leaf);border-radius:var(--r);padding:30px 36px;flex:1;min-width:0}
+.match-wrap{position:relative;width:100%;margin-top:4px;overflow:visible}
+.match-photo{position:absolute;left:-20px;top:50%;transform:translateY(-50%);width:130px!important;height:170px!important;min-width:130px;min-height:170px;object-fit:cover;object-position:center top;border-radius:1px;display:block;z-index:1}
+.match-card{background:var(--c-white);border:1.5px solid var(--c-leaf);border-radius:var(--r);padding:24px 28px 24px 130px;width:100%}
 .match-label{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:14px}
 .match-name{font-size:1.2rem;font-weight:700;color:var(--c-forest);margin-bottom:3px}
 .match-specialty{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c-leaf);margin-bottom:14px}
