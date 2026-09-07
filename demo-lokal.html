@@ -127,13 +127,12 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 .lv-d-stat-l{font-size:.7rem;font-weight:500;color:rgba(12,12,12,.45);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
 
 /* ═══ CITAT-FRISE ═══ */
-.quote-frise{background:var(--c-forest);padding:48px 30px}
-.quote-frise-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12)}
-.quote-frise-item{background:var(--c-forest);padding:28px 28px 24px}
-.quote-frise-q{font-size:.9rem;font-style:italic;color:rgba(255,255,255,.88);line-height:1.6;margin-bottom:14px}
-.quote-frise-q::before{content:'\201C'}
-.quote-frise-q::after{content:'\201D'}
-.quote-frise-cite{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-terracotta)}
+.quote-frise{background:var(--c-pine);padding:56px 30px}
+.quote-frise-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);max-width:var(--max);margin:0 auto 32px}
+.quote-frise-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.quote-frise-item{border-left:3px solid var(--c-terracotta);padding:0 0 0 20px;display:flex;flex-direction:column;gap:10px}
+.quote-frise-q{font-size:1.0625rem;font-style:italic;color:rgba(255,255,255,.92);line-height:1.55;font-weight:400}
+.quote-frise-cite{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
 
 /* ═══ SITUATION-SEKTIONER (A, B, C) ═══ */
 .sit-section{padding:64px 30px 72px;border-bottom:1px solid var(--c-sage)}
@@ -356,21 +355,22 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 
 <!-- CITAT-FRISE -->
 <div class="quote-frise">
+  <div class="quote-frise-eyebrow">Hvad kunder siger</div>
   <div class="quote-frise-inner">
     <div class="quote-frise-item">
-      <p class="quote-frise-q">Jeg vidste ikke, hvor jeg skulle starte. Én samtale gav mig overblik og ro til at handle.</p>
+      <p class="quote-frise-q">"Jeg vidste ikke, hvor jeg skulle starte. Én samtale gav mig overblik og ro til at handle."</p>
       <cite class="quote-frise-cite">Maria, 41 år · Skilsmisse</cite>
     </div>
     <div class="quote-frise-item">
-      <p class="quote-frise-q">Vi troede, det ville tage år. Det tog tre måneder — og vi forstod hvert eneste skridt.</p>
+      <p class="quote-frise-q">"Vi troede, det ville tage år. Det tog tre måneder — og vi forstod hvert eneste skridt."</p>
       <cite class="quote-frise-cite">Thomas, 54 år · Arv og skifte</cite>
     </div>
     <div class="quote-frise-item">
-      <p class="quote-frise-q">Det føltes helt umuligt. De talte til mig som et menneske, ikke som en juridisk sag.</p>
+      <p class="quote-frise-q">"Det føltes helt umuligt. De talte til mig som et menneske, ikke som en juridisk sag."</p>
       <cite class="quote-frise-cite">Lene, 38 år · Gæld og økonomi</cite>
     </div>
     <div class="quote-frise-item">
-      <p class="quote-frise-q">Jeg tøvede i to år med at ringe. Den første samtale kostede ingenting — og ændrede alt.</p>
+      <p class="quote-frise-q">"Jeg tøvede i to år med at ringe. Den første samtale kostede ingenting — og ændrede alt."</p>
       <cite class="quote-frise-cite">Søren, 47 år · Ansættelsesret</cite>
     </div>
   </div>
