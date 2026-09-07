@@ -126,6 +126,15 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 .lv-d-stat-n{font-size:2rem;font-weight:700;color:var(--c-forest);line-height:1}
 .lv-d-stat-l{font-size:.7rem;font-weight:500;color:rgba(12,12,12,.45);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
 
+/* ═══ CITAT-FRISE ═══ */
+.quote-frise{background:var(--c-forest);padding:48px 30px}
+.quote-frise-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12)}
+.quote-frise-item{background:var(--c-forest);padding:28px 28px 24px}
+.quote-frise-q{font-size:.9rem;font-style:italic;color:rgba(255,255,255,.88);line-height:1.6;margin-bottom:14px}
+.quote-frise-q::before{content:'\201C'}
+.quote-frise-q::after{content:'\201D'}
+.quote-frise-cite{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-terracotta)}
+
 /* ═══ SITUATION-SEKTIONER (A, B, C) ═══ */
 .sit-section{padding:64px 30px 72px;border-bottom:1px solid var(--c-sage)}
 .sit-section-inner{max-width:640px;margin:0 auto}
@@ -141,9 +150,11 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 .chat-bubble{background:var(--c-sage);padding:14px 18px;border-radius:0 12px 12px 12px;max-width:380px}
 .chat-bubble-q{font-size:1rem;font-style:italic;color:var(--c-forest);font-weight:500;line-height:1.35;margin-bottom:4px}
 .chat-bubble-sub{font-size:.8rem;color:rgba(12,12,12,.55);line-height:1.45}
-.chat-reply{display:flex;justify-content:flex-end;margin-bottom:12px}
+.chat-reply{display:flex;flex-direction:column;align-items:flex-end;margin-bottom:12px}
 .chat-textarea{width:calc(100% - 44px);font-family:var(--f);font-size:.9375rem;color:var(--c-ink);background:var(--c-white);border:1px solid #dde8de;border-radius:12px 0 12px 12px;padding:14px 16px;resize:none;min-height:100px;line-height:1.65;outline:none;transition:border-color 150ms,box-shadow 150ms;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .chat-textarea:focus{border-color:var(--c-leaf);box-shadow:0 0 0 3px rgba(42,155,71,.18);outline:2px solid var(--c-leaf);outline-offset:0}
+.chat-chip{font-family:var(--f);font-size:.75rem;color:rgba(12,12,12,.65);background:var(--c-white);border:1px solid var(--c-sage);border-radius:1px;padding:6px 12px;cursor:pointer;transition:border-color 150ms,color 150ms;text-align:left;line-height:1.4}
+.chat-chip:hover{border-color:var(--c-leaf);color:var(--c-forest)}
 .chat-footer{display:flex;justify-content:flex-end;margin-top:10px}
 .chat-note{font-size:.68rem;color:rgba(12,12,12,.28);line-height:1.45}
 .chat-send{font-family:var(--f);font-size:.8rem;font-weight:700;padding:11px 24px;background:var(--c-terracotta);color:#fff;border:none;border-radius:20px;cursor:pointer;white-space:nowrap}
@@ -291,17 +302,8 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
       <br>
       <a href="#chat" class="cta-primary" onclick="document.querySelector('.chat-section').scrollIntoView({behavior:'smooth'});return false;">Fortæl os din situation →</a>
     </div>
-    <div class="hero-right qv-b qp-right" id="hero-right">
+    <div class="hero-right" id="hero-right">
       <img class="hero-photo" src="assets/par.jpg" alt="" onerror="this.style.display='none'">
-      <div class="hero-quote-card">
-        <div class="quote-body">
-          <blockquote id="q-text"></blockquote>
-          <cite id="q-cite"></cite>
-        </div>
-        <div class="quote-footer">
-          <div class="quote-dots" id="q-dots"></div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -352,6 +354,28 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
   </div>
 </div>
 
+<!-- CITAT-FRISE -->
+<div class="quote-frise">
+  <div class="quote-frise-inner">
+    <div class="quote-frise-item">
+      <p class="quote-frise-q">Jeg vidste ikke, hvor jeg skulle starte. Én samtale gav mig overblik og ro til at handle.</p>
+      <cite class="quote-frise-cite">Maria, 41 år · Skilsmisse</cite>
+    </div>
+    <div class="quote-frise-item">
+      <p class="quote-frise-q">Vi troede, det ville tage år. Det tog tre måneder — og vi forstod hvert eneste skridt.</p>
+      <cite class="quote-frise-cite">Thomas, 54 år · Arv og skifte</cite>
+    </div>
+    <div class="quote-frise-item">
+      <p class="quote-frise-q">Det føltes helt umuligt. De talte til mig som et menneske, ikke som en juridisk sag.</p>
+      <cite class="quote-frise-cite">Lene, 38 år · Gæld og økonomi</cite>
+    </div>
+    <div class="quote-frise-item">
+      <p class="quote-frise-q">Jeg tøvede i to år med at ringe. Den første samtale kostede ingenting — og ændrede alt.</p>
+      <cite class="quote-frise-cite">Søren, 47 år · Ansættelsesret</cite>
+    </div>
+  </div>
+</div>
+
 <!-- SITUATION — chat -->
 <div class="chat-section">
   <div class="chat-outer">
@@ -369,6 +393,7 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
     </div>
     <div class="chat-reply">
       <textarea class="chat-textarea" id="chat-input" placeholder="Vi er ved at gå fra hinanden, og vi ved ikke hvad der sker med huset..."></textarea>
+      <div id="chat-suggestions" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;width:100%"></div>
     </div>
     <div class="chat-footer">
       <button class="chat-send" id="chat-send-btn">Start samtalen →</button>
@@ -485,51 +510,6 @@ body{font-family:var(--f);background:var(--c-paper);color:var(--c-ink)}
 </footer>
 
 <script>
-var quotes = [
-  { text: '»Jeg vidste ikke, hvor jeg skulle starte. Én samtale gav mig overblik og ro til at handle.«', cite: 'Maria, 41 år · Skilsmisse' },
-  { text: '»Vi troede, det ville tage år. Det tog tre måneder — og vi forstå hvert eneste skridt.«', cite: 'Thomas, 54 år · Arv og skifte' },
-  { text: '»Det føltes helt umuligt. De talte til mig som et menneske, ikke som en juridisk sag.«', cite: 'Lene, 38 år · Gæld og økonomi' },
-  { text: '»Jeg tøvede i to år med at ringe. Den første samtale kostede ingenting — og ændrede alt.«', cite: 'Søren, 47 år · Ansættelsesret' }
-];
-
-var current = 0;
-var body = document.getElementById('q-text');
-var cite = document.getElementById('q-cite');
-var dotsEl = document.getElementById('q-dots');
-var wrapper = document.querySelector('.quote-body');
-var timer;
-
-quotes.forEach(function(_, i) {
-  var d = document.createElement('button');
-  d.className = 'quote-dot' + (i === 0 ? ' active' : '');
-  d.setAttribute('aria-label', 'Citat ' + (i+1));
-  d.addEventListener('click', function() { goTo(i); resetTimer(); });
-  dotsEl.appendChild(d);
-});
-
-function render(i) {
-  body.innerHTML = quotes[i].text;
-  cite.textContent = quotes[i].cite;
-  document.querySelectorAll('.quote-dot').forEach(function(d, j) {
-    d.classList.toggle('active', j === i);
-  });
-}
-
-function goTo(i) {
-  wrapper.classList.add('fade');
-  setTimeout(function() {
-    current = i;
-    render(current);
-    wrapper.classList.remove('fade');
-  }, 400);
-}
-
-function next() { goTo((current + 1) % quotes.length); }
-
-function resetTimer() { clearInterval(timer); timer = setInterval(next, 5000); }
-
-render(0);
-resetTimer();
 
 function setQV(v, btn) {
   var hr = document.getElementById('hero-right');
@@ -705,6 +685,49 @@ function setVar(v, btn) {
   cards.forEach(function(card) {
     var url = catUrls[card.dataset.cats];
     if (url) { card.href = url; card.target = '_blank'; }
+  });
+})();
+
+(function() {
+  var input = document.getElementById('chat-input');
+  var suggestionsEl = document.getElementById('chat-suggestions');
+
+  var examples = [
+    'Vi er ved at gå fra hinanden, og vi ved ikke hvad der sker med huset...',
+    'Min far er død og vi kan ikke blive enige om arven',
+    'Banken har truet med at sende min gæld til fogedretten',
+    'Jeg er blevet fyret uden grund efter 8 år',
+    'Vi har købt et hus og opdager nu store fejl og mangler',
+    'Udlejeren vil ikke give depositum tilbage og truer med retten',
+    'Vi vil lave testamente men ved ikke hvordan det fungerer',
+    'Min kæreste og jeg er flyttet fra hinanden — hvad sker der med lejligheden?'
+  ];
+
+  /* rotating placeholder */
+  var pi = 0;
+  function nextPlaceholder() {
+    if (document.activeElement === input) return;
+    pi = (pi + 1) % examples.length;
+    input.placeholder = examples[pi];
+  }
+  setInterval(nextPlaceholder, 3000);
+
+  /* suggestion chips */
+  examples.slice(0, 4).forEach(function(text) {
+    var btn = document.createElement('button');
+    btn.className = 'chat-chip';
+    btn.type = 'button';
+    btn.textContent = text;
+    btn.addEventListener('click', function() {
+      input.value = text;
+      input.focus();
+      suggestionsEl.style.display = 'none';
+    });
+    suggestionsEl.appendChild(btn);
+  });
+
+  input.addEventListener('input', function() {
+    suggestionsEl.style.display = input.value ? 'none' : 'flex';
   });
 })();
 
